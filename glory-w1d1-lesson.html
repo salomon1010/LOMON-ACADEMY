@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 1 · Day 1 — Subordinating Conjunctions · Glory Gr7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ───────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:        #08090F;
+  --layer1:    #0F1120;
+  --layer2:    #171A2E;
+  --layer3:    #1F2340;
+  --border:    rgba(99,115,232,0.15);
+  --border2:   rgba(99,115,232,0.3);
+  --blue:      #6373E8;
+  --blue-l:    #8A97F5;
+  --blue-d:    #3D4EC4;
+  --blue-glow: rgba(99,115,232,0.2);
+  --gold:      #F2C94C;
+  --gold-d:    #B59333;
+  --green:     #27C685;
+  --green-d:   #1A8A5C;
+  --green-bg:  rgba(39,198,133,0.1);
+  --red:       #E85454;
+  --red-bg:    rgba(232,84,84,0.1);
+  --amber:     #F29B4C;
+  --text-1:    #EEEEF8;
+  --text-2:    #9098C0;
+  --text-3:    #535880;
+  --serif:     'Playfair Display', Georgia, serif;
+  --sans:      'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono:      'JetBrains Mono', 'Courier New', monospace;
+  --r-sm:      8px;
+  --r-md:      14px;
+  --r-lg:      20px;
+  --r-xl:      28px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text-1);
+  min-height:100vh;
+  line-height:1.6;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 0%,  rgba(99,115,232,0.09) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 100%, rgba(39,198,133,0.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+/* ── PROGRESS HEADER ─────────────────────────────────────── */
+.lesson-top{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 1.5rem;
+  background:rgba(8,9,15,0.9);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  gap:1rem;
+  flex-wrap:wrap;
+}
+.lesson-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.lesson-badge{
+  font-family:var(--mono);font-size:.65rem;font-weight:600;
+  padding:.25rem .6rem;border-radius:6px;
+  background:var(--blue-glow);border:1px solid var(--border2);
+  color:var(--blue-l);letter-spacing:.06em;
+}
+.lesson-title-sm{font-size:.82rem;font-weight:600;color:var(--text-2)}
+.step-track{
+  display:flex;align-items:center;gap:.35rem;
+  flex-shrink:0;
+}
+.step-pip{
+  width:28px;height:4px;border-radius:2px;
+  background:var(--layer3);
+  transition:background .4s ease,width .3s;
+  cursor:pointer;
+}
+.step-pip.done{background:var(--green)}
+.step-pip.active{background:var(--blue);width:36px}
+.step-pip.future{background:var(--layer3)}
+.step-label{
+  font-size:.65rem;font-weight:500;color:var(--text-3);
+  margin-left:.25rem;white-space:nowrap;
+}
+
+/* ── TIMER ───────────────────────────────────────────────── */
+.timer-block{
+  display:flex;align-items:center;gap:.6rem;
+}
+.timer-ring{
+  width:40px;height:40px;flex-shrink:0;cursor:pointer;
+}
+.timer-svg{transform:rotate(-90deg)}
+.timer-bg{fill:none;stroke:var(--layer3);stroke-width:3}
+.timer-arc{
+  fill:none;stroke:var(--blue);stroke-width:3;
+  stroke-linecap:round;
+  stroke-dasharray:113;stroke-dashoffset:0;
+  transition:stroke-dashoffset .5s linear,stroke .3s;
+}
+.timer-arc.warn{stroke:var(--amber)}
+.timer-arc.danger{stroke:var(--red)}
+.timer-digits{
+  font-family:var(--mono);font-size:.95rem;font-weight:600;
+  color:var(--text-1);min-width:44px;
+  line-height:1;
+}
+.timer-digits.warn{color:var(--amber)}
+.timer-digits.danger{color:var(--red)}
+.timer-ctrl{
+  display:flex;gap:.3rem;
+}
+.t-btn{
+  font-size:.65rem;padding:.2rem .5rem;
+  border:1px solid var(--border2);border-radius:5px;
+  background:transparent;color:var(--text-2);
+  cursor:pointer;font-family:var(--sans);
+  transition:all .15s;
+}
+.t-btn:hover{background:var(--layer2);color:var(--text-1)}
+
+/* ── LESSON LAYOUT ───────────────────────────────────────── */
+.lesson-wrap{
+  max-width:820px;margin:0 auto;
+  padding:2rem 1.5rem 6rem;
+  position:relative;z-index:5;
+}
+
+/* ── SECTION BLOCK ───────────────────────────────────────── */
+.section{
+  margin-bottom:2.5rem;
+  animation:fadeUp .4s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.section:nth-child(2){animation-delay:.05s}
+.section:nth-child(3){animation-delay:.1s}
+.section:nth-child(4){animation-delay:.15s}
+.section:nth-child(5){animation-delay:.2s}
+
+.section-label{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.62rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:1rem;
+}
+.section-label-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--blue);flex-shrink:0;
+}
+.section-label-dot.green{background:var(--green)}
+.section-label-dot.gold{background:var(--gold)}
+.section-label-dot.amber{background:var(--amber)}
+
+/* ── HOOK ────────────────────────────────────────────────── */
+.hook-card{
+  background:linear-gradient(135deg,var(--layer2) 0%,var(--layer1) 100%);
+  border:1px solid var(--border2);
+  border-radius:var(--r-xl);
+  padding:2.25rem 2rem;
+  position:relative;overflow:hidden;
+}
+.hook-card::before{
+  content:'';position:absolute;
+  top:-40px;right:-40px;width:200px;height:200px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(99,115,232,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hook-eyebrow{
+  font-size:.68rem;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--blue-l);
+  margin-bottom:.65rem;
+}
+.hook-headline{
+  font-family:var(--serif);
+  font-size:clamp(1.6rem,4vw,2.2rem);
+  line-height:1.2;color:var(--text-1);
+  margin-bottom:1.25rem;
+}
+.hook-headline em{
+  font-style:italic;color:var(--blue-l);
+}
+.hook-body{
+  font-size:.95rem;color:var(--text-2);
+  line-height:1.75;
+  max-width:620px;
+}
+.hook-body strong{color:var(--text-1);font-weight:600}
+.hook-reveal{
+  margin-top:1.5rem;
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:1rem 1.25rem;
+  background:var(--blue-glow);
+  border:1px solid var(--border2);
+  border-radius:var(--r-md);
+}
+.hook-reveal-icon{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
+.hook-reveal-text{font-size:.88rem;color:var(--blue-l);line-height:1.6}
+.hook-reveal-text strong{color:var(--text-1)}
+
+/* ── CORE TEACHING ───────────────────────────────────────── */
+.rule-card{
+  background:var(--layer2);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:1.5rem;
+  margin-bottom:1rem;
+}
+.rule-title{
+  font-family:var(--serif);font-size:1.2rem;
+  color:var(--text-1);margin-bottom:.75rem;
+}
+.rule-body{font-size:.9rem;color:var(--text-2);line-height:1.75}
+.rule-body strong{color:var(--text-1);font-weight:600}
+.rule-body code{
+  font-family:var(--mono);font-size:.82rem;
+  background:var(--layer3);
+  padding:.1rem .4rem;border-radius:4px;
+  color:var(--blue-l);
+}
+
+.conj-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:.75rem;margin-top:1.25rem;
+}
+@media(max-width:560px){.conj-grid{grid-template-columns:1fr 1fr}}
+.conj-card{
+  background:var(--layer3);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  padding:.9rem;
+  transition:border-color .2s,transform .15s;
+  cursor:default;
+}
+.conj-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.conj-word{
+  font-family:var(--serif);font-style:italic;
+  font-size:1.3rem;color:var(--blue-l);
+  margin-bottom:.25rem;
+}
+.conj-type{
+  font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:.5rem;
+}
+.conj-example{
+  font-size:.78rem;color:var(--text-2);
+  line-height:1.5;
+}
+.conj-example em{color:var(--gold);font-style:normal;font-weight:600}
+
+/* ── EXAMPLE SENTENCES ───────────────────────────────────── */
+.example-list{display:flex;flex-direction:column;gap:.6rem}
+.ex-row{
+  display:flex;align-items:flex-start;gap:.85rem;
+  padding:.85rem 1rem;
+  background:var(--layer2);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  transition:border-color .2s;
+}
+.ex-row:hover{border-color:var(--border2)}
+.ex-num{
+  font-family:var(--mono);font-size:.68rem;font-weight:600;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--blue-glow);border:1px solid var(--border2);
+  color:var(--blue-l);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:.05rem;
+}
+.ex-text{font-size:.88rem;color:var(--text-1);line-height:1.65}
+.ex-text .conj-highlight{
+  font-weight:700;color:var(--blue-l);
+  background:rgba(99,115,232,0.12);
+  padding:.05rem .3rem;border-radius:3px;
+}
+.ex-text .clause1{color:var(--text-1)}
+.ex-text .clause2{color:var(--text-2)}
+.ex-explain{font-size:.75rem;color:var(--text-3);margin-top:.3rem}
+.ex-explain strong{color:var(--amber);font-weight:600}
+
+/* ── DRAG & DROP ACTIVITY ────────────────────────────────── */
+.activity-card{
+  background:var(--layer1);
+  border:1px solid var(--border2);
+  border-radius:var(--r-xl);
+  padding:1.75rem 1.5rem;
+}
+.activity-header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:1rem;margin-bottom:.5rem;
+  flex-wrap:wrap;
+}
+.activity-title{
+  font-family:var(--serif);font-size:1.3rem;color:var(--text-1);
+}
+.activity-score-badge{
+  font-family:var(--mono);font-size:.75rem;font-weight:600;
+  padding:.3rem .75rem;border-radius:8px;
+  background:var(--layer3);border:1px solid var(--border2);
+  color:var(--text-2);white-space:nowrap;flex-shrink:0;
+}
+.activity-instructions{
+  font-size:.85rem;color:var(--text-2);
+  margin-bottom:1.5rem;line-height:1.6;
+}
+
+/* conjunction bank */
+.conj-bank{
+  display:flex;flex-wrap:wrap;gap:.5rem;
+  padding:1rem;
+  background:var(--layer3);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  margin-bottom:1.25rem;
+  min-height:52px;
+}
+.conj-bank-label{
+  width:100%;font-size:.6rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--text-3);
+  margin-bottom:.4rem;
+}
+.draggable{
+  font-family:var(--serif);font-style:italic;
+  font-size:.95rem;
+  padding:.35rem .85rem;
+  background:var(--blue-glow);
+  border:1.5px solid var(--blue);
+  border-radius:8px;
+  color:var(--blue-l);
+  cursor:grab;
+  user-select:none;
+  transition:all .15s;
+  display:inline-block;
+}
+.draggable:hover{background:rgba(99,115,232,0.25);transform:translateY(-1px)}
+.draggable:active{cursor:grabbing;transform:scale(0.96)}
+.draggable.dragging{opacity:.4;cursor:grabbing}
+.draggable.used{opacity:.35;pointer-events:none;filter:grayscale(.4)}
+
+/* question rows */
+.q-list{display:flex;flex-direction:column;gap:.85rem}
+.q-row{
+  display:flex;align-items:center;flex-wrap:wrap;
+  gap:.45rem;
+  padding:.9rem 1rem;
+  background:var(--layer2);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  transition:border-color .2s;
+  position:relative;
+}
+.q-row.correct{
+  border-color:var(--green);
+  background:var(--green-bg);
+}
+.q-row.wrong{
+  border-color:var(--red);
+  background:var(--red-bg);
+  animation:shake .3s ease;
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  75%{transform:translateX(6px)}
+}
+.q-num{
+  font-family:var(--mono);font-size:.7rem;font-weight:600;
+  color:var(--text-3);flex-shrink:0;min-width:20px;
+}
+.clause{font-size:.9rem;color:var(--text-1);font-weight:500}
+.clause.secondary{color:var(--text-2)}
+.drop-zone{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:90px;height:34px;
+  border:2px dashed var(--border2);
+  border-radius:7px;
+  padding:0 .6rem;
+  font-size:.85rem;color:var(--text-3);
+  font-family:var(--serif);font-style:italic;
+  transition:all .2s;
+  position:relative;
+  cursor:default;
+}
+.drop-zone.drag-over{
+  border-color:var(--blue);
+  background:var(--blue-glow);
+  color:var(--blue-l);
+  transform:scale(1.04);
+}
+.drop-zone.filled{
+  border-style:solid;
+  border-color:var(--blue);
+  background:rgba(99,115,232,0.1);
+  color:var(--blue-l);
+  font-weight:700;
+}
+.drop-zone.filled.correct{border-color:var(--green);background:var(--green-bg);color:var(--green)}
+.drop-zone.filled.wrong{border-color:var(--red);background:var(--red-bg);color:var(--red)}
+.drop-zone .remove-btn{
+  position:absolute;right:-8px;top:-8px;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--layer3);border:1px solid var(--border2);
+  color:var(--text-3);font-size:.55rem;
+  cursor:pointer;display:none;
+  align-items:center;justify-content:center;
+  font-family:var(--sans);line-height:1;
+  transition:all .15s;
+}
+.drop-zone.filled:not(.correct):not(.wrong) .remove-btn{display:flex}
+.drop-zone .remove-btn:hover{background:var(--red-bg);border-color:var(--red);color:var(--red)}
+.q-feedback{
+  font-size:.75rem;margin-left:.25rem;flex-shrink:0;
+  font-weight:600;
+}
+.q-feedback.correct{color:var(--green)}
+.q-feedback.wrong{color:var(--red)}
+
+/* check button + results */
+.check-row{
+  display:flex;align-items:center;gap:1rem;
+  margin-top:1.25rem;flex-wrap:wrap;
+}
+.check-btn{
+  padding:.65rem 1.5rem;
+  background:var(--blue);
+  border:none;border-radius:10px;
+  color:#fff;font-family:var(--sans);
+  font-size:.9rem;font-weight:600;
+  cursor:pointer;
+  transition:all .15s;
+  letter-spacing:.02em;
+}
+.check-btn:hover{background:var(--blue-l);transform:translateY(-1px)}
+.check-btn:active{transform:scale(.97)}
+.check-btn:disabled{background:var(--layer3);color:var(--text-3);cursor:not-allowed;transform:none}
+.reset-btn{
+  padding:.65rem 1.1rem;
+  background:transparent;
+  border:1px solid var(--border2);
+  border-radius:10px;color:var(--text-2);
+  font-family:var(--sans);font-size:.85rem;font-weight:500;
+  cursor:pointer;transition:all .15s;
+}
+.reset-btn:hover{background:var(--layer2);color:var(--text-1)}
+.result-text{
+  font-size:.88rem;font-weight:600;
+  padding:.5rem 1rem;border-radius:8px;
+}
+.result-text.all-correct{
+  background:var(--green-bg);color:var(--green);
+  border:1px solid rgba(39,198,133,0.3);
+}
+.result-text.partial{
+  background:var(--blue-glow);color:var(--blue-l);
+  border:1px solid var(--border2);
+}
+
+/* ── RECAP ───────────────────────────────────────────────── */
+.recap-card{
+  background:var(--layer2);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:1.5rem;
+}
+.recap-rule{
+  display:flex;gap:.75rem;align-items:flex-start;
+  padding:1rem;
+  background:var(--layer3);
+  border-radius:var(--r-md);
+  margin-bottom:1rem;
+}
+.recap-rule-icon{font-size:1.1rem;flex-shrink:0}
+.recap-rule-text{font-size:.88rem;color:var(--text-1);line-height:1.65}
+.recap-rule-text strong{color:var(--blue-l);font-weight:700}
+.next-lesson{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.85rem 1rem;
+  background:rgba(242,201,76,0.06);
+  border:1px solid rgba(242,201,76,0.2);
+  border-radius:var(--r-md);
+}
+.next-icon{font-size:1rem;flex-shrink:0}
+.next-text{font-size:.82rem;color:var(--text-2);line-height:1.55}
+.next-text strong{color:var(--gold);font-weight:600}
+
+/* ── COMPLETE BUTTON ─────────────────────────────────────── */
+.complete-section{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:200;
+  padding:1rem 1.5rem;
+  background:rgba(8,9,15,0.92);
+  backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;
+}
+.complete-meta{font-size:.78rem;color:var(--text-3)}
+.complete-meta strong{color:var(--text-2);font-weight:600}
+.complete-btn{
+  display:flex;align-items:center;gap:.55rem;
+  padding:.7rem 1.75rem;
+  background:var(--green-d);
+  border:1.5px solid var(--green);
+  border-radius:12px;
+  color:#fff;font-family:var(--sans);
+  font-size:.95rem;font-weight:700;
+  cursor:pointer;transition:all .2s;
+  letter-spacing:.02em;
+  white-space:nowrap;
+}
+.complete-btn:hover{background:var(--green);box-shadow:0 0 20px rgba(39,198,133,0.35);transform:translateY(-1px)}
+.complete-btn:active{transform:scale(.97)}
+.complete-btn.done{
+  background:rgba(39,198,133,0.12);
+  color:var(--green);
+  border-color:var(--green);
+  cursor:default;
+}
+.complete-btn.done:hover{transform:none;box-shadow:none}
+
+/* ── CELEBRATION OVERLAY ─────────────────────────────────── */
+.celebration{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(8,9,15,0.85);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s;
+  backdrop-filter:blur(8px);
+}
+.celebration.show{opacity:1;pointer-events:all}
+.celebration-card{
+  background:var(--layer2);
+  border:2px solid var(--green);
+  border-radius:var(--r-xl);
+  padding:2.5rem 3rem;
+  text-align:center;
+  max-width:440px;
+  box-shadow:0 0 60px rgba(39,198,133,0.25);
+  animation:popIn .4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes popIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.celebration-emoji{font-size:3rem;margin-bottom:1rem;display:block}
+.celebration-title{
+  font-family:var(--serif);font-size:1.8rem;
+  color:var(--green);margin-bottom:.75rem;
+}
+.celebration-body{font-size:.9rem;color:var(--text-2);line-height:1.65;margin-bottom:1.5rem}
+.celebration-body strong{color:var(--text-1)}
+.celebration-next{
+  display:flex;flex-direction:column;gap:.5rem;
+  padding:1rem;
+  background:var(--layer3);
+  border-radius:var(--r-md);
+  font-size:.82rem;color:var(--text-2);
+  margin-bottom:1.5rem;text-align:left;
+}
+.celebration-next li{color:var(--text-1);margin-left:1rem}
+.close-celebration{
+  padding:.65rem 2rem;
+  background:var(--green-d);border:none;border-radius:10px;
+  color:#fff;font-family:var(--sans);font-size:.9rem;font-weight:700;
+  cursor:pointer;transition:all .15s;
+}
+.close-celebration:hover{background:var(--green)}
+
+/* ── TOUCH / MOBILE FALLBACK ─────────────────────────────── */
+.touch-select{
+  display:none;
+  font-size:.9rem;
+  padding:.4rem .6rem;
+  background:var(--layer3);
+  border:1.5px solid var(--border2);
+  border-radius:8px;
+  color:var(--blue-l);
+  font-family:var(--serif);
+  font-style:italic;
+  cursor:pointer;
+  min-width:100px;
+}
+@media(hover:none){
+  .draggable{display:none}
+  .touch-select{display:block}
+}
+</style>
+</head>
+<body>
+
+<!-- ── STICKY TOP BAR ─────────────────────────────────────── -->
+<div class="lesson-top">
+  <div class="lesson-meta">
+    <span class="lesson-badge">QWF</span>
+    <span class="lesson-badge" style="background:rgba(39,198,133,0.1);border-color:rgba(39,198,133,0.3);color:var(--green)">Week 1 · Day 1</span>
+    <span class="lesson-title-sm">Subordinating Conjunctions · Glory Gr7</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+    <div class="step-track">
+      <div class="step-pip active" id="pip0" title="Hook"></div>
+      <div class="step-pip future" id="pip1" title="Core Teaching"></div>
+      <div class="step-pip future" id="pip2" title="Examples"></div>
+      <div class="step-pip future" id="pip3" title="Activity"></div>
+      <div class="step-pip future" id="pip4" title="Recap"></div>
+      <span class="step-label" id="step-label-text">Hook</span>
+    </div>
+    <div class="timer-block">
+      <div class="timer-ring" title="Click to pause/resume timer" onclick="toggleTimer()">
+        <svg class="timer-svg" width="40" height="40" viewBox="0 0 40 40">
+          <circle class="timer-bg" cx="20" cy="20" r="18"/>
+          <circle class="timer-arc" id="timer-arc" cx="20" cy="20" r="18"/>
+        </svg>
+      </div>
+      <div class="timer-digits" id="timer-display">35:00</div>
+      <div class="timer-ctrl">
+        <button class="t-btn" onclick="toggleTimer()" id="timer-toggle-btn">⏸</button>
+        <button class="t-btn" onclick="resetTimer()">↺</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LESSON BODY ────────────────────────────────────────── -->
+<div class="lesson-wrap">
+
+  <!-- ── SECTION 1: HOOK ─────────────────────────────────── -->
+  <div class="section" id="section-hook">
+    <div class="section-label">
+      <span class="section-label-dot"></span>
+      Hook — 2 minutes
+    </div>
+
+    <div class="hook-card">
+      <div class="hook-eyebrow">Lesson 1.3 · Module 1 · Week 1</div>
+      <h1 class="hook-headline">
+        Two sentences walk into a room.<br>
+        A conjunction <em>introduces</em> them.
+      </h1>
+      <p class="hook-body">
+        Here is a sentence: <strong>"She failed the test."</strong><br>
+        Here is another: <strong>"She didn't study."</strong><br><br>
+        Both are fine on their own. But read them side by side and something feels missing — 
+        the <em>relationship</em> between them. Did the first happen <em>because</em> of the second? 
+        <em>Although</em> the second? <em>Unless</em> the second was actually false?<br><br>
+        That relationship — cause, contrast, condition, time — is what a <strong>subordinating conjunction</strong> carries. 
+        One word changes everything: who is to blame, how surprising the outcome is, what would 
+        have prevented it.
+      </p>
+      <div class="hook-reveal">
+        <span class="hook-reveal-icon">🎯</span>
+        <div class="hook-reveal-text">
+          <strong>By the end of this lesson:</strong> you'll use subordinating conjunctions 
+          automatically in your writing — and you'll notice them everywhere you read. 
+          This skill appears in every analytical essay you'll write in Integrated Programs.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: CORE TEACHING ──────────────────────────── -->
+  <div class="section" id="section-core">
+    <div class="section-label">
+      <span class="section-label-dot" style="background:var(--amber)"></span>
+      Core Teaching — The Rule
+    </div>
+
+    <div class="rule-card">
+      <h2 class="rule-title">What is a subordinating conjunction?</h2>
+      <p class="rule-body">
+        A <strong>subordinating conjunction</strong> is a word that connects two clauses — a <em>main clause</em> 
+        and a <em>dependent clause</em> — and shows the logical relationship between them.<br><br>
+        The dependent clause <strong>cannot stand alone</strong>. It depends on the main clause to make sense. 
+        The conjunction is the bridge.<br><br>
+        Structure: <code>main clause</code> + <code>[conjunction]</code> + <code>dependent clause</code><br>
+        — or — <code>[conjunction]</code> + <code>dependent clause</code> + <code>, main clause</code>
+      </p>
+
+      <div class="conj-grid">
+        <div class="conj-card">
+          <div class="conj-word">because</div>
+          <div class="conj-type">Cause / Reason</div>
+          <div class="conj-example">Shows <em>why</em> something happened</div>
+        </div>
+        <div class="conj-card">
+          <div class="conj-word">although</div>
+          <div class="conj-type">Contrast / Surprise</div>
+          <div class="conj-example">Shows a <em>surprising</em> contrast</div>
+        </div>
+        <div class="conj-card">
+          <div class="conj-word">since</div>
+          <div class="conj-type">Time / Cause</div>
+          <div class="conj-example">Shows time <em>or</em> reason</div>
+        </div>
+        <div class="conj-card">
+          <div class="conj-word">while</div>
+          <div class="conj-type">Simultaneous Action</div>
+          <div class="conj-example">Shows two things <em>happening together</em></div>
+        </div>
+        <div class="conj-card">
+          <div class="conj-word">unless</div>
+          <div class="conj-type">Condition</div>
+          <div class="conj-example">Shows something <em>only happens if</em> something else doesn't</div>
+        </div>
+        <div class="conj-card">
+          <div class="conj-word">if</div>
+          <div class="conj-type">Condition</div>
+          <div class="conj-example">Shows a <em>conditional</em> relationship</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3: DEMO / EXAMPLES ─────────────────────── -->
+  <div class="section" id="section-demo">
+    <div class="section-label">
+      <span class="section-label-dot gold"></span>
+      Demo — 3 Worked Examples
+    </div>
+
+    <div class="example-list">
+      <div class="ex-row">
+        <span class="ex-num">1</span>
+        <div>
+          <div class="ex-text">
+            <span class="clause">"She studied hard</span>
+            <span class="conj-highlight">because</span>
+            <span class="clause2">she wanted to ace the test."</span>
+          </div>
+          <div class="ex-explain">
+            <strong>Relationship: Cause.</strong>
+            The conjunction "because" tells the reader <em>why</em> she studied. 
+            Remove it and you have two disconnected facts. Add it and you have a reason.
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-row">
+        <span class="ex-num">2</span>
+        <div>
+          <div class="ex-text">
+            <span class="conj-highlight">Although</span>
+            <span class="clause2">it rained all afternoon,</span>
+            <span class="clause"> they finished the project."</span>
+          </div>
+          <div class="ex-explain">
+            <strong>Relationship: Contrast.</strong>
+            Notice the comma — when the dependent clause comes <em>first</em>, you need a comma before the main clause.
+            "Although" signals that the outcome was <em>surprising</em> given the condition.
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-row">
+        <span class="ex-num">3</span>
+        <div>
+          <div class="ex-text">
+            <span class="clause">"I won't stop trying</span>
+            <span class="conj-highlight">unless</span>
+            <span class="clause2">someone gives me a good reason to."</span>
+          </div>
+          <div class="ex-explain">
+            <strong>Relationship: Condition.</strong>
+            "Unless" sets up a <em>condition</em> that would have to be true for the main action to change. 
+            It shows determination — but with a specific exception built in.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-card" style="margin-top:1rem;padding:1rem 1.25rem">
+      <p class="rule-body">
+        <strong>The comma rule:</strong> When the dependent clause comes <em>before</em> the main clause, 
+        use a comma to separate them. When the main clause comes first, <strong>no comma is needed</strong>.<br><br>
+        ✓ <code>Although it rained, they finished.</code><br>
+        ✓ <code>They finished although it rained.</code>
+      </p>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4: ACTIVITY ──────────────────────────────── -->
+  <div class="section" id="section-activity">
+    <div class="section-label">
+      <span class="section-label-dot green"></span>
+      Activity — Drag &amp; Drop (5 Questions)
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <h2 class="activity-title">Match the conjunction to the sentence pair</h2>
+        <div class="activity-score-badge" id="score-badge">Score: 0 / 5</div>
+      </div>
+      <p class="activity-instructions">
+        Drag the correct conjunction from the bank below into the blank in each sentence pair. 
+        Each conjunction can only be used <strong>once</strong>. Click <strong>Check answers</strong> when all five are filled in.
+        On a touchscreen, use the dropdown menus instead.
+      </p>
+
+      <!-- Conjunction Bank -->
+      <div class="conj-bank" id="conj-bank">
+        <div class="conj-bank-label">Conjunction bank — drag one into each blank:</div>
+        <div class="draggable" draggable="true" data-conj="because"  id="drag-because"  ondragstart="dragStart(event)">because</div>
+        <div class="draggable" draggable="true" data-conj="although" id="drag-although" ondragstart="dragStart(event)">although</div>
+        <div class="draggable" draggable="true" data-conj="since"    id="drag-since"    ondragstart="dragStart(event)">since</div>
+        <div class="draggable" draggable="true" data-conj="while"    id="drag-while"    ondragstart="dragStart(event)">while</div>
+        <div class="draggable" draggable="true" data-conj="unless"   id="drag-unless"   ondragstart="dragStart(event)">unless</div>
+      </div>
+
+      <!-- Questions -->
+      <div class="q-list" id="q-list">
+
+        <!-- Q1 -->
+        <div class="q-row" id="q1">
+          <span class="q-num">1.</span>
+          <span class="clause">"The team practiced every day</span>
+          <div class="drop-zone" id="drop-1"
+            ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,'drop-1','because')"
+            data-answer="because">
+            <span class="drop-placeholder">_____</span>
+            <button class="remove-btn" onclick="removeConj('drop-1')">✕</button>
+          </div>
+          <span class="clause2">they wanted to win the championship."</span>
+          <select class="touch-select" onchange="touchSelect(this,'drop-1','because')">
+            <option value="">— pick —</option>
+            <option value="because">because</option>
+            <option value="although">although</option>
+            <option value="since">since</option>
+            <option value="while">while</option>
+            <option value="unless">unless</option>
+          </select>
+          <span class="q-feedback" id="fb-1"></span>
+        </div>
+
+        <!-- Q2 -->
+        <div class="q-row" id="q2">
+          <span class="q-num">2.</span>
+          <div class="drop-zone" id="drop-2"
+            ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,'drop-2','although')"
+            data-answer="although">
+            <span class="drop-placeholder">_____</span>
+            <button class="remove-btn" onclick="removeConj('drop-2')">✕</button>
+          </div>
+          <span class="clause2">she was nervous before the presentation,</span>
+          <span class="clause"> she delivered it perfectly."</span>
+          <select class="touch-select" onchange="touchSelect(this,'drop-2','although')">
+            <option value="">— pick —</option>
+            <option value="because">because</option>
+            <option value="although">although</option>
+            <option value="since">since</option>
+            <option value="while">while</option>
+            <option value="unless">unless</option>
+          </select>
+          <span class="q-feedback" id="fb-2"></span>
+        </div>
+
+        <!-- Q3 -->
+        <div class="q-row" id="q3">
+          <span class="q-num">3.</span>
+          <span class="clause">"She has been writing in her journal every morning</span>
+          <div class="drop-zone" id="drop-3"
+            ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,'drop-3','since')"
+            data-answer="since">
+            <span class="drop-placeholder">_____</span>
+            <button class="remove-btn" onclick="removeConj('drop-3')">✕</button>
+          </div>
+          <span class="clause2">the school year started."</span>
+          <select class="touch-select" onchange="touchSelect(this,'drop-3','since')">
+            <option value="">— pick —</option>
+            <option value="because">because</option>
+            <option value="although">although</option>
+            <option value="since">since</option>
+            <option value="while">while</option>
+            <option value="unless">unless</option>
+          </select>
+          <span class="q-feedback" id="fb-3"></span>
+        </div>
+
+        <!-- Q4 -->
+        <div class="q-row" id="q4">
+          <span class="q-num">4.</span>
+          <span class="clause">"Marcus listened to the lecture</span>
+          <div class="drop-zone" id="drop-4"
+            ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,'drop-4','while')"
+            data-answer="while">
+            <span class="drop-placeholder">_____</span>
+            <button class="remove-btn" onclick="removeConj('drop-4')">✕</button>
+          </div>
+          <span class="clause2">taking detailed notes in the margin."</span>
+          <select class="touch-select" onchange="touchSelect(this,'drop-4','while')">
+            <option value="">— pick —</option>
+            <option value="because">because</option>
+            <option value="although">although</option>
+            <option value="since">since</option>
+            <option value="while">while</option>
+            <option value="unless">unless</option>
+          </select>
+          <span class="q-feedback" id="fb-4"></span>
+        </div>
+
+        <!-- Q5 -->
+        <div class="q-row" id="q5">
+          <span class="q-num">5.</span>
+          <span class="clause">"I will not stop revising this essay</span>
+          <div class="drop-zone" id="drop-5"
+            ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,'drop-5','unless')"
+            data-answer="unless">
+            <span class="drop-placeholder">_____</span>
+            <button class="remove-btn" onclick="removeConj('drop-5')">✕</button>
+          </div>
+          <span class="clause2">I'm truly satisfied with every sentence."</span>
+          <select class="touch-select" onchange="touchSelect(this,'drop-5','unless')">
+            <option value="">— pick —</option>
+            <option value="because">because</option>
+            <option value="although">although</option>
+            <option value="since">since</option>
+            <option value="while">while</option>
+            <option value="unless">unless</option>
+          </select>
+          <span class="q-feedback" id="fb-5"></span>
+        </div>
+
+      </div><!-- /q-list -->
+
+      <div class="check-row">
+        <button class="check-btn" id="check-btn" onclick="checkAnswers()">Check answers</button>
+        <button class="reset-btn" onclick="resetActivity()">↺ Reset</button>
+        <span class="result-text" id="result-text" style="display:none"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: RECAP ─────────────────────────────────── -->
+  <div class="section" id="section-recap">
+    <div class="section-label">
+      <span class="section-label-dot" style="background:var(--amber)"></span>
+      Recap + Bridge
+    </div>
+
+    <div class="recap-card">
+      <div class="recap-rule">
+        <span class="recap-rule-icon">💡</span>
+        <div class="recap-rule-text">
+          <strong>The one thing to remember:</strong> A subordinating conjunction doesn't just join two sentences — 
+          it tells the reader <em>how</em> those two ideas are related. 
+          <strong>Because</strong> = reason. <strong>Although</strong> = surprise. 
+          <strong>Since</strong> = time or cause. <strong>While</strong> = together. 
+          <strong>Unless</strong> = condition. Choose the right one and your writing thinks clearly. 
+          Choose the wrong one and the logic breaks.
+        </div>
+      </div>
+      <div class="recap-rule" style="margin-top:.6rem">
+        <span class="recap-rule-icon">✍️</span>
+        <div class="recap-rule-text">
+          <strong>Tonight's journal task:</strong> Write 2 sentences using two different subordinating conjunctions. 
+          They can be about anything — your day, a book you've read, something you're thinking about. 
+          The only rule: the conjunction must match the actual relationship between the two ideas.
+        </div>
+      </div>
+      <div class="next-lesson">
+        <span class="next-icon">→</span>
+        <div class="next-text">
+          <strong>Day 2 — Connotation in context:</strong> Tomorrow you'll apply today's grammar skill 
+          inside sentences where word connotation also matters — you'll see how <em>what</em> words you choose 
+          and <em>how</em> you connect them both shape what the reader feels.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /lesson-wrap -->
+
+<!-- ── FIXED COMPLETE BAR ─────────────────────────────────── -->
+<div class="complete-section">
+  <div class="complete-meta">
+    <strong>Glory · Week 1 · Day 1</strong> · Subordinating Conjunctions · IXL QWF ·
+    After this page: open IXL and do skill QWF until SmartScore ≥ 70
+  </div>
+  <button class="complete-btn" id="complete-btn" onclick="markComplete()">
+    <span id="complete-icon">✓</span>
+    <span id="complete-label">Mark lesson complete</span>
+  </button>
+</div>
+
+<!-- ── CELEBRATION ────────────────────────────────────────── -->
+<div class="celebration" id="celebration">
+  <div class="celebration-card">
+    <span class="celebration-emoji">🎉</span>
+    <h2 class="celebration-title">Lesson complete!</h2>
+    <p class="celebration-body">
+      You've finished <strong>Week 1, Day 1 — Subordinating Conjunctions</strong>.<br>
+      You identified the 5 conjunctions, learned the comma rule, and matched all 5 
+      sentence pairs correctly. That's real progress.
+    </p>
+    <div class="celebration-next">
+      <strong style="color:var(--text-1);font-size:.82rem">Next steps right now:</strong>
+      <ul>
+        <li>Open IXL and complete skill QWF (target SmartScore ≥ 70)</li>
+        <li>Write 2 journal sentences using 2 different conjunctions</li>
+        <li>Log your SmartScore in the Academy Dashboard</li>
+      </ul>
+    </div>
+    <button class="close-celebration" onclick="closeCelebration()">Got it — let's go! →</button>
+  </div>
+</div>
+
+<script>
+// ── TIMER ─────────────────────────────────────────────────────────
+const TOTAL = 35 * 60;
+let remaining = TOTAL;
+let running = true;
+let timerInterval = null;
+const arc = document.getElementById('timer-arc');
+const display = document.getElementById('timer-display');
+const toggleBtn = document.getElementById('timer-toggle-btn');
+const CIRCUMFERENCE = 2 * Math.PI * 18; // ≈ 113.1
+
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+
+function setArc(frac) {
+  arc.style.strokeDashoffset = CIRCUMFERENCE * (1 - frac);
+}
+
+function updateTimerUI() {
+  display.textContent = formatTime(remaining);
+  setArc(remaining / TOTAL);
+  const isWarn = remaining <= 600 && remaining > 180;
+  const isDanger = remaining <= 180;
+  arc.className = 'timer-arc' + (isDanger ? ' danger' : isWarn ? ' warn' : '');
+  display.className = 'timer-digits' + (isDanger ? ' danger' : isWarn ? ' warn' : '');
+}
+
+function tick() {
+  if (!running) return;
+  if (remaining <= 0) {
+    clearInterval(timerInterval);
+    running = false;
+    display.textContent = '00:00';
+    display.className = 'timer-digits danger';
+    toggleBtn.textContent = '▶';
+    return;
+  }
+  remaining--;
+  updateTimerUI();
+}
+
+function toggleTimer() {
+  running = !running;
+  toggleBtn.textContent = running ? '⏸' : '▶';
+}
+
+function resetTimer() {
+  remaining = TOTAL;
+  running = true;
+  toggleBtn.textContent = '⏸';
+  updateTimerUI();
+}
+
+timerInterval = setInterval(tick, 1000);
+updateTimerUI();
+
+// ── SCROLL STEP TRACKER ───────────────────────────────────────────
+const sections = ['hook','core','demo','activity','recap'];
+const stepLabels = ['Hook','Core teaching','Examples','Activity','Recap'];
+let currentStep = 0;
+
+function updateSteps(stepIdx) {
+  sections.forEach((_, i) => {
+    const pip = document.getElementById(`pip${i}`);
+    if (i < stepIdx) pip.className = 'step-pip done';
+    else if (i === stepIdx) pip.className = 'step-pip active';
+    else pip.className = 'step-pip future';
+  });
+  document.getElementById('step-label-text').textContent = stepLabels[stepIdx];
+  currentStep = stepIdx;
+}
+
+const sectionEls = sections.map(id => document.getElementById(`section-${id}`));
+const io = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = sectionEls.indexOf(entry.target);
+      if (idx >= 0) updateSteps(idx);
+    }
+  });
+}, { threshold: 0.25 });
+sectionEls.forEach(el => { if (el) io.observe(el); });
+
+// ── DRAG & DROP ───────────────────────────────────────────────────
+let draggedConj = null;
+let draggedEl = null;
+
+function dragStart(e) {
+  draggedConj = e.target.dataset.conj;
+  draggedEl = e.target;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+document.addEventListener('dragend', () => {
+  document.querySelectorAll('.draggable').forEach(d => d.classList.remove('dragging'));
+});
+
+function dragOver(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add('drag-over');
+}
+
+function dragLeave(e) {
+  e.currentTarget.classList.remove('drag-over');
+}
+
+function drop(e, zoneId, _answer) {
+  e.preventDefault();
+  if (!draggedConj) return;
+  const zone = document.getElementById(zoneId);
+  zone.classList.remove('drag-over');
+
+  // If zone already has a conjunction, return that one to the bank first
+  const existing = zone.dataset.current;
+  if (existing) returnToBank(existing);
+
+  placeConjunction(zone, draggedConj, draggedEl);
+  draggedConj = null;
+  draggedEl = null;
+}
+
+function placeConjunction(zone, conj, sourceEl) {
+  // Mark the dragged element as used
+  if (sourceEl) sourceEl.classList.add('used');
+
+  // Update drop zone
+  zone.dataset.current = conj;
+  zone.classList.add('filled');
+  zone.classList.remove('correct','wrong');
+  zone.querySelector('.drop-placeholder').textContent = conj;
+
+  updateCheckBtn();
+}
+
+function returnToBank(conj) {
+  const el = document.getElementById(`drag-${conj}`);
+  if (el) el.classList.remove('used');
+}
+
+function removeConj(zoneId) {
+  const zone = document.getElementById(zoneId);
+  const conj = zone.dataset.current;
+  if (!conj) return;
+  returnToBank(conj);
+  zone.dataset.current = '';
+  zone.classList.remove('filled','correct','wrong');
+  zone.querySelector('.drop-placeholder').textContent = '_____';
+  // reset feedback
+  const num = zoneId.replace('drop-','');
+  document.getElementById(`fb-${num}`).textContent = '';
+  document.getElementById(`q${num}`).classList.remove('correct','wrong');
+  updateCheckBtn();
+}
+
+// Touch / select fallback
+function touchSelect(select, zoneId, _answer) {
+  const zone = document.getElementById(zoneId);
+  const val = select.value;
+  if (!val) { removeConj(zoneId); return; }
+  zone.dataset.current = val;
+  zone.classList.add('filled');
+  zone.classList.remove('correct','wrong');
+  zone.querySelector('.drop-placeholder').textContent = val;
+  updateCheckBtn();
+}
+
+function updateCheckBtn() {
+  const allFilled = [1,2,3,4,5].every(n => {
+    const z = document.getElementById(`drop-${n}`);
+    return z && z.dataset.current;
+  });
+  document.getElementById('check-btn').disabled = !allFilled;
+}
+
+// ── CHECK ANSWERS ─────────────────────────────────────────────────
+let checked = false;
+
+function checkAnswers() {
+  if (checked) return;
+  let correct = 0;
+  [1,2,3,4,5].forEach(n => {
+    const zone = document.getElementById(`drop-${n}`);
+    const fb = document.getElementById(`fb-${n}`);
+    const row = document.getElementById(`q${n}`);
+    const ans = zone.dataset.answer;
+    const given = zone.dataset.current;
+    if (given === ans) {
+      zone.classList.add('correct');
+      fb.textContent = '✓';
+      fb.className = 'q-feedback correct';
+      row.classList.add('correct');
+      correct++;
+    } else {
+      zone.classList.add('wrong');
+      fb.textContent = `✗ (${ans})`;
+      fb.className = 'q-feedback wrong';
+      row.classList.add('wrong');
+    }
+  });
+
+  const badge = document.getElementById('score-badge');
+  badge.textContent = `Score: ${correct} / 5`;
+  badge.style.color = correct === 5 ? 'var(--green)' : correct >= 3 ? 'var(--amber)' : 'var(--red)';
+
+  const result = document.getElementById('result-text');
+  result.style.display = '';
+  if (correct === 5) {
+    result.className = 'result-text all-correct';
+    result.textContent = '🎉 Perfect score! All 5 correct.';
+  } else {
+    result.className = 'result-text partial';
+    result.textContent = `${correct}/5 correct — red answers show the right conjunction.`;
+  }
+
+  document.getElementById('check-btn').disabled = true;
+  checked = true;
+}
+
+function resetActivity() {
+  [1,2,3,4,5].forEach(n => {
+    const zone = document.getElementById(`drop-${n}`);
+    zone.dataset.current = '';
+    zone.classList.remove('filled','correct','wrong');
+    zone.querySelector('.drop-placeholder').textContent = '_____';
+    document.getElementById(`fb-${n}`).textContent = '';
+    document.getElementById(`q${n}`).classList.remove('correct','wrong');
+    // reset touch selects
+    const selects = document.getElementById(`q${n}`).querySelectorAll('.touch-select');
+    selects.forEach(s => s.value = '');
+  });
+  document.querySelectorAll('.draggable').forEach(d => d.classList.remove('used'));
+  document.getElementById('result-text').style.display = 'none';
+  document.getElementById('score-badge').textContent = 'Score: 0 / 5';
+  document.getElementById('score-badge').style.color = '';
+  document.getElementById('check-btn').disabled = true;
+  checked = false;
+}
+
+// Disable check button initially
+document.getElementById('check-btn').disabled = true;
+
+// ── MARK COMPLETE ─────────────────────────────────────────────────
+let completed = false;
+
+function markComplete() {
+  if (completed) return;
+  completed = true;
+
+  // Stop timer
+  running = false;
+  toggleBtn.textContent = '▶';
+
+  // Update button
+  const btn = document.getElementById('complete-btn');
+  btn.classList.add('done');
+  document.getElementById('complete-icon').textContent = '✓';
+  document.getElementById('complete-label').textContent = 'Lesson complete!';
+
+  // All pips green
+  sections.forEach((_, i) => document.getElementById(`pip${i}`).className = 'step-pip done');
+  document.getElementById('step-label-text').textContent = 'Complete';
+
+  // Save to localStorage
+  try {
+    const key = 'lomon-glory-w1d1';
+    localStorage.setItem(key, JSON.stringify({
+      completed: true,
+      timestamp: new Date().toISOString(),
+      timeLeft: remaining,
+    }));
+  } catch(e) {}
+
+  // Show celebration
+  document.getElementById('celebration').classList.add('show');
+}
+
+function closeCelebration() {
+  document.getElementById('celebration').classList.remove('show');
+}
+
+// ── CHECK SAVED STATE ─────────────────────────────────────────────
+try {
+  const saved = JSON.parse(localStorage.getItem('lomon-glory-w1d1') || 'null');
+  if (saved && saved.completed) {
+    const btn = document.getElementById('complete-btn');
+    btn.classList.add('done');
+    document.getElementById('complete-icon').textContent = '✓';
+    document.getElementById('complete-label').textContent = 'Lesson complete!';
+    sections.forEach((_,i) => document.getElementById(`pip${i}`).className = 'step-pip done');
+    completed = true;
+    running = false;
+    toggleBtn.textContent = '▶';
+  }
+} catch(e) {}
+</script>
+</body>
+</html>

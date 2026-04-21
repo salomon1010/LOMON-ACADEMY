@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lomon Academy — Achievement System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:       #0D0E14;
+  --s1:       #13151F;
+  --s2:       #1A1D2C;
+  --s3:       #222539;
+  --border:   rgba(255,255,255,0.07);
+  --border2:  rgba(255,255,255,0.13);
+  --t1:       #F2F0FF;
+  --t2:       #9B97C0;
+  --t3:       #5A566E;
+
+  --glory:  #4F8EF7; --glory2: #A0BEFF; --glo-bg: rgba(79,142,247,0.1);
+  --kendra: #F78F4F; --kend2:  #FFCBA0; --ken-bg: rgba(247,143,79,0.1);
+  --grace:  #4FC97F; --grac2:  #A0FFD0; --gra-bg: rgba(79,201,127,0.1);
+  --angely: #C04FF7; --ange2:  #E8A0FF; --ang-bg: rgba(192,79,247,0.1);
+
+  --gold:   #F5C542; --gold2: #FFE599; --gold-bg: rgba(245,197,66,0.1);
+  --silver: #C0C8E0; --silver-bg: rgba(192,200,224,0.1);
+  --bronze: #D4874A; --bronze-bg: rgba(212,135,74,0.1);
+
+  --green:  #27C685; --green-bg:  rgba(39,198,133,0.12);
+  --red:    #E85454; --red-bg:    rgba(232,84,84,0.12);
+  --amber:  #F5A623; --amber-bg:  rgba(245,166,35,0.12);
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans:  'Outfit', system-ui, sans-serif;
+  --mono:  'JetBrains Mono', monospace;
+  --r: 12px; --r2: 20px; --r3: 28px;
+}
+
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--t1);
+  min-height:100vh;
+}
+
+/* ══════════════════════════════════════════════════
+   BG GLOW
+══════════════════════════════════════════════════ */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 5%,  rgba(79,142,247,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 95%, rgba(192,79,247,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(79,201,127,0.04) 0%,transparent 70%);
+}
+
+/* ══════════════════════════════════════════════════
+   TOP NAV
+══════════════════════════════════════════════════ */
+.top-nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 1.75rem;
+  background:rgba(13,14,20,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  flex-wrap:wrap;gap:.75rem;
+}
+.nav-brand{
+  font-family:var(--serif);
+  font-size:1.15rem;font-weight:900;
+  letter-spacing:-.03em;color:var(--t1);
+}
+.nav-brand span{color:var(--gold)}
+.nav-tabs{display:flex;gap:.25rem;flex-wrap:wrap}
+.nav-tab{
+  font-size:.72rem;font-weight:600;
+  padding:.35rem .85rem;border-radius:20px;
+  cursor:pointer;border:1px solid transparent;
+  color:var(--t3);background:transparent;
+  font-family:var(--sans);
+  transition:all .15s;letter-spacing:.02em;
+}
+.nav-tab:hover{color:var(--t2);background:var(--s2)}
+.nav-tab.active{
+  color:var(--t1);background:var(--s2);
+  border-color:var(--border2);
+}
+
+/* ══════════════════════════════════════════════════
+   PAGE SECTIONS
+══════════════════════════════════════════════════ */
+.page{display:none;position:relative;z-index:5;
+  max-width:1100px;margin:0 auto;
+  padding:2rem 1.5rem 5rem;
+  animation:fadeUp .3s ease both;
+}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════════════════════════
+   SECTION HEADERS
+══════════════════════════════════════════════════ */
+.section-head{margin-bottom:1.75rem}
+.section-eyebrow{
+  font-family:var(--mono);font-size:.6rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:.5rem;
+}
+.section-title{
+  font-family:var(--serif);
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  font-weight:900;letter-spacing:-.03em;
+  line-height:1.1;color:var(--t1);
+  margin-bottom:.6rem;
+}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-sub{font-size:.9rem;color:var(--t2);max-width:580px;line-height:1.6}
+
+/* ══════════════════════════════════════════════════
+   CARD BASE
+══════════════════════════════════════════════════ */
+.card{
+  background:var(--s1);border:1px solid var(--border);
+  border-radius:var(--r2);padding:1.25rem 1.5rem;
+}
+.card-sm{padding:.9rem 1.1rem;border-radius:var(--r)}
+.label-sm{
+  font-size:.58rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:.6rem;
+}
+
+/* ══════════════════════════════════════════════════
+   GRID HELPERS
+══════════════════════════════════════════════════ */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:680px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+}
+@media(min-width:481px) and (max-width:680px){
+  .grid-2{grid-template-columns:1fr 1fr}
+  .grid-4{grid-template-columns:1fr 1fr}
+}
+
+/* ══════════════════════════════════════════════════
+   ① BADGES PAGE
+══════════════════════════════════════════════════ */
+.badge-section{margin-bottom:2.5rem}
+.badge-section-title{
+  font-family:var(--serif);font-size:1.15rem;font-weight:700;
+  color:var(--t1);margin-bottom:1rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.badge-section-title::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem}
+.badge-card{
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r2);padding:1.25rem 1rem;
+  text-align:center;cursor:pointer;
+  transition:all .2s;position:relative;overflow:hidden;
+}
+.badge-card:hover{transform:translateY(-3px);border-color:var(--border2)}
+.badge-card.earned{border-color:var(--gold);background:rgba(245,197,66,0.06)}
+.badge-card.earned::after{
+  content:'✓ Earned';position:absolute;top:.45rem;right:.55rem;
+  font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);font-family:var(--mono);
+}
+.badge-icon{
+  font-size:2.2rem;margin-bottom:.65rem;
+  display:block;line-height:1;
+  transition:transform .2s;
+}
+.badge-card:hover .badge-icon{transform:scale(1.1)}
+.badge-card.locked .badge-icon{filter:grayscale(1);opacity:.35}
+.badge-name{
+  font-family:var(--serif);font-size:.92rem;font-weight:700;
+  color:var(--t1);margin-bottom:.3rem;
+}
+.badge-card.locked .badge-name{color:var(--t3)}
+.badge-trigger{font-size:.72rem;color:var(--t2);line-height:1.45;margin-bottom:.5rem}
+.badge-card.locked .badge-trigger{color:var(--t3)}
+.badge-ixl{
+  font-family:var(--mono);font-size:.6rem;font-weight:600;
+  padding:.18rem .5rem;border-radius:4px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border2);color:var(--t3);
+  display:inline-block;
+}
+.badge-card.earned .badge-ixl{background:var(--gold-bg);border-color:rgba(245,197,66,.3);color:var(--gold)}
+
+/* Tier labels */
+.tier-pill{
+  display:inline-block;font-size:.6rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.15rem .5rem;border-radius:20px;margin-bottom:.5rem;
+  font-family:var(--mono);
+}
+.tier-bronze{background:var(--bronze-bg);color:var(--bronze);border:1px solid rgba(212,135,74,.3)}
+.tier-silver{background:var(--silver-bg);color:var(--silver);border:1px solid rgba(192,200,224,.3)}
+.tier-gold{background:var(--gold-bg);color:var(--gold);border:1px solid rgba(245,197,66,.3)}
+.tier-diamond{background:rgba(130,200,255,0.1);color:#80CAFF;border:1px solid rgba(130,200,255,.3)}
+
+/* Kid filter tabs */
+.kid-filter{display:flex;gap:.4rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.kid-filter-btn{
+  font-size:.72rem;font-weight:600;padding:.35rem 1rem;
+  border-radius:20px;cursor:pointer;border:1px solid var(--border);
+  background:transparent;font-family:var(--sans);
+  transition:all .15s;letter-spacing:.03em;
+}
+.kid-filter-btn:hover{border-color:var(--border2)}
+.kid-filter-btn.active-glory  {background:var(--glo-bg);border-color:var(--glory);color:var(--glory)}
+.kid-filter-btn.active-kendra {background:var(--ken-bg);border-color:var(--kendra);color:var(--kendra)}
+.kid-filter-btn.active-grace  {background:var(--gra-bg);border-color:var(--grace);color:var(--grace)}
+.kid-filter-btn.active-angely {background:var(--ang-bg);border-color:var(--angely);color:var(--angely)}
+.kid-filter-btn.active-all    {background:var(--s2);border-color:var(--border2);color:var(--t1)}
+
+/* ══════════════════════════════════════════════════
+   ② STREAKS PAGE
+══════════════════════════════════════════════════ */
+.streak-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-bottom:2rem}
+.streak-card{
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r2);padding:1.25rem;
+  transition:border-color .2s;
+}
+.streak-card:hover{border-color:var(--border2)}
+.streak-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.streak-name{
+  font-family:var(--serif);font-size:1.1rem;font-weight:700;
+  letter-spacing:-.02em;
+}
+.streak-flame{font-size:1.3rem;animation:flame 2s ease-in-out infinite}
+@keyframes flame{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.1) rotate(2deg)}}
+.streak-number{
+  font-family:var(--serif);font-size:3rem;font-weight:900;
+  line-height:1;letter-spacing:-.04em;margin-bottom:.2rem;
+}
+.streak-unit{font-size:.72rem;color:var(--t3);font-family:var(--mono);letter-spacing:.1em;margin-bottom:.75rem}
+.streak-dots{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.85rem}
+.s-dot{
+  width:24px;height:24px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;font-weight:700;font-family:var(--mono);
+  border:1.5px solid var(--border);
+  background:var(--s3);color:var(--t3);
+  cursor:pointer;transition:all .15s;flex-shrink:0;
+}
+.s-dot:hover{border-color:var(--border2)}
+.s-dot.done{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.s-dot.missed{background:var(--red-bg);border-color:var(--red);color:var(--red);opacity:.6}
+.s-dot.today{border-color:var(--gold);color:var(--gold);background:var(--gold-bg)}
+.streak-milestone{
+  display:flex;justify-content:space-between;gap:.4rem;flex-wrap:wrap;
+}
+.s-ms{
+  font-size:.62rem;font-family:var(--mono);
+  padding:.2rem .5rem;border-radius:5px;
+  background:var(--s3);border:1px solid var(--border);
+  color:var(--t3);white-space:nowrap;
+}
+.s-ms.hit{background:var(--gold-bg);border-color:rgba(245,197,66,.3);color:var(--gold)}
+.add-btn{
+  width:100%;padding:.5rem;margin-top:.75rem;
+  background:transparent;border:1px dashed var(--border2);
+  border-radius:8px;color:var(--t2);font-family:var(--sans);
+  font-size:.78rem;cursor:pointer;transition:all .15s;
+}
+.add-btn:hover{background:var(--s3);color:var(--t1)}
+.streak-rules{
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r2);padding:1.25rem 1.5rem;margin-top:1rem;
+}
+.rule-row{
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:.6rem 0;border-bottom:1px solid var(--border);
+}
+.rule-row:last-child{border-bottom:none}
+.rule-icon{font-size:.95rem;flex-shrink:0;margin-top:.1rem}
+.rule-text{font-size:.82rem;color:var(--t2);line-height:1.5}
+.rule-text strong{color:var(--t1);font-weight:600}
+
+/* ══════════════════════════════════════════════════
+   ③ LEADERBOARD PAGE
+══════════════════════════════════════════════════ */
+.week-selector-row{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;
+}
+.ws-label{font-size:.72rem;color:var(--t3);font-family:var(--mono);letter-spacing:.1em}
+.ws-btn{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--s2);border:1px solid var(--border);
+  color:var(--t2);cursor:pointer;font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;
+}
+.ws-btn:hover{background:var(--s3);color:var(--t1)}
+.ws-week-display{
+  font-family:var(--serif);font-size:1.2rem;font-weight:700;
+  color:var(--t1);min-width:80px;text-align:center;
+}
+.board-card{
+  background:var(--s1);border:1px solid var(--border);
+  border-radius:var(--r2);overflow:hidden;margin-bottom:1rem;
+}
+.board-header{
+  display:grid;grid-template-columns:2.5rem 1fr 90px 90px 90px 90px;
+  gap:.75rem;align-items:center;
+  padding:.65rem 1.25rem;
+  background:var(--s2);border-bottom:1px solid var(--border);
+  font-size:.6rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--t3);font-family:var(--mono);
+}
+.board-row{
+  display:grid;grid-template-columns:2.5rem 1fr 90px 90px 90px 90px;
+  gap:.75rem;align-items:center;
+  padding:.9rem 1.25rem;
+  border-bottom:1px solid var(--border);
+  transition:background .15s;cursor:default;
+}
+.board-row:last-child{border-bottom:none}
+.board-row:hover{background:var(--s2)}
+.board-rank{
+  font-family:var(--serif);font-size:1.3rem;font-weight:900;
+  color:var(--t3);
+}
+.rank-1{color:var(--gold)}
+.rank-2{color:var(--silver)}
+.rank-3{color:var(--bronze)}
+.board-kid-name{
+  font-family:var(--serif);font-size:1rem;font-weight:700;
+  letter-spacing:-.02em;
+}
+.board-score{
+  font-family:var(--mono);font-size:.82rem;font-weight:600;
+  text-align:right;
+}
+.score-positive{color:var(--green)}
+.score-zero{color:var(--t3)}
+.board-total{
+  font-family:var(--mono);font-size:.9rem;font-weight:700;
+  text-align:right;
+}
+.board-xp-bar{
+  height:4px;border-radius:2px;
+  background:var(--s3);overflow:hidden;margin-top:.25rem;
+}
+.board-xp-fill{height:100%;border-radius:2px}
+.lb-note{
+  padding:.85rem 1.1rem;
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r);font-size:.8rem;color:var(--t2);
+  line-height:1.6;margin-top:1rem;
+}
+.lb-note strong{color:var(--gold);font-weight:600}
+/* XP score inputs */
+.xp-input-section{margin-top:1.5rem}
+.xp-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:.85rem;margin-top:1rem;
+}
+.xp-kid-block{
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r2);padding:1rem;
+}
+.xp-kid-name{
+  font-family:var(--serif);font-size:.95rem;font-weight:700;
+  margin-bottom:.75rem;
+}
+.xp-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
+.xp-row-label{font-size:.65rem;color:var(--t3);width:90px;flex-shrink:0;font-family:var(--mono);letter-spacing:.04em}
+.xp-input{
+  flex:1;padding:.3rem .5rem;
+  background:var(--s3);border:1px solid var(--border);
+  border-radius:6px;color:var(--t1);font-family:var(--mono);
+  font-size:.82rem;outline:none;-moz-appearance:textfield;
+}
+.xp-input::-webkit-outer-spin-button,.xp-input::-webkit-inner-spin-button{-webkit-appearance:none}
+.xp-input:focus{border-color:var(--border2)}
+.calc-btn{
+  width:100%;padding:.6rem;margin-top:.5rem;
+  background:var(--s1);border:1px solid var(--border2);
+  border-radius:8px;color:var(--t1);font-family:var(--sans);
+  font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;
+}
+.calc-btn:hover{background:var(--s3)}
+
+/* ══════════════════════════════════════════════════
+   ④ GRADUATION PAGE
+══════════════════════════════════════════════════ */
+.ceremony-timeline{position:relative;padding-left:2.5rem}
+.ceremony-timeline::before{
+  content:'';position:absolute;left:.9rem;top:0;bottom:0;
+  width:2px;background:var(--border);border-radius:1px;
+}
+.timeline-item{
+  position:relative;margin-bottom:1.75rem;
+}
+.timeline-item::before{
+  content:'';position:absolute;left:-1.7rem;top:.35rem;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--s3);border:2px solid var(--border2);
+  z-index:1;transition:all .3s;
+}
+.timeline-item.milestone::before{
+  background:var(--gold);border-color:var(--gold);
+  box-shadow:0 0 12px rgba(245,197,66,.4);
+}
+.timeline-item.ceremony::before{
+  background:linear-gradient(135deg,var(--gold),var(--glory));
+  border-color:var(--gold);width:18px;height:18px;
+  left:-1.9rem;top:.2rem;
+  box-shadow:0 0 20px rgba(245,197,66,.5);
+}
+.timeline-week{
+  font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.14em;color:var(--t3);
+  text-transform:uppercase;margin-bottom:.3rem;
+}
+.timeline-title{
+  font-family:var(--serif);font-size:1rem;font-weight:700;
+  color:var(--t1);margin-bottom:.3rem;letter-spacing:-.02em;
+}
+.timeline-item.milestone .timeline-title{color:var(--gold)}
+.timeline-item.ceremony .timeline-title{
+  color:var(--t1);font-size:1.2rem;
+}
+.timeline-body{
+  font-size:.82rem;color:var(--t2);line-height:1.65;
+  max-width:600px;
+}
+.timeline-body strong{color:var(--t1);font-weight:600}
+.timeline-card{
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r);padding:.85rem 1rem;
+  margin-top:.6rem;font-size:.8rem;color:var(--t2);line-height:1.7;
+}
+.timeline-card strong{color:var(--t1);font-weight:600}
+.ceremony-main{
+  background:linear-gradient(135deg,var(--s2),var(--s1));
+  border:1px solid rgba(245,197,66,.3);
+  border-radius:var(--r2);padding:1.5rem;
+  margin-top:.75rem;
+}
+.ceremony-main-title{
+  font-family:var(--serif);font-size:1.3rem;font-weight:900;
+  color:var(--gold);margin-bottom:.75rem;letter-spacing:-.02em;
+}
+.ceremony-list{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:.6rem;
+}
+@media(max-width:480px){.ceremony-list{grid-template-columns:1fr}}
+.ce-item{
+  display:flex;align-items:flex-start;gap:.55rem;
+  font-size:.8rem;color:var(--t2);line-height:1.5;
+}
+.ce-icon{font-size:.9rem;flex-shrink:0}
+
+/* ══════════════════════════════════════════════════
+   ⑤ GLORY'S PORTFOLIO PAGE
+══════════════════════════════════════════════════ */
+.portfolio-hero{
+  background:linear-gradient(135deg,var(--glo-bg),rgba(245,197,66,0.06));
+  border:1px solid rgba(79,142,247,.25);
+  border-radius:var(--r3);padding:2rem 1.75rem;
+  margin-bottom:2rem;
+  position:relative;overflow:hidden;
+}
+.portfolio-hero::before{
+  content:'"';
+  font-family:var(--serif);font-size:12rem;font-weight:900;
+  position:absolute;right:-1rem;top:-2rem;
+  color:rgba(79,142,247,0.06);line-height:1;
+  pointer-events:none;
+}
+.portfolio-label{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--glory);margin-bottom:.6rem;
+}
+.portfolio-title{
+  font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);
+  font-weight:900;letter-spacing:-.03em;color:var(--t1);
+  margin-bottom:.65rem;
+}
+.portfolio-title em{font-style:italic;color:var(--glory2)}
+.portfolio-sub{font-size:.88rem;color:var(--t2);line-height:1.65;max-width:540px}
+.portfolio-sub strong{color:var(--t1)}
+
+.journal-system{margin-bottom:2rem}
+.journal-block{
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r2);padding:1.25rem 1.5rem;
+  margin-bottom:1rem;
+}
+.journal-block-header{
+  display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem;
+}
+.journal-num{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1rem;font-weight:700;
+  background:var(--glo-bg);border:1px solid rgba(79,142,247,.3);
+  color:var(--glory);flex-shrink:0;
+}
+.journal-block-title{
+  font-family:var(--serif);font-size:1rem;font-weight:700;
+  color:var(--t1);letter-spacing:-.02em;
+}
+.journal-block-body{font-size:.84rem;color:var(--t2);line-height:1.7}
+.journal-block-body strong{color:var(--t1);font-weight:600}
+.journal-block-body code{
+  font-family:var(--mono);font-size:.75rem;
+  background:var(--s3);padding:.1rem .35rem;border-radius:4px;color:var(--glory2);
+}
+.journal-prompt-list{
+  margin-top:.75rem;display:flex;flex-direction:column;gap:.4rem;
+}
+.jp{
+  padding:.55rem .85rem;background:var(--s3);
+  border-left:3px solid var(--glory);border-radius:0 var(--r) var(--r) 0;
+  font-size:.8rem;color:var(--t2);font-style:italic;line-height:1.45;
+}
+.portfolio-path{
+  background:var(--s2);border:1px solid rgba(245,197,66,.2);
+  border-radius:var(--r2);padding:1.25rem 1.5rem;
+}
+.portfolio-path-title{
+  font-family:var(--serif);font-size:1rem;font-weight:700;
+  color:var(--gold);margin-bottom:1rem;
+}
+.pp-row{
+  display:flex;align-items:flex-start;gap:.85rem;
+  padding:.65rem 0;border-bottom:1px solid var(--border);
+}
+.pp-row:last-child{border-bottom:none}
+.pp-when{
+  font-family:var(--mono);font-size:.62rem;font-weight:600;
+  color:var(--gold);min-width:70px;padding-top:.1rem;
+  letter-spacing:.04em;
+}
+.pp-what{font-size:.82rem;color:var(--t2);line-height:1.55}
+.pp-what strong{color:var(--t1);font-weight:600}
+/* Live journal entry area */
+.journal-entry-area{
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r2);padding:1.25rem;margin-top:1.5rem;
+}
+.journal-entry-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:.85rem;gap:.75rem;flex-wrap:wrap;
+}
+.journal-entry-title{
+  font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--t1)
+}
+.journal-date{
+  font-family:var(--mono);font-size:.68rem;color:var(--t3)
+}
+.journal-textarea{
+  width:100%;min-height:140px;
+  background:var(--s3);border:1px solid var(--border);
+  border-radius:var(--r);padding:.85rem;
+  color:var(--t1);font-family:var(--sans);font-size:.88rem;
+  line-height:1.7;outline:none;resize:vertical;
+  transition:border-color .15s;
+}
+.journal-textarea:focus{border-color:rgba(79,142,247,.4)}
+.journal-textarea::placeholder{color:var(--t3)}
+.journal-actions{
+  display:flex;align-items:center;gap:.75rem;margin-top:.75rem;flex-wrap:wrap;
+}
+.journal-save-btn{
+  padding:.5rem 1.25rem;background:var(--glory);
+  border:none;border-radius:8px;color:#fff;
+  font-family:var(--sans);font-size:.8rem;font-weight:600;
+  cursor:pointer;transition:all .15s;
+}
+.journal-save-btn:hover{filter:brightness(1.15)}
+.journal-prompt-btn{
+  padding:.5rem 1rem;background:transparent;
+  border:1px solid var(--border2);border-radius:8px;
+  color:var(--t2);font-family:var(--sans);font-size:.8rem;
+  cursor:pointer;transition:all .15s;
+}
+.journal-prompt-btn:hover{background:var(--s3);color:var(--t1)}
+.journal-word-count{font-size:.68rem;color:var(--t3);font-family:var(--mono);margin-left:auto}
+.journal-saved-entries{margin-top:1rem}
+.j-entry{
+  padding:.75rem .85rem;
+  background:var(--s3);border:1px solid var(--border);
+  border-radius:var(--r);margin-bottom:.5rem;
+  font-size:.8rem;color:var(--t2);line-height:1.6;
+}
+.j-entry-meta{
+  font-family:var(--mono);font-size:.6rem;color:var(--t3);
+  margin-bottom:.3rem;
+}
+.j-entry-text{color:var(--t1)}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav class="top-nav">
+  <div class="nav-brand">Lomon <span>Academy</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('badges',this)">🏅 Badges</button>
+    <button class="nav-tab" onclick="showPage('streaks',this)">🔥 Streaks</button>
+    <button class="nav-tab" onclick="showPage('leaderboard',this)">🏆 Leaderboard</button>
+    <button class="nav-tab" onclick="showPage('graduation',this)">🎓 Graduation</button>
+    <button class="nav-tab" onclick="showPage('portfolio',this)">✍️ Glory's Portfolio</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+  PAGE 1: BADGES
+═══════════════════════════════════════════ -->
+<div class="page active" id="page-badges">
+  <div class="section-head">
+    <div class="section-eyebrow">Knowledge Influencer · Engagement System</div>
+    <h1 class="section-title">Badge <em>System</em></h1>
+    <p class="section-sub">IXL strand mastery triggers each badge. Badges are permanent — once earned, always displayed. Tap any badge to mark it earned.</p>
+  </div>
+
+  <div class="kid-filter">
+    <button class="kid-filter-btn active-all" onclick="filterBadges('all',this)">All Kids</button>
+    <button class="kid-filter-btn" onclick="filterBadges('glory',this)" style="color:var(--glory)">Glory Gr7</button>
+    <button class="kid-filter-btn" onclick="filterBadges('kendra',this)" style="color:var(--kendra)">Kendra Gr6</button>
+    <button class="kid-filter-btn" onclick="filterBadges('grace',this)" style="color:var(--grace)">Grace Gr4</button>
+    <button class="kid-filter-btn" onclick="filterBadges('angely',this)" style="color:var(--angely)">Angely Gr3</button>
+  </div>
+
+  <!-- BRONZE: Foundation badges -->
+  <div class="badge-section">
+    <div class="badge-section-title">
+      <span>🥉 Bronze — Foundation Badges</span>
+    </div>
+    <div class="badge-grid" id="bronze-badges"></div>
+  </div>
+
+  <!-- SILVER: Strand mastery -->
+  <div class="badge-section">
+    <div class="badge-section-title">
+      <span>🥈 Silver — Strand Mastery Badges</span>
+    </div>
+    <div class="badge-grid" id="silver-badges"></div>
+  </div>
+
+  <!-- GOLD: Milestone badges -->
+  <div class="badge-section">
+    <div class="badge-section-title">
+      <span>🥇 Gold — Milestone Badges</span>
+    </div>
+    <div class="badge-grid" id="gold-badges"></div>
+  </div>
+
+  <!-- DIAMOND: Legend badges -->
+  <div class="badge-section">
+    <div class="badge-section-title">
+      <span>💎 Diamond — Legend Badges</span>
+    </div>
+    <div class="badge-grid" id="diamond-badges"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  PAGE 2: STREAKS
+═══════════════════════════════════════════ -->
+<div class="page" id="page-streaks">
+  <div class="section-head">
+    <div class="section-eyebrow">Habit Engine · Attendance Tracking</div>
+    <h1 class="section-title">Streak <em>Counter</em></h1>
+    <p class="section-sub">Click any day dot to toggle attendance. Streaks build automatically. Missing a day breaks the chain — but the system recovers with a grace day rule.</p>
+  </div>
+
+  <div class="streak-grid" id="streak-grid"></div>
+
+  <div class="streak-rules card">
+    <div class="label-sm">Streak Rules</div>
+    <div class="rule-row"><span class="rule-icon">🔥</span><div class="rule-text"><strong>Streak counts</strong> consecutive Academy Block days attended (Mon–Fri, 4:45–6:15 PM). Weekends do not count for or against the streak.</div></div>
+    <div class="rule-row"><span class="rule-icon">🛡️</span><div class="rule-text"><strong>Grace Day:</strong> One missed day per week does not break the streak — it freezes it. Two consecutive missed days breaks the chain.</div></div>
+    <div class="rule-row"><span class="rule-icon">⭐</span><div class="rule-text"><strong>Milestones:</strong> 5-day = First Week badge · 10-day = Two Weeks Strong · 20-day = Month Warrior · 30-day = Iron Scholar · 60-day = Academy Legend.</div></div>
+    <div class="rule-row"><span class="rule-icon">🔁</span><div class="rule-text"><strong>Recovery:</strong> After a break, a new streak starts immediately. Best streak is always preserved and displayed alongside current streak.</div></div>
+    <div class="rule-row"><span class="rule-icon">🎯</span><div class="rule-text"><strong>Tired Day counts:</strong> The 60-minute low-energy Academy Block variant counts as a full attendance day. Showing up matters more than session length.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  PAGE 3: LEADERBOARD
+═══════════════════════════════════════════ -->
+<div class="page" id="page-leaderboard">
+  <div class="section-head">
+    <div class="section-eyebrow">Family Leaderboard · Collaborative, not competitive</div>
+    <h1 class="section-title">Weekly <em>Rankings</em></h1>
+    <p class="section-sub">XP is earned by effort, not raw scores. Every kid can max their XP independently — this is about celebrating everyone's growth, not picking a winner.</p>
+  </div>
+
+  <div class="week-selector-row">
+    <div class="ws-label">WEEK</div>
+    <button class="ws-btn" onclick="changeWeek(-1)">‹</button>
+    <div class="ws-week-display" id="lb-week-display">Week 1</div>
+    <button class="ws-btn" onclick="changeWeek(1)">›</button>
+    <span style="font-size:.72rem;color:var(--t3);font-family:var(--mono)" id="lb-date-range"></span>
+  </div>
+
+  <div class="board-card" id="leaderboard-board"></div>
+
+  <div class="lb-note">
+    <strong>XP Formula:</strong> IXL Sessions done (max 5/day × 35 pts = 175 pts/day) + Writing task submitted (30 pts) + Claude tutor session (20 pts) + Friday score log (10 pts) + Streak bonus (10 pts/day consecutive) + Essay submitted (50 pts) + Milestone gate hit (100 pts). Max possible week = 1,425 XP. <strong>Rankings are shown but no one loses anything</strong> — every week resets, every kid starts equal.
+  </div>
+
+  <div class="xp-input-section">
+    <div class="label-sm">Enter this week's activity data to calculate XP</div>
+    <div class="xp-grid" id="xp-grid"></div>
+    <div style="margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap">
+      <button class="calc-btn" style="max-width:200px" onclick="calculateXP()">▶ Calculate rankings</button>
+      <button class="calc-btn" style="max-width:160px;color:var(--t3)" onclick="clearXP()">↺ Reset week</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  PAGE 4: GRADUATION
+═══════════════════════════════════════════ -->
+<div class="page" id="page-graduation">
+  <div class="section-head">
+    <div class="section-eyebrow">12-Week Arc · Ceremony Plan</div>
+    <h1 class="section-title">Graduation <em>Ceremony</em></h1>
+    <p class="section-sub">The 12-week arc is designed so every checkpoint feels earned. The final ceremony on July 11 is a real event — not just a checkbox.</p>
+  </div>
+
+  <div class="ceremony-timeline" id="graduation-timeline"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  PAGE 5: GLORY'S PORTFOLIO
+═══════════════════════════════════════════ -->
+<div class="page" id="page-portfolio">
+  <div class="portfolio-hero">
+    <div class="portfolio-label">Glory · Grade 7 · Governor's School Pipeline</div>
+    <h1 class="portfolio-title">The Learning Journal That<br><em>Becomes Her Portfolio</em></h1>
+    <p class="portfolio-sub">
+      Every analytical essay, every breakthrough moment, every skill unlocked — documented from Week 1.
+      By Week 12 Glory won't need to build a portfolio. <strong>She'll already have one.</strong>
+      Governor's School applications open in Grade 10 (2028). She has two years to fill it.
+    </p>
+  </div>
+
+  <div class="journal-system">
+    <div class="journal-block">
+      <div class="journal-block-header">
+        <div class="journal-num">1</div>
+        <div class="journal-block-title">The Daily 5-Minute Entry System</div>
+      </div>
+      <div class="journal-block-body">
+        Every Academy Block ends with Glory writing one paragraph in her journal — <strong>not a summary of what she studied, but a reflection on how she thinks.</strong> This is the distinction that makes a portfolio powerful vs generic.<br><br>
+        She writes in Google Docs (one doc per week, saved in a "Lomon Academy Journal" folder in Drive). Each entry has a date, a skill learned, and one of the three prompts below. Total time: <strong>5 minutes maximum.</strong> The writing prompt from the day often gives her the raw material.
+        <div class="journal-prompt-list">
+          <div class="jp">"Today I learned that ___. The reason this matters is ___."</div>
+          <div class="jp">"I used to think ___ about this topic. Now I understand that ___."</div>
+          <div class="jp">"The hardest part today was ___. I got through it by ___."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="journal-block">
+      <div class="journal-block-header">
+        <div class="journal-num">2</div>
+        <div class="journal-block-title">Monthly "Best Of" Curation (10 minutes)</div>
+      </div>
+      <div class="journal-block-body">
+        On the last Friday of each month, Glory reads back her daily entries and picks <strong>3 that she's most proud of.</strong> She copies those into a "Portfolio Highlights" document and adds one sentence explaining why she chose it.<br><br>
+        This teaches her to <strong>evaluate her own work</strong> — exactly the metacognitive skill Governor's School programs look for. By Week 12 she'll have a curated set of 9–12 highlighted entries.<br><br>
+        File structure: <code>Lomon Academy / Portfolio / 2026-May-highlights.doc</code>
+      </div>
+    </div>
+
+    <div class="journal-block">
+      <div class="journal-block-header">
+        <div class="journal-num">3</div>
+        <div class="journal-block-title">The Essay Portfolio (4 Graded Pieces)</div>
+      </div>
+      <div class="journal-block-body">
+        Each module produces one graded essay. After revision, Glory adds it to her portfolio folder with a <strong>cover note she writes herself</strong> — one paragraph explaining what the essay is about and what she learned in the process of writing it.<br><br>
+        Governor's School applications often ask: "Describe a learning experience that changed how you think." Glory's answer will come directly from these cover notes. She's writing the application in real time, starting today.<br><br>
+        Essays saved as: <code>Essay-01-Week3-connotation-analysis.doc</code> · <code>Essay-02-Week6-myth-literary.doc</code> · etc.
+      </div>
+    </div>
+
+    <div class="journal-block">
+      <div class="journal-block-header">
+        <div class="journal-num">4</div>
+        <div class="journal-block-title">The "I Taught My Sister" Log</div>
+      </div>
+      <div class="journal-block-body">
+        From Week 4, Glory explains one skill per week to Grace or Angely. After each tutoring moment, she writes <strong>one sentence in her journal:</strong> "This week I taught ___ to ___. The part she understood fastest was ___."<br><br>
+        This is leadership evidence. It shows she can teach, communicate, and take responsibility for others' learning. Governor's School programs love this. It also deepens her own mastery — the Feynman Technique in action.
+      </div>
+    </div>
+  </div>
+
+  <!-- Governor's School roadmap -->
+  <div class="portfolio-path">
+    <div class="portfolio-path-title">Governor's School Application Roadmap (2026 → 2030)</div>
+    <div class="pp-row"><div class="pp-when">Now · Gr7</div><div class="pp-what"><strong>Start the journal.</strong> Write daily entries. Save essays. Build the tutoring log. This is the foundation year.</div></div>
+    <div class="pp-row"><div class="pp-when">Gr8 · 2027</div><div class="pp-what"><strong>Curate the best 5 journal entries</strong> into a 1-page "Learning Statement." Update essays to Gr8 standard. Identify one non-school interest to write about.</div></div>
+    <div class="pp-row"><div class="pp-when">Gr9 · 2028</div><div class="pp-what"><strong>Draft the Governor's School personal statement</strong> using journal entries as raw material. Get feedback from Karima Wesselhoft (she already knows Glory through Integrated Programs).</div></div>
+    <div class="pp-row"><div class="pp-when">Gr10 · 2029</div><div class="pp-what"><strong>Application window opens.</strong> Glory submits with: 4 graded essays, learning statement, tutoring log, 2 teacher recommendations. Portfolio is already built — she just selects from it.</div></div>
+    <div class="pp-row"><div class="pp-when">Gr11 · 2030</div><div class="pp-what"><strong>Governor's School @ Innovation Park</strong> — Summer residential STEM program. The Wesselhoft network is her direct line in.</div></div>
+  </div>
+
+  <!-- Live journal entry -->
+  <div class="journal-entry-area">
+    <div class="journal-entry-header">
+      <div class="journal-entry-title">Today's Journal Entry — Glory</div>
+      <div class="journal-date" id="journal-date-display"></div>
+    </div>
+    <div style="display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap">
+      <button class="journal-prompt-btn" onclick="setJournalPrompt(0)">Prompt 1</button>
+      <button class="journal-prompt-btn" onclick="setJournalPrompt(1)">Prompt 2</button>
+      <button class="journal-prompt-btn" onclick="setJournalPrompt(2)">Prompt 3</button>
+      <button class="journal-prompt-btn" onclick="setJournalPrompt(3)">Taught my sister</button>
+    </div>
+    <textarea class="journal-textarea" id="glory-journal" placeholder="Start writing here… (use one of the prompts above, or write freely)" oninput="updateWordCount()"></textarea>
+    <div class="journal-actions">
+      <button class="journal-save-btn" onclick="saveJournalEntry()">Save entry</button>
+      <button class="journal-prompt-btn" onclick="clearJournalEntry()">Clear</button>
+      <span class="journal-word-count" id="word-count">0 words</span>
+    </div>
+    <div class="journal-saved-entries" id="journal-saved"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ SCRIPT ═════════════════════════════════ -->
+<script>
+/* ── DATA ─────────────────────────────────────────────────────────────── */
+
+const BADGES = [
+  // Bronze
+  { tier:'bronze', id:'first-ixl',   icon:'🌱', name:'First Session',    kids:'all', trigger:'Complete your very first IXL session of any skill', ixl:'Any' },
+  { tier:'bronze', id:'week1-done',  icon:'📅', name:'Week 1 Complete',  kids:'all', trigger:'Finish all 5 Academy Block sessions in Week 1', ixl:'Week 1' },
+  { tier:'bronze', id:'score-50',    icon:'⚡', name:'SmartScore 50',    kids:'all', trigger:'Reach SmartScore 50+ on any new IXL skill', ixl:'Any' },
+  { tier:'bronze', id:'journal-3',   icon:'📓', name:'First Ink',        kids:'glory', trigger:'Write 3 journal entries in Glory\'s portfolio journal', ixl:'Journal' },
+  { tier:'bronze', id:'first-essay', icon:'✏️', name:'First Draft',      kids:'glory kendra', trigger:'Submit a writing task of 80+ words to Google Classroom', ixl:'Writing' },
+  { tier:'bronze', id:'sentence-10', icon:'🖊️', name:'10 Sentences',     kids:'angely grace', trigger:'Write 10 complete sentences across the first 5 days', ixl:'Writing' },
+
+  // Silver
+  { tier:'silver', id:'vocab-70',    icon:'📚', name:'Word Wizard',      kids:'all', trigger:'Reach SmartScore 70+ on any Vocabulary strand skill (NLB, L7C, BJ9, or equivalent)', ixl:'NLB · L7C · BJ9' },
+  { tier:'silver', id:'grammar-70',  icon:'⚙️', name:'Grammar Geared',   kids:'all', trigger:'Reach SmartScore 70+ on any Grammar skill (KCY, 57U, QWF, WHZ, or equivalent)', ixl:'KCY · 57U · QWF' },
+  { tier:'silver', id:'reading-70',  icon:'🔍', name:'Detail Detective',  kids:'all', trigger:'Reach SmartScore 70+ on any Reading Strategies skill (VVG, Y2F, FZ7, or equivalent)', ixl:'VVG · Y2F' },
+  { tier:'silver', id:'writing-70',  icon:'🖋️', name:'Sentence Builder',  kids:'all', trigger:'Reach SmartScore 70+ on any Writing Strategies skill (QWF, 68D, GF5, U72, or equivalent)', ixl:'68D · GF5 · U72' },
+  { tier:'silver', id:'math-70',     icon:'🔢', name:'Numbers Locked In', kids:'all', trigger:'Reach SmartScore 70+ on any Math skill from weekly IXL targets', ixl:'Weekly Math code' },
+  { tier:'silver', id:'five-streak', icon:'🔥', name:'5-Day Streak',      kids:'all', trigger:'Complete 5 consecutive Academy Block days without missing one', ixl:'Streak' },
+  { tier:'silver', id:'taught-once', icon:'👩‍🏫', name:'Little Teacher',   kids:'glory kendra', trigger:'Explain one IXL skill to a younger sister and write it in the log', ixl:'Teaching log' },
+  { tier:'silver', id:'ixl-triple',  icon:'🎯', name:'Triple Threat',     kids:'all', trigger:'Complete all 3 weekly IXL targets (70+ SmartScore on each) in the same week', ixl:'3× 70+' },
+
+  // Gold
+  { tier:'gold', id:'la-milestone1', icon:'⭐', name:'LA Milestone 1',    kids:'glory', trigger:'Glory reaches LA SmartScore 440 — Milestone Gate Week 4', ixl:'All LA strands' },
+  { tier:'gold', id:'la-milestone2', icon:'🌟', name:'LA Milestone 2',    kids:'glory', trigger:'Glory reaches LA SmartScore 470 — Milestone Gate Week 7', ixl:'All LA strands' },
+  { tier:'gold', id:'first-essay-g', icon:'📜', name:'Essay Architect',   kids:'glory kendra', trigger:'Submit a fully revised analytical essay (4+ paragraphs) with thesis, evidence, and commentary', ixl:'Writing' },
+  { tier:'gold', id:'ten-streak',    icon:'💥', name:'10-Day Warrior',     kids:'all', trigger:'Complete 10 consecutive Academy Block days', ixl:'Streak' },
+  { tier:'gold', id:'strand-sweep',  icon:'🏹', name:'Strand Sweep',       kids:'all', trigger:'Reach SmartScore 70+ on at least one skill in ALL 4 LA strands in the same week', ixl:'NLB+VVG+68D+KCY' },
+  { tier:'gold', id:'kendra-la-360', icon:'📈', name:'Kendra Climbs',      kids:'kendra', trigger:'Kendra reaches LA SmartScore 360 — first milestone gate Week 3', ixl:'LA strands' },
+  { tier:'gold', id:'grace-la-350',  icon:'🌸', name:'Grace Rises',        kids:'grace',  trigger:'Grace reaches LA SmartScore 350 — first milestone gate Week 3', ixl:'LA strands' },
+  { tier:'gold', id:'angely-la-248', icon:'🦋', name:'Angely Takes Off',   kids:'angely', trigger:'Angely reaches LA SmartScore 248 — first milestone gate Week 3', ixl:'LA strands' },
+
+  // Diamond
+  { tier:'diamond', id:'la-550',       icon:'💎', name:'Glory 550',          kids:'glory',  trigger:'Glory reaches LA SmartScore 550+ — 12-week graduation target', ixl:'All strands' },
+  { tier:'diamond', id:'portfolio',    icon:'🗂️', name:'Portfolio Builder',   kids:'glory',  trigger:'Glory completes her essay portfolio (4 graded essays + 12 journal entries)', ixl:'Portfolio' },
+  { tier:'diamond', id:'sixty-streak', icon:'🔱', name:'Academy Legend',      kids:'all',    trigger:'Complete 60 consecutive Academy Block days — full 12 weeks without a break', ixl:'Streak' },
+  { tier:'diamond', id:'all-targets',  icon:'🎖️', name:'Graduation Complete', kids:'all',    trigger:'Hit all 5 milestone gates for your 12-week target by July 11', ixl:'All milestones' },
+  { tier:'diamond', id:'family-grad',  icon:'👑', name:'Lomon Academy Grad',  kids:'all',    trigger:'All 4 kids reach their 12-week graduation targets on the same day', ixl:'Family goal' },
+];
+
+const KIDS_DATA = {
+  glory:  { name:'Glory',  grade:7, color:'var(--glory)',  baseLA:400, targetLA:550 },
+  kendra: { name:'Kendra', grade:6, color:'var(--kendra)', baseLA:330, targetLA:450 },
+  grace:  { name:'Grace',  grade:4, color:'var(--grace)',  baseLA:320, targetLA:420 },
+  angely: { name:'Angely', grade:3, color:'var(--angely)', baseLA:220, targetLA:300 },
+};
+
+const GRADUATION_EVENTS = [
+  { week:1,  type:'start',    title:'Academy Begins',        body:'Week 1, April 21. First Academy Block 4:45 PM. First IXL sessions. First journal entry (Glory). The streak counter starts. <strong>Celebrate tonight\'s launch</strong> — family dinner, everyone shares what they want to achieve by Week 12.' },
+  { week:4,  type:'milestone',title:'Milestone 1 Check-In',  body:'<strong>All four kids hit their Week 4 targets.</strong> Glory: LA 440+. Kendra: LA 360+. Grace: LA 350+. Angely: LA 248+. <strong>Ceremony element:</strong> Salomon prints out each kid\'s IXL progress chart and tapes it to the wall. They can see their own line going up.', note:'Family reward: pick the next movie night. Everyone votes.' },
+  { week:7,  type:'milestone',title:'Milestone 2 — Halfway',  body:'Week 7, June 6. Exactly halfway through the Academy. <strong>Each kid writes one paragraph</strong> about what surprised them most about what they\'ve learned. Salomon reads them aloud at dinner.', note:'Family reward: choose a weekend activity — library trip, park, or outing.' },
+  { week:9,  type:'milestone',title:'Milestone 3 — First Essays', body:'Glory and Kendra submit their first fully revised analytical essays. <strong>Glory reads hers aloud</strong> to the family. This is a real academic performance — applause, not feedback. Kendra\'s opinion paragraph gets posted on the fridge.', note:'Individual reward: Glory chooses a book she wants to read next.' },
+  { week:10, type:'normal',   title:'Full IXL Diagnostic Sprint', body:'All 4 kids run the complete IXL Real-Time Diagnostic across all strands. Salomon generates the Friday report with all baseline comparisons. <strong>This is the most data-rich day of the 12 weeks</strong> — makes Milestone Gate 4 visible.' },
+  { week:11, type:'milestone',title:'Milestone 4 — Final Push',  body:'Glory\'s 5-paragraph essay is drafted. One week remains. <strong>Each kid identifies their single most important task for the final week</strong> — no more than one skill code, one goal. Simplify and go deep.', note:'Pre-graduation message: write a letter to your Week 1 self.' },
+  { week:12, type:'ceremony', title:'🎓 Graduation Day — July 11', body:'The final Academy Block ends at 6:15 PM. Then the ceremony begins.', note:''},
+];
+
+const CEREMONY_PLAN = [
+  '🔢 Final IXL diagnostics run — all 4 kids, all strands, back-to-back. Timer on. Family watching.',
+  '📊 Salomon pulls up the Friday Report page — live comparison of April 1 baseline vs July 11 scores for each kid.',
+  '📜 Each kid receives their printed Certificate of Completion with their final LA SmartScore and weeks attended.',
+  '✍️ Glory reads one paragraph from her portfolio journal — her own words, written during the 12 weeks.',
+  '🎁 Each kid receives a small chosen reward decided at Week 1 — something earned, not given.',
+  '📸 Family photo in front of the printed progress charts — all four on the wall together.',
+  '🍽️ Celebration dinner — each kid orders or requests what they want.',
+  '🗓️ Salomon announces Academy Block 2 — new 12-week cycle starting September for the school year.',
+];
+
+/* ── STATE ────────────────────────────────────────────────────────────── */
+let state = { badges:{}, streaks:{}, xp:{}, journal:[], lbWeek:1 };
+
+try { state = JSON.parse(localStorage.getItem('lomon-achievement-state')) || state; } catch(e){}
+
+function saveState() {
+  try { localStorage.setItem('lomon-achievement-state', JSON.stringify(state)); } catch(e) {}
+}
+
+/* ── NAV ──────────────────────────────────────────────────────────────── */
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(`page-${id}`).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BADGES
+═══════════════════════════════════════════════════════════════ */
+function renderBadges(filter='all') {
+  ['bronze','silver','gold','diamond'].forEach(tier => {
+    const badges = BADGES.filter(b => b.tier === tier && (filter === 'all' || b.kids.includes(filter)));
+    const el = document.getElementById(`${tier}-badges`);
+    el.innerHTML = badges.map(b => {
+      const earned = !!state.badges[b.id];
+      return `<div class="badge-card ${earned?'earned':'locked'}" onclick="toggleBadge('${b.id}')" title="Click to mark earned">
+        <span class="tier-pill tier-${tier}">${tier}</span>
+        <span class="badge-icon">${b.icon}</span>
+        <div class="badge-name">${b.name}</div>
+        <div class="badge-trigger">${b.trigger}</div>
+        <div class="badge-ixl">${b.ixl}</div>
+      </div>`;
+    }).join('');
+  });
+}
+
+function toggleBadge(id) {
+  state.badges[id] = !state.badges[id];
+  saveState();
+  const activeFilter = document.querySelector('.kid-filter-btn[class*="active-"]');
+  const filter = activeFilter ? activeFilter.textContent.toLowerCase().split(' ')[0] : 'all';
+  renderBadges(filter === 'all' ? 'all' : Object.keys(KIDS_DATA).find(k => k.startsWith(filter)) || 'all');
+}
+
+let currentBadgeFilter = 'all';
+function filterBadges(f, btn) {
+  currentBadgeFilter = f;
+  document.querySelectorAll('.kid-filter-btn').forEach(b => {
+    b.className = 'kid-filter-btn';
+  });
+  btn.classList.add(`active-${f}`);
+  renderBadges(f);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STREAKS
+═══════════════════════════════════════════════════════════════ */
+const TOTAL_DAYS = 60;
+const STREAK_MILESTONES = [5,10,20,30,60];
+const MILESTONE_NAMES = {5:'First Week',10:'Two Weeks',20:'Month Warrior',30:'Iron Scholar',60:'Academy Legend'};
+
+function initStreaks() {
+  Object.keys(KIDS_DATA).forEach(kid => {
+    if (!state.streaks[kid]) {
+      state.streaks[kid] = { days: Array(TOTAL_DAYS).fill(0) };
+    }
+  });
+}
+
+function calcStreak(days) {
+  let current = 0, best = 0, tmp = 0;
+  for (let i = 0; i < days.length; i++) {
+    if (days[i] === 1) { tmp++; best = Math.max(best, tmp); }
+    else { tmp = 0; }
+  }
+  // current = streak from end
+  for (let i = days.length - 1; i >= 0; i--) {
+    if (days[i] === 1) current++;
+    else break;
+  }
+  return { current, best };
+}
+
+function renderStreaks() {
+  const grid = document.getElementById('streak-grid');
+  grid.innerHTML = Object.entries(KIDS_DATA).map(([kid, data]) => {
+    const s = state.streaks[kid];
+    const { current, best } = calcStreak(s.days);
+    const today = s.days.filter(Boolean).length;
+    const dots = s.days.slice(0, 60).map((d, i) => {
+      const cls = d === 1 ? 'done' : d === -1 ? 'missed' : i === today ? 'today' : '';
+      return `<div class="s-dot ${cls}" onclick="toggleDay('${kid}',${i})" title="Day ${i+1}">${i+1}</div>`;
+    }).join('');
+    const milestoneHtml = STREAK_MILESTONES.map(m => {
+      const hit = best >= m;
+      return `<div class="s-ms ${hit?'hit':''}">${m}d${hit?' ✓':''}</div>`;
+    }).join('');
+    return `<div class="streak-card">
+      <div class="streak-header">
+        <div class="streak-name" style="color:${data.color}">${data.name}</div>
+        <span class="streak-flame">🔥</span>
+      </div>
+      <div class="streak-number" style="color:${data.color}">${current}</div>
+      <div class="streak-unit">DAY STREAK</div>
+      <div style="font-size:.7rem;color:var(--t3);font-family:var(--mono);margin-bottom:.65rem">Best: ${best} · Total: ${today} days</div>
+      <div class="streak-dots">${dots}</div>
+      <div class="streak-milestone">${milestoneHtml}</div>
+      <button class="add-btn" onclick="markToday('${kid}')">+ Mark today attended</button>
+    </div>`;
+  }).join('');
+}
+
+function toggleDay(kid, dayIdx) {
+  const d = state.streaks[kid].days[dayIdx];
+  state.streaks[kid].days[dayIdx] = d === 1 ? 0 : 1;
+  saveState(); renderStreaks();
+}
+
+function markToday(kid) {
+  const attended = state.streaks[kid].days.filter(Boolean).length;
+  if (attended < 60) state.streaks[kid].days[attended] = 1;
+  saveState(); renderStreaks();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LEADERBOARD
+═══════════════════════════════════════════════════════════════ */
+let lbWeek = 1;
+
+function initXP() {
+  Object.keys(KIDS_DATA).forEach(kid => {
+    if (!state.xp[kid]) state.xp[kid] = {};
+    for (let w = 1; w <= 12; w++) {
+      if (!state.xp[kid][w]) state.xp[kid][w] = { ixl:0, writing:0, tutor:0, log:0, essay:0, bonus:0 };
+    }
+  });
+}
+
+function renderXPInputs() {
+  document.getElementById('xp-grid').innerHTML = Object.entries(KIDS_DATA).map(([kid, data]) => {
+    const d = state.xp[kid][lbWeek] || {};
+    return `<div class="xp-kid-block">
+      <div class="xp-kid-name" style="color:${data.color}">${data.name}</div>
+      <div class="xp-row"><span class="xp-row-label">IXL sessions</span><input class="xp-input" type="number" id="xp-${kid}-ixl" value="${d.ixl||0}" min="0" max="25" placeholder="0–25"></div>
+      <div class="xp-row"><span class="xp-row-label">Writing tasks</span><input class="xp-input" type="number" id="xp-${kid}-writing" value="${d.writing||0}" min="0" max="5" placeholder="0–5"></div>
+      <div class="xp-row"><span class="xp-row-label">Tutor sessions</span><input class="xp-input" type="number" id="xp-${kid}-tutor" value="${d.tutor||0}" min="0" max="5" placeholder="0–5"></div>
+      <div class="xp-row"><span class="xp-row-label">Fri score log</span><input class="xp-input" type="number" id="xp-${kid}-log" value="${d.log||0}" min="0" max="1" placeholder="0–1"></div>
+      <div class="xp-row"><span class="xp-row-label">Essay/milestone</span><input class="xp-input" type="number" id="xp-${kid}-essay" value="${d.essay||0}" min="0" max="2" placeholder="0–2"></div>
+      <div class="xp-row"><span class="xp-row-label">Streak bonus days</span><input class="xp-input" type="number" id="xp-${kid}-bonus" value="${d.bonus||0}" min="0" max="5" placeholder="0–5"></div>
+    </div>`;
+  }).join('');
+}
+
+function calculateXP() {
+  Object.keys(KIDS_DATA).forEach(kid => {
+    const get = field => parseInt(document.getElementById(`xp-${kid}-${field}`)?.value) || 0;
+    const ixl = Math.min(get('ixl'), 25) * 35;
+    const writing = Math.min(get('writing'), 5) * 30;
+    const tutor = Math.min(get('tutor'), 5) * 20;
+    const log = Math.min(get('log'), 1) * 10;
+    const essay = Math.min(get('essay'), 2) * (get('essay') >= 2 ? 100 : 50);
+    const bonus = Math.min(get('bonus'), 5) * 10;
+    state.xp[kid][lbWeek] = { ixl: get('ixl'), writing: get('writing'), tutor: get('tutor'), log: get('log'), essay: get('essay'), bonus: get('bonus'), total: ixl+writing+tutor+log+essay+bonus };
+  });
+  saveState();
+  renderLeaderboard();
+}
+
+function clearXP() {
+  Object.keys(KIDS_DATA).forEach(kid => { state.xp[kid][lbWeek] = { ixl:0, writing:0, tutor:0, log:0, essay:0, bonus:0, total:0 }; });
+  saveState(); renderXPInputs(); renderLeaderboard();
+}
+
+function changeWeek(d) {
+  lbWeek = Math.max(1, Math.min(12, lbWeek + d));
+  state.lbWeek = lbWeek;
+  saveState();
+  const weekStart = new Date(2026, 3, 21); // Apr 21
+  weekStart.setDate(weekStart.getDate() + (lbWeek - 1) * 7);
+  const weekEnd = new Date(weekStart); weekEnd.setDate(weekEnd.getDate() + 4);
+  const fmt = d => d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+  document.getElementById('lb-week-display').textContent = `Week ${lbWeek}`;
+  document.getElementById('lb-date-range').textContent = `${fmt(weekStart)} – ${fmt(weekEnd)}`;
+  renderXPInputs();
+  renderLeaderboard();
+}
+
+const MAX_XP = 1425;
+function renderLeaderboard() {
+  const sorted = Object.entries(KIDS_DATA).map(([kid, data]) => {
+    const d = state.xp[kid][lbWeek] || {};
+    const total = d.total || 0;
+    const prev = (state.xp[kid][Math.max(1,lbWeek-1)] || {}).total || 0;
+    return { kid, data, total, prev, delta: total - prev };
+  }).sort((a,b) => b.total - a.total);
+
+  const ranks = ['🥇','🥈','🥉','4'];
+  const board = document.getElementById('leaderboard-board');
+  board.innerHTML = `<div class="board-header">
+    <span>Rank</span><span>Student</span>
+    <span style="text-align:right">XP This Week</span>
+    <span style="text-align:right">vs Prev Wk</span>
+    <span style="text-align:right">% of Max</span>
+    <span style="text-align:right">Total</span>
+  </div>` +
+  sorted.map((s, i) => {
+    const pct = Math.round((s.total / MAX_XP) * 100);
+    const deltaStr = s.delta > 0 ? `+${s.delta}` : s.delta === 0 ? '—' : String(s.delta);
+    const deltaCls = s.delta > 0 ? 'score-positive' : s.delta === 0 ? 'score-zero' : '';
+    const cumTotal = Object.values(state.xp[s.kid]).reduce((acc, w) => acc + (w.total||0), 0);
+    return `<div class="board-row">
+      <div class="board-rank ${i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':''}">${ranks[i]}</div>
+      <div>
+        <div class="board-kid-name" style="color:${s.data.color}">${s.data.name}</div>
+        <div style="font-size:.62rem;color:var(--t3);font-family:var(--mono)">Grade ${s.data.grade}</div>
+      </div>
+      <div class="board-score score-positive" style="text-align:right">${s.total} XP
+        <div class="board-xp-bar"><div class="board-xp-fill" style="width:${pct}%;background:${s.data.color}"></div></div>
+      </div>
+      <div class="board-score ${deltaCls}" style="text-align:right">${deltaStr}</div>
+      <div class="board-score" style="text-align:right">${pct}%</div>
+      <div class="board-total" style="text-align:right;color:${s.data.color}">${cumTotal}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GRADUATION TIMELINE
+═══════════════════════════════════════════════════════════════ */
+function renderGraduation() {
+  const el = document.getElementById('graduation-timeline');
+  el.innerHTML = GRADUATION_EVENTS.map(ev => `
+    <div class="timeline-item ${ev.type}">
+      <div class="timeline-week">Week ${ev.week} · ${getWeekDate(ev.week)}</div>
+      <div class="timeline-title">${ev.title}</div>
+      <div class="timeline-body">${ev.body}</div>
+      ${ev.note ? `<div class="timeline-card"><strong>Family reward:</strong> ${ev.note}</div>` : ''}
+      ${ev.type === 'ceremony' ? renderCeremonyBlock() : ''}
+    </div>
+  `).join('');
+}
+
+function renderCeremonyBlock() {
+  return `<div class="ceremony-main">
+    <div class="ceremony-main-title">Graduation Ceremony Flow — July 11, 2026</div>
+    <div class="ceremony-list">
+      ${CEREMONY_PLAN.map(item => `<div class="ce-item"><span class="ce-icon">${item.slice(0,2)}</span><span>${item.slice(3)}</span></div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function getWeekDate(week) {
+  const d = new Date(2026, 3, 21);
+  d.setDate(d.getDate() + (week-1)*7);
+  return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GLORY'S JOURNAL
+═══════════════════════════════════════════════════════════════ */
+const JOURNAL_PROMPTS = [
+  'Today I learned that ___. The reason this matters is ___.',
+  'I used to think ___ about this topic. Now I understand that ___.',
+  'The hardest part today was ___. I got through it by ___.',
+  'This week I taught ___ to ___. The part she understood fastest was ___.',
+];
+
+function setJournalPrompt(i) {
+  document.getElementById('glory-journal').value = JOURNAL_PROMPTS[i];
+  document.getElementById('glory-journal').focus();
+  updateWordCount();
+}
+
+function updateWordCount() {
+  const txt = document.getElementById('glory-journal').value.trim();
+  const words = txt ? txt.split(/\s+/).length : 0;
+  document.getElementById('word-count').textContent = `${words} word${words===1?'':'s'}`;
+}
+
+function saveJournalEntry() {
+  const txt = document.getElementById('glory-journal').value.trim();
+  if (!txt) return;
+  const entry = { text: txt, date: new Date().toLocaleDateString('en-US',{weekday:'short',month:'long',day:'numeric',year:'numeric'}), ts: Date.now() };
+  if (!state.journal) state.journal = [];
+  state.journal.unshift(entry);
+  saveState();
+  document.getElementById('glory-journal').value = '';
+  updateWordCount();
+  renderJournalEntries();
+}
+
+function clearJournalEntry() {
+  document.getElementById('glory-journal').value = '';
+  updateWordCount();
+}
+
+function renderJournalEntries() {
+  const entries = (state.journal || []).slice(0, 10);
+  const el = document.getElementById('journal-saved');
+  if (!entries.length) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="label-sm" style="margin-top:.75rem">Saved entries (${(state.journal||[]).length} total)</div>` +
+    entries.map(e => `<div class="j-entry">
+      <div class="j-entry-meta">${e.date}</div>
+      <div class="j-entry-text">${e.text.slice(0,280)}${e.text.length>280?'…':''}</div>
+    </div>`).join('');
+}
+
+function initJournalDate() {
+  const d = new Date();
+  document.getElementById('journal-date-display').textContent =
+    d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════════════ */
+function init() {
+  initStreaks();
+  initXP();
+  if (state.lbWeek) lbWeek = state.lbWeek;
+
+  renderBadges('all');
+  renderStreaks();
+
+  // Leaderboard date init
+  changeWeek(0);
+
+  renderGraduation();
+  renderJournalEntries();
+  initJournalDate();
+}
+
+init();
+</script>
+</body>
+</html>

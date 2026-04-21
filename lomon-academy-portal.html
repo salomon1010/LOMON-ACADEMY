@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lomon Academy — Morning Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #0B0F1A;
+  --surface:  #141929;
+  --card:     #1C2236;
+  --border:   rgba(255,255,255,0.07);
+  --border2:  rgba(255,255,255,0.13);
+  --text-1:   #F0F2F8;
+  --text-2:   #8A93B0;
+  --text-3:   #545E7A;
+  --serif:    'DM Serif Display', Georgia, serif;
+  --sans:     'DM Sans', system-ui, sans-serif;
+  --mono:     'DM Mono', 'Courier New', monospace;
+
+  --glory-h:  #3B6FE8;
+  --glory-s:  #5B8CF5;
+  --glory-bg: rgba(59,111,232,0.1);
+  --glory-glow: rgba(59,111,232,0.25);
+
+  --kendra-h:  #E87C3B;
+  --kendra-s:  #F59A5B;
+  --kendra-bg: rgba(232,124,59,0.1);
+  --kendra-glow: rgba(232,124,59,0.25);
+
+  --grace-h:  #2EB87C;
+  --grace-s:  #4FD4A0;
+  --grace-bg: rgba(46,184,124,0.1);
+  --grace-glow: rgba(46,184,124,0.25);
+
+  --angely-h:  #C44BE8;
+  --angely-s:  #D97CF5;
+  --angely-bg: rgba(196,75,232,0.1);
+  --angely-glow: rgba(196,75,232,0.25);
+
+  --gold:  #F5C842;
+  --gold2: #D4A017;
+  --success: #2EB87C;
+  --warn: #E87C3B;
+  --danger: #E84B4B;
+  --ixl-blue: #1A4FCF;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text-1);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND MESH ───────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(59,111,232,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 35% at 80% 90%, rgba(196,75,232,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 70% 20%, rgba(46,184,124,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── HEADER ────────────────────────────────────────────────────── */
+.site-header {
+  position: relative; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  background: rgba(11,15,26,0.85);
+}
+.site-logo {
+  display: flex; align-items: baseline; gap: 0.5rem;
+}
+.site-logo-mark {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+}
+.site-logo-sub {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.header-right {
+  display: flex; align-items: center; gap: 1.5rem;
+}
+#live-clock {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--text-2);
+  letter-spacing: 0.05em;
+}
+.academy-pill {
+  display: flex; align-items: center; gap: 0.4rem;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-2);
+  letter-spacing: 0.06em;
+}
+.pill-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--success);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.5; transform:scale(0.7); }
+}
+
+/* ── QUOTE BANNER ──────────────────────────────────────────────── */
+.quote-banner {
+  position: relative; z-index: 5;
+  padding: 0.85rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(90deg, rgba(245,200,66,0.04) 0%, transparent 60%);
+  display: flex; align-items: center; gap: 1rem;
+  overflow: hidden;
+}
+.quote-icon {
+  font-family: var(--serif);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--gold2);
+  opacity: 0.4;
+  flex-shrink: 0;
+  user-select: none;
+}
+.quote-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.5;
+  transition: opacity 0.5s ease;
+}
+.quote-text em {
+  color: var(--gold);
+  font-style: normal;
+}
+.quote-author {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* ── MAIN LAYOUT ───────────────────────────────────────────────── */
+.main {
+  position: relative; z-index: 5;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ── TAB NAV ───────────────────────────────────────────────────── */
+.tab-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+.tab-btn {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.2rem;
+  padding: 0.9rem 0.75rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  outline: none;
+  font-family: var(--sans);
+}
+.tab-btn:hover { border-color: var(--border2); }
+.tab-btn .kid-name {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--text-1);
+  transition: color 0.2s;
+}
+.tab-btn .kid-grade {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.tab-btn .tab-score-preview {
+  display: flex; gap: 0.4rem; margin-top: 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-3);
+}
+.tab-score-preview span {
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+}
+
+/* Active tab styles per kid */
+.tab-btn.active[data-kid="glory"]   { border-color: var(--glory-h);  background: var(--glory-bg);  box-shadow: 0 0 20px var(--glory-glow); }
+.tab-btn.active[data-kid="kendra"]  { border-color: var(--kendra-h); background: var(--kendra-bg); box-shadow: 0 0 20px var(--kendra-glow); }
+.tab-btn.active[data-kid="grace"]   { border-color: var(--grace-h);  background: var(--grace-bg);  box-shadow: 0 0 20px var(--grace-glow); }
+.tab-btn.active[data-kid="angely"]  { border-color: var(--angely-h); background: var(--angely-bg); box-shadow: 0 0 20px var(--angely-glow); }
+.tab-btn.active[data-kid="glory"]  .kid-name { color: var(--glory-s);  }
+.tab-btn.active[data-kid="kendra"] .kid-name { color: var(--kendra-s); }
+.tab-btn.active[data-kid="grace"]  .kid-name { color: var(--grace-s);  }
+.tab-btn.active[data-kid="angely"] .kid-name { color: var(--angely-s); }
+
+/* ── TAB PANELS ────────────────────────────────────────────────── */
+.tab-panel { display: none; }
+.tab-panel.active {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 1rem;
+  animation: fadeUp 0.3s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── CARD BASE ─────────────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s;
+}
+.card-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 1rem;
+}
+
+/* ── BLOCK CARD ────────────────────────────────────────────────── */
+.block-card {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  padding: 1.1rem 1.5rem;
+  border-radius: 14px;
+}
+.block-card.glory-theme  { background: var(--glory-bg);  border-color: rgba(59,111,232,0.3); }
+.block-card.kendra-theme { background: var(--kendra-bg); border-color: rgba(232,124,59,0.3); }
+.block-card.grace-theme  { background: var(--grace-bg);  border-color: rgba(46,184,124,0.3); }
+.block-card.angely-theme { background: var(--angely-bg); border-color: rgba(196,75,232,0.3); }
+
+.block-left { display: flex; align-items: center; gap: 1rem; }
+.block-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.glory-theme  .block-icon { background: rgba(59,111,232,0.2); }
+.kendra-theme .block-icon { background: rgba(232,124,59,0.2); }
+.grace-theme  .block-icon { background: rgba(46,184,124,0.2); }
+.angely-theme .block-icon { background: rgba(196,75,232,0.2); }
+
+.block-title {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--text-1);
+  margin-bottom: 0.15rem;
+}
+.block-meta { font-size: 0.78rem; color: var(--text-2); }
+
+.block-right { display: flex; align-items: center; gap: 0.75rem; }
+.time-badge {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.glory-theme  .time-badge { background: rgba(59,111,232,0.15);  color: var(--glory-s); }
+.kendra-theme .time-badge { background: rgba(232,124,59,0.15);  color: var(--kendra-s); }
+.grace-theme  .time-badge { background: rgba(46,184,124,0.15);  color: var(--grace-s); }
+.angely-theme .time-badge { background: rgba(196,75,232,0.15);  color: var(--angely-s); }
+
+.classroom-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: opacity 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+.classroom-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.classroom-btn:active { transform: scale(0.97); }
+.glory-theme  .classroom-btn { background: var(--glory-h);  color: #fff; }
+.kendra-theme .classroom-btn { background: var(--kendra-h); color: #fff; }
+.grace-theme  .classroom-btn { background: var(--grace-h);  color: #fff; }
+.angely-theme .classroom-btn { background: var(--angely-h); color: #fff; }
+
+/* ── IXL TARGETS CARD ──────────────────────────────────────────── */
+.ixl-card { grid-column: 1; }
+.ixl-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.ixl-item {
+  display: flex; align-items: center; gap: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.15s, background 0.15s;
+  text-decoration: none;
+}
+.ixl-item:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: var(--border2);
+}
+.ixl-code-badge {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.22rem 0.55rem;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  min-width: 44px;
+  text-align: center;
+}
+.glory-theme  .ixl-code-badge { background: rgba(59,111,232,0.15);  color: var(--glory-s);  border: 1px solid rgba(59,111,232,0.25); }
+.kendra-theme .ixl-code-badge { background: rgba(232,124,59,0.15);  color: var(--kendra-s); border: 1px solid rgba(232,124,59,0.25); }
+.grace-theme  .ixl-code-badge { background: rgba(46,184,124,0.15);  color: var(--grace-s);  border: 1px solid rgba(46,184,124,0.25); }
+.angely-theme .ixl-code-badge { background: rgba(196,75,232,0.15);  color: var(--angely-s); border: 1px solid rgba(196,75,232,0.25); }
+
+.ixl-item-info { flex: 1; min-width: 0; }
+.ixl-skill { font-size: 0.82rem; color: var(--text-1); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ixl-strand { font-size: 0.68rem; color: var(--text-3); margin-top: 0.1rem; }
+.ixl-arrow {
+  font-size: 0.7rem;
+  color: var(--text-3);
+  flex-shrink: 0;
+  transition: transform 0.15s, color 0.15s;
+}
+.ixl-item:hover .ixl-arrow { transform: translateX(2px); color: var(--text-2); }
+.ixl-note {
+  font-size: 0.7rem;
+  color: var(--text-3);
+  margin-top: 0.5rem;
+  display: flex; align-items: center; gap: 0.3rem;
+}
+
+/* ── SCORES CARD ───────────────────────────────────────────────── */
+.scores-card { grid-column: 2; }
+.score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+.score-block {
+  display: flex; flex-direction: column; gap: 0.5rem;
+  padding: 0.85rem;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.score-subject {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.score-input-row { display: flex; align-items: center; gap: 0.5rem; }
+.score-input {
+  width: 72px;
+  font-family: var(--mono);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-1);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  -moz-appearance: textfield;
+}
+.score-input::-webkit-outer-spin-button,
+.score-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.score-input:focus { color: var(--glory-s); }
+.score-divider { font-size: 0.65rem; color: var(--text-3); }
+.score-target { font-family: var(--mono); font-size: 0.78rem; color: var(--text-3); }
+.score-delta {
+  font-size: 0.7rem; font-weight: 600;
+  padding: 0.1rem 0.4rem; border-radius: 4px;
+}
+.delta-up   { color: var(--success); background: rgba(46,184,124,0.12); }
+.delta-down { color: var(--danger);  background: rgba(232,75,75,0.12); }
+.delta-same { color: var(--text-3);  background: rgba(255,255,255,0.04); }
+
+/* Progress bar */
+.progress-section { margin-top: 0.25rem; }
+.progress-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 0.45rem;
+}
+.progress-label { font-size: 0.68rem; color: var(--text-3); font-weight: 500; }
+.progress-pct { font-family: var(--mono); font-size: 0.75rem; color: var(--text-2); }
+.progress-track {
+  height: 6px; border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+  position: relative;
+}
+.progress-fill {
+  height: 100%; border-radius: 100px;
+  transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.progress-fill::after {
+  content: '';
+  position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0% { left: -60%; }
+  100% { left: 160%; }
+}
+.glory-fill  { background: linear-gradient(90deg, var(--glory-h),  var(--glory-s));  }
+.kendra-fill { background: linear-gradient(90deg, var(--kendra-h), var(--kendra-s)); }
+.grace-fill  { background: linear-gradient(90deg, var(--grace-h),  var(--grace-s));  }
+.angely-fill { background: linear-gradient(90deg, var(--angely-h), var(--angely-s)); }
+
+.milestone-row {
+  display: flex; justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.milestone-dot-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 0.15rem;
+  flex: 1;
+}
+.milestone-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  border: 1.5px solid var(--text-3);
+  background: var(--bg);
+  transition: all 0.3s;
+}
+.milestone-dot.hit { border-color: var(--success); background: var(--success); }
+.milestone-wk { font-size: 0.6rem; color: var(--text-3); }
+
+/* Save button */
+.save-row {
+  display: flex; justify-content: flex-end; margin-top: 0.6rem;
+}
+.save-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 7px; border: 1px solid var(--border2);
+  background: transparent; color: var(--text-2);
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+  cursor: pointer; transition: all 0.15s;
+  letter-spacing: 0.03em;
+}
+.save-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-1); }
+.save-btn.saved { color: var(--success); border-color: rgba(46,184,124,0.3); }
+
+/* ── FLOW CARD ─────────────────────────────────────────────────── */
+.flow-card { grid-column: 1 / -1; }
+.flow-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+.flow-step {
+  position: relative;
+  padding: 0.75rem 0.65rem;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+}
+.flow-step::after {
+  content: '→';
+  position: absolute; right: -0.6rem; top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem; color: var(--text-3);
+  z-index: 1;
+}
+.flow-step:last-child::after { display: none; }
+.flow-time {
+  font-family: var(--mono); font-size: 0.62rem; color: var(--text-3);
+  margin-bottom: 0.3rem; letter-spacing: 0.04em;
+}
+.flow-action { font-size: 0.75rem; color: var(--text-1); font-weight: 500; line-height: 1.3; }
+
+/* ── FOOTER ────────────────────────────────────────────────────── */
+.portal-footer {
+  position: relative; z-index: 5;
+  text-align: center;
+  padding: 1.25rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+}
+
+/* ── RESPONSIVE ────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .tab-panel.active { grid-template-columns: 1fr; }
+  .ixl-card, .scores-card { grid-column: 1; }
+  .flow-steps { grid-template-columns: 1fr 1fr; }
+  .flow-step::after { display: none; }
+  .block-right { flex-direction: column; align-items: flex-start; }
+  .tab-nav { grid-template-columns: repeat(2, 1fr); }
+  .site-header { padding: 1rem; }
+  .header-right { gap: 0.75rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-logo">
+    <span class="site-logo-mark">Lomon Academy</span>
+    <span class="site-logo-sub">Morning Portal</span>
+  </div>
+  <div class="header-right">
+    <div id="live-clock">--:-- --</div>
+    <div class="academy-pill">
+      <span class="pill-dot"></span>
+      <span id="today-date">Loading…</span>
+    </div>
+  </div>
+</header>
+
+<!-- QUOTE BANNER -->
+<div class="quote-banner">
+  <span class="quote-icon">"</span>
+  <div>
+    <div class="quote-text" id="quote-text">Loading…</div>
+    <div class="quote-author" id="quote-author"></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- TAB NAV -->
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" data-kid="glory" onclick="switchTab('glory')" role="tab" aria-selected="true">
+      <span class="kid-name">Glory</span>
+      <span class="kid-grade">Grade 7 · Metz</span>
+      <div class="tab-score-preview">
+        <span id="tab-glory-math">Math —</span>
+        <span id="tab-glory-la">LA —</span>
+      </div>
+    </button>
+    <button class="tab-btn" data-kid="kendra" onclick="switchTab('kendra')" role="tab" aria-selected="false">
+      <span class="kid-name">Kendra</span>
+      <span class="kid-grade">Grade 6 · Baldwin</span>
+      <div class="tab-score-preview">
+        <span id="tab-kendra-math">Math —</span>
+        <span id="tab-kendra-la">LA —</span>
+      </div>
+    </button>
+    <button class="tab-btn" data-kid="grace" onclick="switchTab('grace')" role="tab" aria-selected="false">
+      <span class="kid-name">Grace</span>
+      <span class="kid-grade">Grade 4 · Baldwin</span>
+      <div class="tab-score-preview">
+        <span id="tab-grace-math">Math —</span>
+        <span id="tab-grace-la">LA —</span>
+      </div>
+    </button>
+    <button class="tab-btn" data-kid="angely" onclick="switchTab('angely')" role="tab" aria-selected="false">
+      <span class="kid-name">Angely</span>
+      <span class="kid-grade">Grade 3 · Baldwin</span>
+      <div class="tab-score-preview">
+        <span id="tab-angely-math">Math —</span>
+        <span id="tab-angely-la">LA —</span>
+      </div>
+    </button>
+  </nav>
+
+  <!-- ── GLORY ─────────────────────────────────────────────────── -->
+  <div class="tab-panel active" id="panel-glory">
+
+    <div class="block-card glory-theme card">
+      <div class="block-left">
+        <div class="block-icon">🎯</div>
+        <div>
+          <div class="block-title">Academy Block — Today</div>
+          <div class="block-meta">Glory · Grade 7 · Integrated Gifted · Metz Middle School</div>
+        </div>
+      </div>
+      <div class="block-right">
+        <div class="time-badge">4:45 – 6:15 PM</div>
+        <a class="classroom-btn" href="https://classroom.google.com" target="_blank" rel="noopener">
+          📚 Google Classroom ↗
+        </a>
+      </div>
+    </div>
+
+    <div class="card ixl-card glory-theme" style="border-color: rgba(59,111,232,0.18);">
+      <div class="card-label">Today's IXL Targets</div>
+      <div class="ixl-list">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-7/nlb" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">NLB</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Positive &amp; negative connotation</div>
+            <div class="ixl-strand">Vocabulary · Grade 7</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-7/qwf" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">QWF</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Subordinating conjunctions</div>
+            <div class="ixl-strand">Grammar · Grade 7</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+        <a class="ixl-item" href="https://www.ixl.com/math/grade-7/3r8" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">3R8</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Count money up to $5</div>
+            <div class="ixl-strand">Math · Measurement gap fix</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+      </div>
+      <div class="ixl-note">⚑ Target SmartScore ≥ 70 on each skill before Friday</div>
+    </div>
+
+    <div class="card scores-card glory-theme" style="border-color: rgba(59,111,232,0.18);">
+      <div class="card-label">SmartScore Tracker</div>
+      <div class="score-grid">
+        <div class="score-block">
+          <div class="score-subject">Math</div>
+          <div class="score-input-row">
+            <input class="score-input" type="number" id="glory-math" value="750" min="0" max="1300"
+              oninput="updateScores('glory')" onfocus="this.select()">
+            <span class="score-divider">/1300</span>
+          </div>
+          <div>
+            <span class="score-target">Target: 750+</span>
+            <span class="score-delta delta-same" id="glory-math-delta"> = </span>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-subject">Language Arts</div>
+          <div class="score-input-row">
+            <input class="score-input" type="number" id="glory-la" value="400" min="0" max="1300"
+              oninput="updateScores('glory')" onfocus="this.select()">
+            <span class="score-divider">/1300</span>
+          </div>
+          <div>
+            <span class="score-target">Target: 550+</span>
+            <span class="score-delta delta-same" id="glory-la-delta"> = </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">12-Week LA Progress</span>
+          <span class="progress-pct" id="glory-la-pct">0% to target</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill glory-fill" id="glory-la-bar" style="width: 0%"></div>
+        </div>
+        <div class="milestone-row">
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="glory-ms1"></div><div class="milestone-wk">Wk4<br>440</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="glory-ms2"></div><div class="milestone-wk">Wk7<br>470</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="glory-ms3"></div><div class="milestone-wk">Wk9<br>510</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="glory-ms4"></div><div class="milestone-wk">Wk11<br>535</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="glory-ms5"></div><div class="milestone-wk">Wk12<br>550</div></div>
+        </div>
+      </div>
+      <div class="save-row">
+        <button class="save-btn" id="glory-save-btn" onclick="saveScores('glory')">💾 Save scores</button>
+      </div>
+    </div>
+
+    <div class="card flow-card">
+      <div class="card-label">Today's Academy Block Flow</div>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="flow-time">0 – 5 min</div><div class="flow-action">Open Calendar &amp; check tasks</div></div>
+        <div class="flow-step"><div class="flow-time">5 – 40 min</div><div class="flow-action">IXL — NLB &amp; QWF targets</div></div>
+        <div class="flow-step"><div class="flow-time">40 – 60 min</div><div class="flow-action">Claude tutor session</div></div>
+        <div class="flow-step"><div class="flow-time">60 – 80 min</div><div class="flow-action">Writing prompt &amp; draft</div></div>
+        <div class="flow-step"><div class="flow-time">80 – 90 min</div><div class="flow-action">Log SmartScores in Sheets</div></div>
+      </div>
+    </div>
+
+  </div><!-- /glory -->
+
+  <!-- ── KENDRA ────────────────────────────────────────────────── -->
+  <div class="tab-panel" id="panel-kendra">
+
+    <div class="block-card kendra-theme card">
+      <div class="block-left">
+        <div class="block-icon">🎯</div>
+        <div>
+          <div class="block-title">Academy Block — Today</div>
+          <div class="block-meta">Kendra · Grade 6 · Baldwin Elementary</div>
+        </div>
+      </div>
+      <div class="block-right">
+        <div class="time-badge">4:45 – 6:15 PM</div>
+        <a class="classroom-btn" href="https://classroom.google.com" target="_blank" rel="noopener">
+          📚 Google Classroom ↗
+        </a>
+      </div>
+    </div>
+
+    <div class="card ixl-card kendra-theme" style="border-color: rgba(232,124,59,0.18);">
+      <div class="card-label">Today's IXL Targets</div>
+      <div class="ixl-list">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-6/gf5" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">GF5</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Complete opinion passage with example</div>
+            <div class="ixl-strand">Writing Strategies · Grade 6</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-6/36m" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">36M</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Use adverbs to compare</div>
+            <div class="ixl-strand">Grammar · Grade 6</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+        <a class="ixl-item" href="https://www.ixl.com/math/grade-6/qeb" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">QEB</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Solve two-step equations</div>
+            <div class="ixl-strand">Math · Algebra · Grade 6</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+      </div>
+      <div class="ixl-note">⚑ LA gap is widest (410 pts below Math) — prioritize GF5 + 36M daily</div>
+    </div>
+
+    <div class="card scores-card kendra-theme" style="border-color: rgba(232,124,59,0.18);">
+      <div class="card-label">SmartScore Tracker</div>
+      <div class="score-grid">
+        <div class="score-block">
+          <div class="score-subject">Math</div>
+          <div class="score-input-row">
+            <input class="score-input" type="number" id="kendra-math" value="740" min="0" max="1300"
+              oninput="updateScores('kendra')" onfocus="this.select()">
+            <span class="score-divider">/1300</span>
+          </div>
+          <div>
+            <span class="score-target">Target: 740+</span>
+            <span class="score-delta delta-same" id="kendra-math-delta"> = </span>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-subject">Language Arts</div>
+          <div class="score-input-row">
+            <input class="score-input" type="number" id="kendra-la" value="330" min="0" max="1300"
+              oninput="updateScores('kendra')" onfocus="this.select()">
+            <span class="score-divider">/1300</span>
+          </div>
+          <div>
+            <span class="score-target">Target: 450+</span>
+            <span class="score-delta delta-same" id="kendra-la-delta"> = </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">12-Week LA Progress</span>
+          <span class="progress-pct" id="kendra-la-pct">0% to target</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill kendra-fill" id="kendra-la-bar" style="width: 0%"></div>
+        </div>
+        <div class="milestone-row">
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="kendra-ms1"></div><div class="milestone-wk">Wk3<br>360</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="kendra-ms2"></div><div class="milestone-wk">Wk6<br>390</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="kendra-ms3"></div><div class="milestone-wk">Wk9<br>420</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="kendra-ms4"></div><div class="milestone-wk">Wk10<br>430</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="kendra-ms5"></div><div class="milestone-wk">Wk12<br>450</div></div>
+        </div>
+      </div>
+      <div class="save-row">
+        <button class="save-btn" id="kendra-save-btn" onclick="saveScores('kendra')">💾 Save scores</button>
+      </div>
+    </div>
+
+    <div class="card flow-card">
+      <div class="card-label">Today's Academy Block Flow</div>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="flow-time">0 – 5 min</div><div class="flow-action">Open Calendar &amp; check tasks</div></div>
+        <div class="flow-step"><div class="flow-time">5 – 40 min</div><div class="flow-action">IXL — GF5 &amp; 36M targets</div></div>
+        <div class="flow-step"><div class="flow-time">40 – 60 min</div><div class="flow-action">Claude tutor session</div></div>
+        <div class="flow-step"><div class="flow-time">60 – 80 min</div><div class="flow-action">Opinion paragraph draft</div></div>
+        <div class="flow-step"><div class="flow-time">80 – 90 min</div><div class="flow-action">Log SmartScores in Sheets</div></div>
+      </div>
+    </div>
+
+  </div><!-- /kendra -->
+
+  <!-- ── GRACE ──────────────────────────────────────────────────── -->
+  <div class="tab-panel" id="panel-grace">
+
+    <div class="block-card grace-theme card">
+      <div class="block-left">
+        <div class="block-icon">🎯</div>
+        <div>
+          <div class="block-title">Academy Block — Today</div>
+          <div class="block-meta">Grace · Grade 4 · Baldwin Elementary</div>
+        </div>
+      </div>
+      <div class="block-right">
+        <div class="time-badge">4:45 – 6:15 PM</div>
+        <a class="classroom-btn" href="https://classroom.google.com" target="_blank" rel="noopener">
+          📚 Google Classroom ↗
+        </a>
+      </div>
+    </div>
+
+    <div class="card ixl-card grace-theme" style="border-color: rgba(46,184,124,0.18);">
+      <div class="card-label">Today's IXL Targets</div>
+      <div class="ixl-list">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-4/8zj" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">8ZJ</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Choose the correct possessive pronoun</div>
+            <div class="ixl-strand">Grammar · Grade 4 · Priority gap</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-4/whz" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">WHZ</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Use regular plurals with -s and -es</div>
+            <div class="ixl-strand">Grammar · Grade 4</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+        <a class="ixl-item" href="https://www.ixl.com/math/grade-4/qdt" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">QDT</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Interpret picture graphs</div>
+            <div class="ixl-strand">Math · Data strand gap · Grade 4</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+      </div>
+      <div class="ixl-note">⚑ Grammar strand 240 is the floor — 8ZJ is highest priority every day</div>
+    </div>
+
+    <div class="card scores-card grace-theme" style="border-color: rgba(46,184,124,0.18);">
+      <div class="card-label">SmartScore Tracker</div>
+      <div class="score-grid">
+        <div class="score-block">
+          <div class="score-subject">Math</div>
+          <div class="score-input-row">
+            <input class="score-input" type="number" id="grace-math" value="520" min="0" max="1300"
+              oninput="updateScores('grace')" onfocus="this.select()">
+            <span class="score-divider">/1300</span>
+          </div>
+          <div>
+            <span class="score-target">Target: 580+</span>
+            <span class="score-delta delta-same" id="grace-math-delta"> = </span>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-subject">Language Arts</div>
+          <div class="score-input-row">
+            <input class="score-input" type="number" id="grace-la" value="320" min="0" max="1300"
+              oninput="updateScores('grace')" onfocus="this.select()">
+            <span class="score-divider">/1300</span>
+          </div>
+          <div>
+            <span class="score-target">Target: 420+</span>
+            <span class="score-delta delta-same" id="grace-la-delta"> = </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">12-Week LA Progress</span>
+          <span class="progress-pct" id="grace-la-pct">0% to target</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill grace-fill" id="grace-la-bar" style="width: 0%"></div>
+        </div>
+        <div class="milestone-row">
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="grace-ms1"></div><div class="milestone-wk">Wk3<br>350</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="grace-ms2"></div><div class="milestone-wk">Wk6<br>370</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="grace-ms3"></div><div class="milestone-wk">Wk9<br>395</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="grace-ms4"></div><div class="milestone-wk">Wk10<br>400</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="grace-ms5"></div><div class="milestone-wk">Wk12<br>420</div></div>
+        </div>
+      </div>
+      <div class="save-row">
+        <button class="save-btn" id="grace-save-btn" onclick="saveScores('grace')">💾 Save scores</button>
+      </div>
+    </div>
+
+    <div class="card flow-card">
+      <div class="card-label">Today's Academy Block Flow</div>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="flow-time">0 – 5 min</div><div class="flow-action">Open Calendar &amp; check tasks</div></div>
+        <div class="flow-step"><div class="flow-time">5 – 40 min</div><div class="flow-action">IXL — 8ZJ &amp; WHZ targets</div></div>
+        <div class="flow-step"><div class="flow-time">40 – 60 min</div><div class="flow-action">Claude tutor session</div></div>
+        <div class="flow-step"><div class="flow-time">60 – 80 min</div><div class="flow-action">5 sentences writing journal</div></div>
+        <div class="flow-step"><div class="flow-time">80 – 90 min</div><div class="flow-action">Log SmartScores in Sheets</div></div>
+      </div>
+    </div>
+
+  </div><!-- /grace -->
+
+  <!-- ── ANGELY ─────────────────────────────────────────────────── -->
+  <div class="tab-panel" id="panel-angely">
+
+    <div class="block-card angely-theme card">
+      <div class="block-left">
+        <div class="block-icon">🎯</div>
+        <div>
+          <div class="block-title">Academy Block — Today</div>
+          <div class="block-meta">Angely · Grade 3 · Baldwin Elementary</div>
+        </div>
+      </div>
+      <div class="block-right">
+        <div class="time-badge">4:45 – 6:15 PM</div>
+        <a class="classroom-btn" href="https://classroom.google.com" target="_blank" rel="noopener">
+          📚 Google Classroom ↗
+        </a>
+      </div>
+    </div>
+
+    <div class="card ixl-card angely-theme" style="border-color: rgba(196,75,232,0.18);">
+      <div class="card-label">Today's IXL Targets</div>
+      <div class="ixl-list">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-3/u72" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">U72</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Combine sentences — predicates</div>
+            <div class="ixl-strand">Writing · Grade 3 · Most urgent skill</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-3/tgu" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">TGU</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Use context clues to find word meaning</div>
+            <div class="ixl-strand">Reading Strategies · Grade 3</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+        <a class="ixl-item" href="https://www.ixl.com/math/grade-3/hux" target="_blank" rel="noopener">
+          <span class="ixl-code-badge">HUX</span>
+          <div class="ixl-item-info">
+            <div class="ixl-skill">Convert to/from a number — up to hundreds</div>
+            <div class="ixl-strand">Math · Numbers &amp; Operations · Grade 3</div>
+          </div>
+          <span class="ixl-arrow">↗</span>
+        </a>
+      </div>
+      <div class="ixl-note">⚑ Writing strand 170 — do U72 FIRST every single day this week</div>
+    </div>
+
+    <div class="card scores-card angely-theme" style="border-color: rgba(196,75,232,0.18);">
+      <div class="card-label">SmartScore Tracker</div>
+      <div class="score-grid">
+        <div class="score-block">
+          <div class="score-subject">Math</div>
+          <div class="score-input-row">
+            <input class="score-input" type="number" id="angely-math" value="380" min="0" max="1300"
+              oninput="updateScores('angely')" onfocus="this.select()">
+            <span class="score-divider">/1300</span>
+          </div>
+          <div>
+            <span class="score-target">Target: 440+</span>
+            <span class="score-delta delta-same" id="angely-math-delta"> = </span>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-subject">Language Arts</div>
+          <div class="score-input-row">
+            <input class="score-input" type="number" id="angely-la" value="220" min="0" max="1300"
+              oninput="updateScores('angely')" onfocus="this.select()">
+            <span class="score-divider">/1300</span>
+          </div>
+          <div>
+            <span class="score-target">Target: 300+</span>
+            <span class="score-delta delta-same" id="angely-la-delta"> = </span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">12-Week LA Progress</span>
+          <span class="progress-pct" id="angely-la-pct">0% to target</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill angely-fill" id="angely-la-bar" style="width: 0%"></div>
+        </div>
+        <div class="milestone-row">
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="angely-ms1"></div><div class="milestone-wk">Wk3<br>248</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="angely-ms2"></div><div class="milestone-wk">Wk6<br>268</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="angely-ms3"></div><div class="milestone-wk">Wk9<br>283</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="angely-ms4"></div><div class="milestone-wk">Wk10<br>288</div></div>
+          <div class="milestone-dot-wrap"><div class="milestone-dot" id="angely-ms5"></div><div class="milestone-wk">Wk12<br>300</div></div>
+        </div>
+      </div>
+      <div class="save-row">
+        <button class="save-btn" id="angely-save-btn" onclick="saveScores('angely')">💾 Save scores</button>
+      </div>
+    </div>
+
+    <div class="card flow-card">
+      <div class="card-label">Today's Academy Block Flow</div>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="flow-time">0 – 5 min</div><div class="flow-action">Open Calendar &amp; check tasks</div></div>
+        <div class="flow-step"><div class="flow-time">5 – 40 min</div><div class="flow-action">IXL — U72 first, then TGU</div></div>
+        <div class="flow-step"><div class="flow-time">40 – 60 min</div><div class="flow-action">Claude tutor session</div></div>
+        <div class="flow-step"><div class="flow-time">60 – 80 min</div><div class="flow-action">Write 2 journal sentences</div></div>
+        <div class="flow-step"><div class="flow-time">80 – 90 min</div><div class="flow-action">Log SmartScores in Sheets</div></div>
+      </div>
+    </div>
+
+  </div><!-- /angely -->
+
+</main>
+
+<footer class="portal-footer">
+  Lomon Academy · Manassas, Virginia · Academy Block 4:45 – 6:15 PM Mon–Fri · Apr 21 – Jul 11, 2026
+</footer>
+
+<script>
+// ── DATA ─────────────────────────────────────────────────────────
+const kids = {
+  glory:  { baseMath:750, baseLA:400, targetMath:750, targetLA:550, milestones:[440,470,510,535,550] },
+  kendra: { baseMath:740, baseLA:330, targetMath:740, targetLA:450, milestones:[360,390,420,430,450] },
+  grace:  { baseMath:520, baseLA:320, targetMath:580, targetLA:420, milestones:[350,370,395,400,420] },
+  angely: { baseMath:380, baseLA:220, targetMath:440, targetLA:300, milestones:[248,268,283,288,300] },
+};
+
+// ── QUOTES ───────────────────────────────────────────────────────
+const quotes = [
+  { text: "The secret of getting ahead is <em>getting started.</em>", author: "Mark Twain" },
+  { text: "Education is not filling a bucket, but <em>lighting a fire.</em>", author: "W.B. Yeats" },
+  { text: "Every expert was once a beginner. Every champion was once just <em>someone who kept going.</em>", author: "Lomon Academy" },
+  { text: "The more that you read, the more things you will know. The more that you learn, <em>the more places you'll go.</em>", author: "Dr. Seuss" },
+  { text: "I have not failed. I've just found <em>10,000 ways that won't work.</em>", author: "Thomas Edison" },
+  { text: "You don't have to be great to start, but you have to <em>start to be great.</em>", author: "Zig Ziglar" },
+  { text: "The harder you work for something, <em>the greater you'll feel when you achieve it.</em>", author: "Lomon Academy" },
+  { text: "Genius is one percent inspiration and ninety-nine percent <em>perspiration.</em>", author: "Thomas Edison" },
+  { text: "It always seems impossible <em>until it's done.</em>", author: "Nelson Mandela" },
+  { text: "A reader lives a thousand lives before they die. The person who never reads <em>lives only one.</em>", author: "George R.R. Martin" },
+  { text: "Success is not final, failure is not fatal — it is the courage to continue <em>that counts.</em>", author: "Winston Churchill" },
+  { text: "The beautiful thing about learning is that <em>nobody can take it away from you.</em>", author: "B.B. King" },
+  { text: "Don't watch the clock; do what it does — <em>keep going.</em>", author: "Sam Levenson" },
+  { text: "You are braver than you believe, stronger than you seem, and smarter than you think. <em>Never forget that.</em>", author: "A.A. Milne" },
+];
+
+// ── INIT ─────────────────────────────────────────────────────────
+function init() {
+  loadSaved();
+  updateAllTabs();
+  startClock();
+  setDate();
+  setQuote();
+  Object.keys(kids).forEach(k => updateScores(k));
+}
+
+// ── CLOCK ─────────────────────────────────────────────────────────
+function startClock() {
+  function tick() {
+    const now = new Date();
+    let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    document.getElementById('live-clock').textContent =
+      `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')} ${ampm}`;
+  }
+  tick(); setInterval(tick, 1000);
+}
+
+// ── DATE ──────────────────────────────────────────────────────────
+function setDate() {
+  const now = new Date();
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('today-date').textContent =
+    `${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()}`;
+}
+
+// ── QUOTE ─────────────────────────────────────────────────────────
+function setQuote() {
+  const day = new Date().getDate();
+  const q = quotes[day % quotes.length];
+  document.getElementById('quote-text').innerHTML = q.text;
+  document.getElementById('quote-author').textContent = '— ' + q.author;
+}
+
+// ── TAB SWITCH ────────────────────────────────────────────────────
+function switchTab(kid) {
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.kid === kid);
+    b.setAttribute('aria-selected', b.dataset.kid === kid);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => {
+    p.classList.toggle('active', p.id === `panel-${kid}`);
+  });
+}
+
+// ── SCORE UPDATE ──────────────────────────────────────────────────
+function updateScores(kid) {
+  const k = kids[kid];
+  const mathVal = parseInt(document.getElementById(`${kid}-math`).value) || k.baseMath;
+  const laVal   = parseInt(document.getElementById(`${kid}-la`).value)   || k.baseLA;
+
+  // Math delta
+  const mathDelta = mathVal - k.baseMath;
+  const mathEl = document.getElementById(`${kid}-math-delta`);
+  if (mathDelta > 0)      { mathEl.textContent = `+${mathDelta}`; mathEl.className = 'score-delta delta-up'; }
+  else if (mathDelta < 0) { mathEl.textContent = `${mathDelta}`;  mathEl.className = 'score-delta delta-down'; }
+  else                    { mathEl.textContent = '= base';         mathEl.className = 'score-delta delta-same'; }
+
+  // LA delta
+  const laDelta = laVal - k.baseLA;
+  const laEl = document.getElementById(`${kid}-la-delta`);
+  if (laDelta > 0)      { laEl.textContent = `+${laDelta}`; laEl.className = 'score-delta delta-up'; }
+  else if (laDelta < 0) { laEl.textContent = `${laDelta}`;  laEl.className = 'score-delta delta-down'; }
+  else                  { laEl.textContent = '= base';       laEl.className = 'score-delta delta-same'; }
+
+  // LA progress bar
+  const range = k.targetLA - k.baseLA;
+  const gained = Math.max(0, laVal - k.baseLA);
+  const pct = Math.min(100, Math.round((gained / range) * 100));
+  document.getElementById(`${kid}-la-bar`).style.width = pct + '%';
+  document.getElementById(`${kid}-la-pct`).textContent =
+    pct >= 100 ? '🎉 Target reached!' : `${pct}% to target (need ${Math.max(0, k.targetLA - laVal)} more)`;
+
+  // Milestone dots
+  k.milestones.forEach((ms, i) => {
+    const dot = document.getElementById(`${kid}-ms${i+1}`);
+    if (dot) dot.classList.toggle('hit', laVal >= ms);
+  });
+
+  // Update tab preview
+  document.getElementById(`tab-${kid}-math`).textContent = `M ${mathVal}`;
+  document.getElementById(`tab-${kid}-la`).textContent   = `LA ${laVal}`;
+}
+
+// ── SAVE / LOAD ───────────────────────────────────────────────────
+function saveScores(kid) {
+  const data = {
+    math: document.getElementById(`${kid}-math`).value,
+    la:   document.getElementById(`${kid}-la`).value,
+    saved: new Date().toLocaleString(),
+  };
+  try {
+    localStorage.setItem(`lomon-${kid}`, JSON.stringify(data));
+    const btn = document.getElementById(`${kid}-save-btn`);
+    btn.textContent = '✓ Saved!'; btn.classList.add('saved');
+    setTimeout(() => { btn.textContent = '💾 Save scores'; btn.classList.remove('saved'); }, 2000);
+  } catch(e) {
+    // localStorage unavailable (file:// in some browsers) — show inline confirmation only
+    const btn = document.getElementById(`${kid}-save-btn`);
+    btn.textContent = '✓ Noted'; btn.classList.add('saved');
+    setTimeout(() => { btn.textContent = '💾 Save scores'; btn.classList.remove('saved'); }, 2000);
+  }
+}
+
+function loadSaved() {
+  Object.keys(kids).forEach(kid => {
+    try {
+      const raw = localStorage.getItem(`lomon-${kid}`);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      if (data.math) document.getElementById(`${kid}-math`).value = data.math;
+      if (data.la)   document.getElementById(`${kid}-la`).value   = data.la;
+    } catch(e) {}
+  });
+}
+
+function updateAllTabs() {
+  Object.keys(kids).forEach(k => updateScores(k));
+}
+
+// ── BOOT ──────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

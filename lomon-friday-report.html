@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friday Academy Report — Lomon Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root {
+  --bg:        #F7F6F2;
+  --surface:   #FFFFFF;
+  --surface2:  #F0EEE8;
+  --border:    #DDD9CF;
+  --border2:   #C8C4B8;
+  --ink:       #1A1916;
+  --ink2:      #5C5849;
+  --ink3:      #9C9787;
+  --gold:      #B8860B;
+  --gold-bg:   #FDF6E3;
+  --gold-line: #E8CC6A;
+
+  --glory-h:   #1B4FD8;
+  --glory-bg:  #EEF3FF;
+  --glory-line:#6B8EF0;
+
+  --kendra-h:  #C45A00;
+  --kendra-bg: #FFF3E8;
+  --kendra-line:#F09050;
+
+  --grace-h:   #1A7A4A;
+  --grace-bg:  #EDFBF3;
+  --grace-line:#5CC490;
+
+  --angely-h:  #7B1FBD;
+  --angely-bg: #F7EEFF;
+  --angely-line:#B470E8;
+
+  --green:     #1A7A4A;
+  --green-bg:  #D4F7E5;
+  --yellow:    #A07800;
+  --yellow-bg: #FFF8D0;
+  --red:       #C0211A;
+  --red-bg:    #FFE8E7;
+
+  --serif:     'Syne', system-ui, sans-serif;
+  --body:      'Instrument Sans', system-ui, sans-serif;
+  --mono:      'JetBrains Mono', 'Courier New', monospace;
+  --r:         10px;
+  --r2:        16px;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  padding-bottom: 5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════════════════ */
+.page-header {
+  background: var(--ink);
+  color: #fff;
+  padding: 2rem 2.5rem 1.75rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.header-left {}
+.header-eyebrow {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: .5rem;
+}
+.header-title {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  color: #fff;
+}
+.header-title span { color: var(--gold-line); }
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .4rem;
+}
+#current-date {
+  font-family: var(--mono);
+  font-size: .82rem;
+  color: #999;
+}
+.week-selector {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.week-selector label {
+  font-size: .75rem;
+  color: #888;
+  font-family: var(--mono);
+  letter-spacing: .08em;
+}
+.week-input {
+  font-family: var(--mono);
+  font-size: .9rem;
+  font-weight: 600;
+  width: 52px;
+  padding: .3rem .4rem;
+  background: #2A2A28;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #fff;
+  text-align: center;
+  outline: none;
+}
+.week-input:focus { border-color: var(--gold-line); }
+
+/* ═══════════════════════════════════════════════════════════
+   MAIN WRAPPER
+═══════════════════════════════════════════════════════════ */
+.main {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INSTRUCTIONS BAR
+═══════════════════════════════════════════════════════════ */
+.instructions {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .9rem 1.1rem;
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--r);
+  margin-bottom: 1.75rem;
+  font-size: .82rem;
+  color: var(--gold);
+  line-height: 1.5;
+}
+.inst-icon { font-size: 1rem; flex-shrink: 0; margin-top: .05rem; }
+
+/* ═══════════════════════════════════════════════════════════
+   MASTER SUBMIT ROW
+═══════════════════════════════════════════════════════════ */
+.master-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.generate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem 2rem;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: var(--r);
+  font-family: var(--serif);
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  cursor: pointer;
+  transition: all .15s;
+}
+.generate-btn:hover { background: #333; transform: translateY(-1px); }
+.generate-btn:active { transform: scale(.97); }
+.clear-btn {
+  padding: .7rem 1.25rem;
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  font-family: var(--body);
+  font-size: .82rem;
+  color: var(--ink2);
+  cursor: pointer;
+  transition: all .15s;
+}
+.clear-btn:hover { background: var(--surface2); }
+.master-status {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--ink3);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REPORT GRID
+═══════════════════════════════════════════════════════════ */
+.report-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+@media(max-width: 680px) {
+  .report-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   KID CARD
+═══════════════════════════════════════════════════════════ */
+.kid-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  overflow: hidden;
+  transition: box-shadow .2s;
+}
+.kid-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); }
+
+/* Card accent bar */
+.kid-card-bar {
+  height: 4px;
+}
+.glory-bar  { background: linear-gradient(90deg, var(--glory-h), var(--glory-line)); }
+.kendra-bar { background: linear-gradient(90deg, var(--kendra-h), var(--kendra-line)); }
+.grace-bar  { background: linear-gradient(90deg, var(--grace-h), var(--grace-line)); }
+.angely-bar { background: linear-gradient(90deg, var(--angely-h), var(--angely-line)); }
+
+/* Card header */
+.kid-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem .75rem;
+  border-bottom: 1px solid var(--border);
+  gap: .75rem;
+}
+.kid-name {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1;
+  margin-bottom: .2rem;
+}
+.glory-name  { color: var(--glory-h); }
+.kendra-name { color: var(--kendra-h); }
+.grace-name  { color: var(--grace-h); }
+.angely-name { color: var(--angely-h); }
+
+.kid-meta {
+  font-size: .7rem;
+  font-family: var(--mono);
+  color: var(--ink3);
+  letter-spacing: .05em;
+}
+.flag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .25rem .65rem;
+  border-radius: 20px;
+  font-size: .7rem;
+  font-weight: 700;
+  font-family: var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+  min-width: 70px;
+  justify-content: center;
+  transition: all .3s;
+}
+.flag-neutral { background: var(--surface2); color: var(--ink3); border-color: var(--border); }
+.flag-green   { background: var(--green-bg);  color: var(--green); border-color: rgba(26,122,74,.3); }
+.flag-yellow  { background: var(--yellow-bg); color: var(--yellow); border-color: rgba(160,120,0,.3); }
+.flag-red     { background: var(--red-bg);    color: var(--red); border-color: rgba(192,33,26,.3); }
+
+/* Input section */
+.kid-card-body {
+  padding: 1rem 1.25rem 1rem;
+}
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+  margin-bottom: .75rem;
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+.input-label {
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+.input-label span {
+  font-family: var(--mono);
+  font-weight: 400;
+  color: var(--border2);
+  margin-left: .25rem;
+  letter-spacing: .04em;
+  font-size: .58rem;
+}
+.score-field-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.score-field {
+  width: 100%;
+  padding: .55rem .7rem;
+  padding-right: 2.5rem;
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color .15s;
+  -moz-appearance: textfield;
+}
+.score-field::-webkit-outer-spin-button,
+.score-field::-webkit-inner-spin-button { -webkit-appearance: none; }
+.score-field:focus { border-color: var(--border2); background: #fff; }
+.score-field.glory-focus:focus   { border-color: var(--glory-line); }
+.score-field.kendra-focus:focus  { border-color: var(--kendra-line); }
+.score-field.grace-focus:focus   { border-color: var(--grace-line); }
+.score-field.angely-focus:focus  { border-color: var(--angely-line); }
+.delta-inline {
+  position: absolute;
+  right: .55rem;
+  font-family: var(--mono);
+  font-size: .65rem;
+  font-weight: 700;
+  pointer-events: none;
+  transition: color .2s;
+}
+.delta-up   { color: var(--green); }
+.delta-same { color: var(--ink3); }
+.delta-down { color: var(--red); }
+
+/* Baseline hint */
+.baseline-hint {
+  display: flex;
+  gap: .75rem;
+  font-size: .68rem;
+  font-family: var(--mono);
+  color: var(--ink3);
+  margin-bottom: .75rem;
+  padding: .4rem .55rem;
+  background: var(--surface2);
+  border-radius: 6px;
+}
+.baseline-hint span { white-space: nowrap; }
+
+/* Target hint */
+.target-hint {
+  display: flex;
+  gap: .75rem;
+  font-size: .68rem;
+  font-family: var(--mono);
+  color: var(--ink3);
+  flex-wrap: wrap;
+}
+.target-hint span {
+  padding: .2rem .5rem;
+  background: var(--surface2);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Result section */
+.kid-card-result {
+  border-top: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  display: none;
+}
+.kid-card-result.visible { display: block; }
+
+.result-label {
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: .6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .2rem .55rem;
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: 5px;
+  font-size: .65rem;
+  font-family: var(--mono);
+  color: var(--ink2);
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: .03em;
+  font-weight: 400;
+  transition: all .15s;
+}
+.copy-btn:hover { background: var(--surface2); }
+.copy-btn.copied { color: var(--green); border-color: rgba(26,122,74,.4); }
+
+.result-box {
+  padding: .85rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: .82rem;
+  line-height: 1.75;
+  color: var(--ink);
+  white-space: pre-wrap;
+  font-family: var(--body);
+}
+
+/* Delta summary row */
+.delta-row {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: .65rem;
+  flex-wrap: wrap;
+}
+.delta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .25rem .65rem;
+  border-radius: 20px;
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.chip-up     { background: var(--green-bg);  color: var(--green); border-color: rgba(26,122,74,.25); }
+.chip-same   { background: var(--surface2);  color: var(--ink3);  border-color: var(--border); }
+.chip-down   { background: var(--red-bg);    color: var(--red);   border-color: rgba(192,33,26,.25); }
+
+/* ═══════════════════════════════════════════════════════════
+   MASTER REPORT SECTION
+═══════════════════════════════════════════════════════════ */
+.master-report {
+  margin-top: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  overflow: hidden;
+  display: none;
+}
+.master-report.visible { display: block; }
+.master-report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--ink);
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+.master-report-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+.copy-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .45rem 1.1rem;
+  background: var(--gold-line);
+  border: none;
+  border-radius: 7px;
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  letter-spacing: .04em;
+  transition: all .15s;
+}
+.copy-all-btn:hover { filter: brightness(1.1); }
+.copy-all-btn.copied { background: var(--green-bg); color: var(--green); }
+.master-report-body {
+  padding: 1.25rem 1.5rem;
+}
+.master-result-box {
+  padding: 1.1rem 1.25rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: .85rem;
+  line-height: 1.8;
+  color: var(--ink);
+  white-space: pre-wrap;
+  font-family: var(--body);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCORECARD ROW (quick visual overview)
+═══════════════════════════════════════════════════════════ */
+.overview-row {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: .75rem;
+  margin-bottom: 2rem;
+}
+@media(max-width: 560px){ .overview-row{ grid-template-columns:1fr 1fr; } }
+.ov-cell {
+  padding: .75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  text-align: center;
+}
+.ov-name {
+  font-family: var(--serif);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin-bottom: .3rem;
+}
+.ov-scores {
+  display: flex;
+  justify-content: center;
+  gap: .3rem;
+}
+.ov-score {
+  font-family: var(--mono);
+  font-size: .7rem;
+  padding: .15rem .4rem;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--ink2);
+}
+.ov-flag {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: .4rem;
+}
+.ov-flag-green  { background: var(--green); }
+.ov-flag-yellow { background: var(--yellow); }
+.ov-flag-red    { background: var(--red); }
+.ov-flag-none   { background: var(--border2); }
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════ */
+.page-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: .68rem;
+  font-family: var(--mono);
+  color: var(--ink3);
+  letter-spacing: .06em;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SAVED INDICATOR
+═══════════════════════════════════════════════════════════ */
+.save-indicator {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  padding: .5rem 1rem;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 8px;
+  font-size: .72rem;
+  font-family: var(--mono);
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+  z-index: 999;
+}
+.save-indicator.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE HEADER ═══════════ -->
+<header class="page-header">
+  <div class="header-left">
+    <div class="header-eyebrow">Lomon Academy · Manassas, Virginia</div>
+    <h1 class="header-title">Friday<br><span>Report</span></h1>
+  </div>
+  <div class="header-right">
+    <div id="current-date"></div>
+    <div class="week-selector">
+      <label for="week-num">Week</label>
+      <input class="week-input" type="number" id="week-num" value="1" min="1" max="12">
+      <label>/ 12</label>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="main">
+
+  <div class="instructions">
+    <span class="inst-icon">ℹ</span>
+    <span>
+      Enter today's IXL SmartScores for each kid. Baselines are pre-loaded from April 1, 2026.
+      Click <strong>Generate Report</strong> to see deltas, flags, and copy-ready Google Classroom summaries.
+      Scores auto-save to this browser — reloading the page restores last entries.
+    </span>
+  </div>
+
+  <!-- Quick overview row (updates live) -->
+  <div class="overview-row">
+    <div class="ov-cell">
+      <div class="ov-name glory-name">Glory</div>
+      <div class="ov-scores">
+        <span class="ov-score" id="ov-glory-math">M 750</span>
+        <span class="ov-score" id="ov-glory-la">LA 400</span>
+      </div>
+      <div class="ov-flag ov-flag-none" id="ov-glory-flag"></div>
+    </div>
+    <div class="ov-cell">
+      <div class="ov-name kendra-name">Kendra</div>
+      <div class="ov-scores">
+        <span class="ov-score" id="ov-kendra-math">M 740</span>
+        <span class="ov-score" id="ov-kendra-la">LA 330</span>
+      </div>
+      <div class="ov-flag ov-flag-none" id="ov-kendra-flag"></div>
+    </div>
+    <div class="ov-cell">
+      <div class="ov-name grace-name">Grace</div>
+      <div class="ov-scores">
+        <span class="ov-score" id="ov-grace-math">M 520</span>
+        <span class="ov-score" id="ov-grace-la">LA 320</span>
+      </div>
+      <div class="ov-flag ov-flag-none" id="ov-grace-flag"></div>
+    </div>
+    <div class="ov-cell">
+      <div class="ov-name angely-name">Angely</div>
+      <div class="ov-scores">
+        <span class="ov-score" id="ov-angely-math">M 380</span>
+        <span class="ov-score" id="ov-angely-la">LA 220</span>
+      </div>
+      <div class="ov-flag ov-flag-none" id="ov-angely-flag"></div>
+    </div>
+  </div>
+
+  <!-- Generate button -->
+  <div class="master-row">
+    <button class="generate-btn" onclick="generateAll()">
+      <span>▶</span> Generate Report
+    </button>
+    <button class="clear-btn" onclick="clearAll()">↺ Clear all</button>
+    <span class="master-status" id="master-status">Enter scores above and click Generate Report</span>
+  </div>
+
+  <!-- 2×2 KID CARD GRID -->
+  <div class="report-grid">
+
+    <!-- ─── GLORY ─────────────────────────────────── -->
+    <div class="kid-card" id="card-glory">
+      <div class="kid-card-bar glory-bar"></div>
+      <div class="kid-card-header">
+        <div>
+          <div class="kid-name glory-name">Glory</div>
+          <div class="kid-meta">GR7 · METZ MIDDLE · INTEGRATED GIFTED</div>
+        </div>
+        <div class="flag-badge flag-neutral" id="flag-glory">— —</div>
+      </div>
+      <div class="kid-card-body">
+        <div class="baseline-hint">
+          <span>Baseline Apr 1:</span>
+          <span>Math 750</span>
+          <span>LA 400</span>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label class="input-label">Math SmartScore <span>/ 1300</span></label>
+            <div class="score-field-wrap">
+              <input class="score-field glory-focus" type="number" id="glory-math"
+                value="750" min="0" max="1300"
+                oninput="liveUpdate('glory')" onfocus="this.select()">
+              <span class="delta-inline delta-same" id="glory-math-delta">—</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label">LA SmartScore <span>/ 1300</span></label>
+            <div class="score-field-wrap">
+              <input class="score-field glory-focus" type="number" id="glory-la"
+                value="400" min="0" max="1300"
+                oninput="liveUpdate('glory')" onfocus="this.select()">
+              <span class="delta-inline delta-same" id="glory-la-delta">—</span>
+            </div>
+          </div>
+        </div>
+        <div class="target-hint">
+          <span>Target Math: 750+</span>
+          <span>Target LA: 550+</span>
+          <span>Critical: LA Writing 380</span>
+        </div>
+      </div>
+      <div class="kid-card-result" id="result-glory">
+        <div class="result-label">
+          <span>Weekly Summary — Copy to Google Classroom</span>
+          <button class="copy-btn" onclick="copyResult('glory')" id="copy-glory">⎘ Copy</button>
+        </div>
+        <div class="delta-row" id="chips-glory"></div>
+        <div class="result-box" id="text-glory"></div>
+      </div>
+    </div>
+
+    <!-- ─── KENDRA ────────────────────────────────── -->
+    <div class="kid-card" id="card-kendra">
+      <div class="kid-card-bar kendra-bar"></div>
+      <div class="kid-card-header">
+        <div>
+          <div class="kid-name kendra-name">Kendra</div>
+          <div class="kid-meta">GR6 · BALDWIN ELEMENTARY</div>
+        </div>
+        <div class="flag-badge flag-neutral" id="flag-kendra">— —</div>
+      </div>
+      <div class="kid-card-body">
+        <div class="baseline-hint">
+          <span>Baseline Apr 1:</span>
+          <span>Math 740</span>
+          <span>LA 330</span>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label class="input-label">Math SmartScore <span>/ 1300</span></label>
+            <div class="score-field-wrap">
+              <input class="score-field kendra-focus" type="number" id="kendra-math"
+                value="740" min="0" max="1300"
+                oninput="liveUpdate('kendra')" onfocus="this.select()">
+              <span class="delta-inline delta-same" id="kendra-math-delta">—</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label">LA SmartScore <span>/ 1300</span></label>
+            <div class="score-field-wrap">
+              <input class="score-field kendra-focus" type="number" id="kendra-la"
+                value="330" min="0" max="1300"
+                oninput="liveUpdate('kendra')" onfocus="this.select()">
+              <span class="delta-inline delta-same" id="kendra-la-delta">—</span>
+            </div>
+          </div>
+        </div>
+        <div class="target-hint">
+          <span>Target Math: 740+</span>
+          <span>Target LA: 450+</span>
+          <span>Critical: Reading 290</span>
+        </div>
+      </div>
+      <div class="kid-card-result" id="result-kendra">
+        <div class="result-label">
+          <span>Weekly Summary — Copy to Google Classroom</span>
+          <button class="copy-btn" onclick="copyResult('kendra')" id="copy-kendra">⎘ Copy</button>
+        </div>
+        <div class="delta-row" id="chips-kendra"></div>
+        <div class="result-box" id="text-kendra"></div>
+      </div>
+    </div>
+
+    <!-- ─── GRACE ─────────────────────────────────── -->
+    <div class="kid-card" id="card-grace">
+      <div class="kid-card-bar grace-bar"></div>
+      <div class="kid-card-header">
+        <div>
+          <div class="kid-name grace-name">Grace</div>
+          <div class="kid-meta">GR4 · BALDWIN ELEMENTARY</div>
+        </div>
+        <div class="flag-badge flag-neutral" id="flag-grace">— —</div>
+      </div>
+      <div class="kid-card-body">
+        <div class="baseline-hint">
+          <span>Baseline Apr 1:</span>
+          <span>Math 520</span>
+          <span>LA 320</span>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label class="input-label">Math SmartScore <span>/ 1300</span></label>
+            <div class="score-field-wrap">
+              <input class="score-field grace-focus" type="number" id="grace-math"
+                value="520" min="0" max="1300"
+                oninput="liveUpdate('grace')" onfocus="this.select()">
+              <span class="delta-inline delta-same" id="grace-math-delta">—</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label">LA SmartScore <span>/ 1300</span></label>
+            <div class="score-field-wrap">
+              <input class="score-field grace-focus" type="number" id="grace-la"
+                value="320" min="0" max="1300"
+                oninput="liveUpdate('grace')" onfocus="this.select()">
+              <span class="delta-inline delta-same" id="grace-la-delta">—</span>
+            </div>
+          </div>
+        </div>
+        <div class="target-hint">
+          <span>Target Math: 580+</span>
+          <span>Target LA: 420+</span>
+          <span>Critical: Grammar 240</span>
+        </div>
+      </div>
+      <div class="kid-card-result" id="result-grace">
+        <div class="result-label">
+          <span>Weekly Summary — Copy to Google Classroom</span>
+          <button class="copy-btn" onclick="copyResult('grace')" id="copy-grace">⎘ Copy</button>
+        </div>
+        <div class="delta-row" id="chips-grace"></div>
+        <div class="result-box" id="text-grace"></div>
+      </div>
+    </div>
+
+    <!-- ─── ANGELY ────────────────────────────────── -->
+    <div class="kid-card" id="card-angely">
+      <div class="kid-card-bar angely-bar"></div>
+      <div class="kid-card-header">
+        <div>
+          <div class="kid-name angely-name">Angely</div>
+          <div class="kid-meta">GR3 · BALDWIN ELEMENTARY</div>
+        </div>
+        <div class="flag-badge flag-neutral" id="flag-angely">— —</div>
+      </div>
+      <div class="kid-card-body">
+        <div class="baseline-hint">
+          <span>Baseline Apr 1:</span>
+          <span>Math 380</span>
+          <span>LA 220</span>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label class="input-label">Math SmartScore <span>/ 1300</span></label>
+            <div class="score-field-wrap">
+              <input class="score-field angely-focus" type="number" id="angely-math"
+                value="380" min="0" max="1300"
+                oninput="liveUpdate('angely')" onfocus="this.select()">
+              <span class="delta-inline delta-same" id="angely-math-delta">—</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label">LA SmartScore <span>/ 1300</span></label>
+            <div class="score-field-wrap">
+              <input class="score-field angely-focus" type="number" id="angely-la"
+                value="220" min="0" max="1300"
+                oninput="liveUpdate('angely')" onfocus="this.select()">
+              <span class="delta-inline delta-same" id="angely-la-delta">—</span>
+            </div>
+          </div>
+        </div>
+        <div class="target-hint">
+          <span>Target Math: 440+</span>
+          <span>Target LA: 300+</span>
+          <span>Critical: Writing 170</span>
+        </div>
+      </div>
+      <div class="kid-card-result" id="result-angely">
+        <div class="result-label">
+          <span>Weekly Summary — Copy to Google Classroom</span>
+          <button class="copy-btn" onclick="copyResult('angely')" id="copy-angely">⎘ Copy</button>
+        </div>
+        <div class="delta-row" id="chips-angely"></div>
+        <div class="result-box" id="text-angely"></div>
+      </div>
+    </div>
+
+  </div><!-- /report-grid -->
+
+  <!-- MASTER COMBINED REPORT -->
+  <div class="master-report" id="master-report">
+    <div class="master-report-header">
+      <span class="master-report-title">Combined Weekly Report — paste into parent journal or Google Classroom</span>
+      <button class="copy-all-btn" id="copy-all-btn" onclick="copyAll()">⎘ Copy full report</button>
+    </div>
+    <div class="master-report-body">
+      <div class="master-result-box" id="master-text"></div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="page-footer">
+  Lomon Academy · Friday Report Tool · Apr 21 – Jul 11, 2026 · 12-Week Academy Block
+</footer>
+
+<div class="save-indicator" id="save-indicator">Scores saved ✓</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPT
+═══════════════════════════════════════════════════════════ -->
+<script>
+/* ── DATA ───────────────────────────────────────────────────── */
+const KIDS = {
+  glory: {
+    grade: 7, school: 'Metz Middle (Gifted)',
+    baseMath: 750, baseLA: 400,
+    targetMath: 750, targetLA: 550,
+    criticalStrand: 'LA Writing (target: 380→480)',
+    nextSkills: ['NLB — connotation', 'QWF — conjunctions', 'VVG — supporting details'],
+  },
+  kendra: {
+    grade: 6, school: 'Baldwin Elementary',
+    baseMath: 740, baseLA: 330,
+    targetMath: 740, targetLA: 450,
+    criticalStrand: 'Reading strand (baseline 290 — most urgent)',
+    nextSkills: ['GF5 — opinion passage', '36M — adverbs', 'CXD — support reasons'],
+  },
+  grace: {
+    grade: 4, school: 'Baldwin Elementary',
+    baseMath: 520, baseLA: 320,
+    targetMath: 580, targetLA: 420,
+    criticalStrand: 'Grammar strand (baseline 240 — floor-level)',
+    nextSkills: ['8ZJ — possessive pronouns', 'WHZ — plurals', 'QDT — picture graphs'],
+  },
+  angely: {
+    grade: 3, school: 'Baldwin Elementary',
+    baseMath: 380, baseLA: 220,
+    targetMath: 440, targetLA: 300,
+    criticalStrand: 'Writing strand (baseline 170 — lowest in family)',
+    nextSkills: ['U72 — combine sentences', 'TGU — context clues', 'QQA — estimate lengths'],
+  },
+};
+
+const NAMES = { glory: 'Glory', kendra: 'Kendra', grace: 'Grace', angely: 'Angely' };
+
+/* ── DATE ───────────────────────────────────────────────────── */
+function initDate() {
+  const d = new Date();
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('current-date').textContent =
+    `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+
+/* ── LIVE DELTA UPDATE ──────────────────────────────────────── */
+function liveUpdate(kid) {
+  const k = KIDS[kid];
+  const math = parseInt(document.getElementById(`${kid}-math`).value) || 0;
+  const la   = parseInt(document.getElementById(`${kid}-la`).value)   || 0;
+  const dm = math - k.baseMath;
+  const dl = la   - k.baseLA;
+
+  // Inline deltas
+  setDelta(`${kid}-math-delta`, dm);
+  setDelta(`${kid}-la-delta`, dl);
+
+  // Overview row
+  document.getElementById(`ov-${kid}-math`).textContent = `M ${math}`;
+  document.getElementById(`ov-${kid}-la`).textContent   = `LA ${la}`;
+
+  // Overview flag dot
+  const ovFlag = document.getElementById(`ov-${kid}-flag`);
+  const combined = dm + dl;
+  ovFlag.className = 'ov-flag ' + (combined > 0 ? 'ov-flag-green' : combined < 0 ? 'ov-flag-red' : 'ov-flag-yellow');
+
+  autoSave();
+}
+
+function setDelta(elId, delta) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  if (delta > 0) {
+    el.textContent = `+${delta}`;
+    el.className = 'delta-inline delta-up';
+  } else if (delta < 0) {
+    el.textContent = String(delta);
+    el.className = 'delta-inline delta-down';
+  } else {
+    el.textContent = '=';
+    el.className = 'delta-inline delta-same';
+  }
+}
+
+/* ── FLAG LOGIC ─────────────────────────────────────────────── */
+function getFlag(mathDelta, laDelta) {
+  const total = mathDelta + laDelta;
+  if (laDelta > 0 || (laDelta === 0 && mathDelta > 0)) {
+    return laDelta > 0 ? 'green' : 'yellow';
+  }
+  if (laDelta === 0 && mathDelta <= 0) return 'yellow';
+  return 'red';
+}
+
+function flagLabel(flag) {
+  if (flag === 'green')  return '▲ Gain';
+  if (flag === 'yellow') return '= Held';
+  return '▼ Drop';
+}
+
+/* ── TEXT GENERATION ────────────────────────────────────────── */
+function generateText(kid, mathVal, laVal, week) {
+  const k = KIDS[kid];
+  const name = NAMES[kid];
+  const dm = mathVal - k.baseMath;
+  const dl = laVal   - k.baseLA;
+
+  const sign = n => n > 0 ? `+${n}` : String(n);
+  const flag = getFlag(dm, dl);
+
+  const dateStr = new Date().toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+
+  // Status headline
+  let statusLine;
+  if (flag === 'green') {
+    statusLine = `📈 ${name} made measurable progress this week.`;
+  } else if (flag === 'yellow') {
+    statusLine = `📊 ${name} held steady this week — no regression, but no gain yet.`;
+  } else {
+    statusLine = `⚠️ ${name} needs attention — scores dropped this week.`;
+  }
+
+  // Math sentence
+  const mathSentence = dm === 0
+    ? `Math held at ${mathVal} (baseline ${k.baseMath}).`
+    : dm > 0
+      ? `Math: ${mathVal} (${sign(dm)} from baseline of ${k.baseMath}).`
+      : `Math: ${mathVal} — dropped ${Math.abs(dm)} points from baseline ${k.baseMath}.`;
+
+  // LA sentence
+  const laSentence = dl === 0
+    ? `LA held at ${laVal} (baseline ${k.baseLA}).`
+    : dl > 0
+      ? `LA: ${laVal} (${sign(dl)} from baseline of ${k.baseLA}) — ${Math.max(0, k.targetLA - laVal)} more to reach 12-week target of ${k.targetLA}.`
+      : `LA: ${laVal} — dropped ${Math.abs(dl)} points from baseline ${k.baseLA}. Needs immediate focus.`;
+
+  // Gap to target
+  const laGap = k.targetLA - laVal;
+  const mathGap = k.targetMath - mathVal;
+  const gapLine = laGap <= 0
+    ? `LA target of ${k.targetLA} has been reached. Shift focus to maintaining and deepening.`
+    : `LA gap to target: ${laGap} points remaining over ${12 - week + 1} weeks — needs ~${Math.ceil(laGap / Math.max(1, 12 - week + 1))} pts/week average.`;
+
+  // Critical strand
+  const critLine = `Critical: ${k.criticalStrand}.`;
+
+  // Next week
+  const nextLine = `Next week priority IXL skills: ${k.nextSkills.join(' · ')}.`;
+
+  // Action line
+  let actionLine;
+  if (flag === 'green') {
+    actionLine = `No intervention needed. Continue current Academy Block routine.`;
+  } else if (flag === 'yellow') {
+    actionLine = `Increase writing practice to 25 min/day. Review weak strand before IXL session.`;
+  } else {
+    actionLine = `Intervention required. Double LA session to 50 min Mon–Wed. Add Claude tutor session on dropped strand.`;
+  }
+
+  return [
+    `─── ${name.toUpperCase()} · Grade ${k.grade} · ${k.school} ───`,
+    `Week ${week} Report · ${dateStr}`,
+    ``,
+    statusLine,
+    ``,
+    mathSentence,
+    laSentence,
+    gapLine,
+    ``,
+    critLine,
+    nextLine,
+    ``,
+    `Action: ${actionLine}`,
+  ].join('\n');
+}
+
+/* ── GENERATE ALL ───────────────────────────────────────────── */
+function generateAll() {
+  const week = parseInt(document.getElementById('week-num').value) || 1;
+  let allTexts = [];
+  let flagSummary = [];
+
+  Object.keys(KIDS).forEach(kid => {
+    const math = parseInt(document.getElementById(`${kid}-math`).value) || 0;
+    const la   = parseInt(document.getElementById(`${kid}-la`).value)   || 0;
+    const k = KIDS[kid];
+    const dm = math - k.baseMath;
+    const dl = la - k.baseLA;
+    const flag = getFlag(dm, dl);
+
+    // Update flag badge
+    const flagEl = document.getElementById(`flag-${kid}`);
+    flagEl.textContent = flagLabel(flag);
+    flagEl.className = `flag-badge flag-${flag}`;
+
+    // Build delta chips
+    const chipsEl = document.getElementById(`chips-${kid}`);
+    chipsEl.innerHTML = buildChips(dm, dl, math, la, k);
+
+    // Generate text
+    const txt = generateText(kid, math, la, week);
+    document.getElementById(`text-${kid}`).textContent = txt;
+
+    // Show result panel
+    document.getElementById(`result-${kid}`).classList.add('visible');
+
+    allTexts.push(txt);
+    flagSummary.push(`${NAMES[kid]}: ${flagLabel(flag)}`);
+  });
+
+  // Combined report
+  const dateStr = new Date().toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+  const header = [
+    `╔══════════════════════════════════════════════╗`,
+    `  LOMON ACADEMY — FRIDAY WEEKLY REPORT`,
+    `  Week ${week} of 12 · ${dateStr}`,
+    `  Status: ${flagSummary.join(' | ')}`,
+    `╚══════════════════════════════════════════════╝`,
+    ``,
+  ].join('\n');
+
+  document.getElementById('master-text').textContent = header + allTexts.join('\n\n────────────────────────────────────────\n\n');
+  document.getElementById('master-report').classList.add('visible');
+  document.getElementById('master-status').textContent = `Report generated · ${new Date().toLocaleTimeString()}`;
+
+  // Scroll to first result
+  document.getElementById('result-glory').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  autoSave();
+}
+
+function buildChips(dm, dl, math, la, k) {
+  const chipClass = n => n > 0 ? 'chip-up' : n < 0 ? 'chip-down' : 'chip-same';
+  const chipIcon  = n => n > 0 ? '▲' : n < 0 ? '▼' : '=';
+  const sign = n => n > 0 ? `+${n}` : String(n);
+  const laToTarget = Math.max(0, k.targetLA - la);
+
+  return `
+    <span class="delta-chip ${chipClass(dm)}">
+      ${chipIcon(dm)} Math ${sign(dm)}
+    </span>
+    <span class="delta-chip ${chipClass(dl)}">
+      ${chipIcon(dl)} LA ${sign(dl)}
+    </span>
+    ${laToTarget > 0
+      ? `<span class="delta-chip chip-same">${laToTarget} to LA target</span>`
+      : `<span class="delta-chip chip-up">🎯 LA target reached</span>`
+    }
+  `;
+}
+
+/* ── COPY ───────────────────────────────────────────────────── */
+function copyResult(kid) {
+  const text = document.getElementById(`text-${kid}`).textContent;
+  copyToClipboard(text, `copy-${kid}`);
+}
+
+function copyAll() {
+  const text = document.getElementById('master-text').textContent;
+  copyToClipboard(text, 'copy-all-btn');
+}
+
+function copyToClipboard(text, btnId) {
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById(btnId);
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.classList.remove('copied');
+    }, 2200);
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const btn = document.getElementById(btnId);
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '⎘ Copy'; btn.classList.remove('copied'); }, 2200);
+  });
+}
+
+/* ── CLEAR ──────────────────────────────────────────────────── */
+function clearAll() {
+  Object.entries(KIDS).forEach(([kid, k]) => {
+    document.getElementById(`${kid}-math`).value = k.baseMath;
+    document.getElementById(`${kid}-la`).value   = k.baseLA;
+    document.getElementById(`${kid}-math-delta`).textContent = '—';
+    document.getElementById(`${kid}-math-delta`).className = 'delta-inline delta-same';
+    document.getElementById(`${kid}-la-delta`).textContent = '—';
+    document.getElementById(`${kid}-la-delta`).className = 'delta-inline delta-same';
+    document.getElementById(`flag-${kid}`).textContent = '— —';
+    document.getElementById(`flag-${kid}`).className = 'flag-badge flag-neutral';
+    document.getElementById(`result-${kid}`).classList.remove('visible');
+    document.getElementById(`ov-${kid}-math`).textContent = `M ${k.baseMath}`;
+    document.getElementById(`ov-${kid}-la`).textContent   = `LA ${k.baseLA}`;
+    document.getElementById(`ov-${kid}-flag`).className = 'ov-flag ov-flag-none';
+  });
+  document.getElementById('master-report').classList.remove('visible');
+  document.getElementById('master-status').textContent = 'Cleared — enter new scores';
+  try { localStorage.removeItem('lomon-friday-scores'); } catch(e) {}
+}
+
+/* ── AUTOSAVE / AUTOLOAD ────────────────────────────────────── */
+let saveTimer = null;
+function autoSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try {
+      const data = {};
+      Object.keys(KIDS).forEach(kid => {
+        data[kid] = {
+          math: document.getElementById(`${kid}-math`).value,
+          la:   document.getElementById(`${kid}-la`).value,
+        };
+      });
+      data.week = document.getElementById('week-num').value;
+      localStorage.setItem('lomon-friday-scores', JSON.stringify(data));
+      const ind = document.getElementById('save-indicator');
+      ind.classList.add('show');
+      setTimeout(() => ind.classList.remove('show'), 1500);
+    } catch(e) {}
+  }, 800);
+}
+
+function autoLoad() {
+  try {
+    const raw = localStorage.getItem('lomon-friday-scores');
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    Object.keys(KIDS).forEach(kid => {
+      if (data[kid]) {
+        if (data[kid].math) document.getElementById(`${kid}-math`).value = data[kid].math;
+        if (data[kid].la)   document.getElementById(`${kid}-la`).value   = data[kid].la;
+        liveUpdate(kid);
+      }
+    });
+    if (data.week) document.getElementById('week-num').value = data.week;
+  } catch(e) {}
+}
+
+/* ── WEEK INPUT AUTOSAVE ────────────────────────────────────── */
+document.getElementById('week-num').addEventListener('input', autoSave);
+
+/* ── BOOT ───────────────────────────────────────────────────── */
+initDate();
+autoLoad();
+</script>
+</body>
+</html>
