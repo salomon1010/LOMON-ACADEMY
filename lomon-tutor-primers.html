@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lomon Academy — Tutor Primers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════ RESET ═══════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:     #F4F1ED;
+  --paper:  #FFFDF9;
+  --ink:    #1C1A16;
+  --ink2:   #4A4640;
+  --ink3:   #8C8680;
+  --rule:   #E4E0D8;
+  --rule2:  #D0C8BC;
+
+  --glory:  #1A6B3C; --glory-l: #EDF7F2; --glory-pill: #C6EAD8;
+  --kendra: #B85C00; --kendra-l:#FFF4E6; --kendra-pill:#FFD9A8;
+  --grace:  #B01F6A; --grace-l: #FDF0F6; --grace-pill: #F8C8E2;
+  --angely: #1A4DB8; --angely-l:#EEF3FF; --angely-pill:#C0D4FF;
+
+  --gold:   #C8960A; --gold-l:  #FDF8E4;
+  --green:  #1A6B3C; --red: #B82020;
+
+  --serif:  'Lora', Georgia, serif;
+  --sans:   'Nunito', system-ui, sans-serif;
+  --mono:   'JetBrains Mono', monospace;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  min-height:100vh;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(26,107,60,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(26,77,184,0.04) 0%, transparent 50%);
+}
+
+/* ═══════════════════════════════ SITE NAV ════════════════════════ */
+.lomon-sitenav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem 1.5rem;
+  background:#1C1A16;
+  border-bottom:1px solid #2E2B24;
+  position:sticky;top:0;z-index:9999;
+  flex-wrap:wrap;gap:.5rem;
+}
+.lsn-brand{
+  font-family:var(--serif);font-size:.95rem;font-weight:700;
+  color:#F4F1ED;text-decoration:none;white-space:nowrap;letter-spacing:-.01em;
+}
+.lsn-brand span{color:#F5C542}
+.lsn-links{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap}
+.lsn-btn{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.28rem .75rem;border-radius:20px;
+  font-size:.7rem;font-weight:600;letter-spacing:.02em;
+  text-decoration:none;border:1px solid rgba(255,255,255,0.12);
+  color:rgba(255,255,255,0.5);background:transparent;
+  transition:all .15s;white-space:nowrap;
+}
+.lsn-btn:hover{color:#F4F1ED;border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.07)}
+.lsn-btn.lsn-active{color:#F5C542;border-color:rgba(245,197,66,.45);background:rgba(245,197,66,.09);font-weight:700}
+.lsn-btn.lsn-portal{color:#4ADE80;border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.07)}
+
+/* ═══════════════════════════════ PAGE HEADER ═════════════════════ */
+.page-hero{
+  padding:2.5rem 2rem 2rem;
+  max-width:900px;margin:0 auto;
+  border-bottom:1px solid var(--rule);
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:.6rem;
+}
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(1.75rem,4vw,2.6rem);
+  font-weight:700;line-height:1.15;
+  color:var(--ink);letter-spacing:-.02em;margin-bottom:.6rem;
+}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{
+  font-size:.9rem;color:var(--ink2);line-height:1.65;max-width:560px;
+}
+.hero-sub strong{color:var(--ink);font-weight:700}
+.week-badge{
+  display:inline-flex;align-items:center;gap:.45rem;
+  margin-top:1rem;padding:.35rem .85rem;
+  background:var(--gold-l);border:1px solid var(--gold);
+  border-radius:20px;font-family:var(--mono);
+  font-size:.68rem;font-weight:500;color:var(--gold);
+}
+
+/* ═══════════════════════════════ KID TABS ════════════════════════ */
+.main{max-width:900px;margin:0 auto;padding:1.75rem 2rem 5rem}
+.kid-tabs{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:.5rem;margin-bottom:1.5rem;
+}
+@media(max-width:580px){.kid-tabs{grid-template-columns:1fr 1fr}}
+.kid-tab{
+  padding:.65rem .5rem;
+  background:var(--paper);
+  border:1.5px solid var(--rule2);
+  border-radius:12px;cursor:pointer;
+  text-align:center;transition:all .15s;
+  font-family:var(--sans);
+}
+.kid-tab:hover{border-color:var(--ink3)}
+.kt-name{
+  font-family:var(--serif);font-size:1rem;font-weight:700;
+  display:block;margin-bottom:.15rem;
+}
+.kt-grade{font-size:.62rem;color:var(--ink3);letter-spacing:.06em;font-family:var(--mono)}
+.kid-tab.active-glory  {border-color:var(--glory);background:var(--glory-l)}
+.kid-tab.active-kendra {border-color:var(--kendra);background:var(--kendra-l)}
+.kid-tab.active-grace  {border-color:var(--grace);background:var(--grace-l)}
+.kid-tab.active-angely {border-color:var(--angely);background:var(--angely-l)}
+.kid-tab.active-glory  .kt-name{color:var(--glory)}
+.kid-tab.active-kendra .kt-name{color:var(--kendra)}
+.kid-tab.active-grace  .kt-name{color:var(--grace)}
+.kid-tab.active-angely .kt-name{color:var(--angely)}
+
+/* ═══════════════════════════════ PANELS ══════════════════════════ */
+.kid-panel{display:none}
+.kid-panel.active{display:block;animation:appear .3s ease both}
+@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════════════════════════ SKILL PRIMER ════════════════════ */
+.skill-set{display:flex;flex-direction:column;gap:1.25rem}
+.primer-card{
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:16px;
+  overflow:hidden;
+}
+.primer-header{
+  padding:.9rem 1.25rem;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:.6rem;
+  border-bottom:1px solid var(--rule);
+}
+.primer-header-left{display:flex;align-items:center;gap:.75rem}
+.ixl-code{
+  font-family:var(--mono);font-size:.78rem;font-weight:600;
+  padding:.28rem .7rem;border-radius:7px;
+  letter-spacing:.06em;flex-shrink:0;
+}
+.primer-skill{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--ink)}
+.primer-strand{font-size:.68rem;color:var(--ink3);font-family:var(--mono);letter-spacing:.06em}
+.ixl-link{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.72rem;font-weight:600;padding:.3rem .75rem;
+  border-radius:8px;text-decoration:none;
+  transition:all .15s;white-space:nowrap;
+  border:1.5px solid;
+}
+.ixl-link:hover{transform:translateY(-1px)}
+
+.primer-body{padding:1.25rem}
+.step-row{
+  display:flex;gap:.9rem;align-items:flex-start;
+  padding:.65rem 0;border-bottom:1px solid var(--rule);
+}
+.step-row:last-child{border-bottom:none}
+.step-label{
+  font-family:var(--mono);font-size:.62rem;font-weight:600;
+  min-width:62px;flex-shrink:0;padding-top:.05rem;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.step-content{flex:1;font-size:.88rem;color:var(--ink2);line-height:1.65}
+.step-content strong{color:var(--ink);font-weight:700}
+.step-content em{font-style:italic;color:var(--gold)}
+.step-content code{
+  font-family:var(--mono);font-size:.78rem;
+  padding:.08rem .35rem;border-radius:4px;
+  background:var(--bg);color:var(--ink);
+  border:1px solid var(--rule2);
+}
+
+/* Example boxes */
+.example-block{
+  margin-top:.65rem;display:flex;flex-direction:column;gap:.4rem;
+}
+.ex{
+  padding:.5rem .8rem;
+  border-radius:8px;
+  font-size:.82rem;line-height:1.5;
+}
+.ex-pos{background:rgba(26,107,60,0.08);border-left:3px solid var(--green)}
+.ex-neg{background:rgba(184,32,32,0.07);border-left:3px solid var(--red)}
+.ex-neut{background:var(--bg);border-left:3px solid var(--rule2)}
+.ex-label{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.25rem}
+.ex .key{font-weight:700;font-style:italic}
+
+/* Quiz prompt */
+.quiz-box{
+  margin-top:1rem;padding:.85rem 1rem;
+  background:var(--gold-l);border:1px solid var(--gold);
+  border-radius:10px;
+}
+.quiz-label{
+  font-family:var(--mono);font-size:.6rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:.4rem;
+}
+.quiz-q{font-size:.85rem;color:var(--ink);line-height:1.6;font-weight:500}
+.quiz-q span{font-style:italic;color:var(--ink2)}
+
+/* Timer pill */
+.timer-pill{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.22rem .65rem;border-radius:10px;
+  background:var(--bg);border:1px solid var(--rule2);
+  font-family:var(--mono);font-size:.62rem;color:var(--ink3);
+  margin-bottom:.75rem;
+}
+.timer-dot{width:6px;height:6px;border-radius:50%;background:#F5A623;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Science badge */
+.science-tag{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.2rem .6rem;border-radius:6px;
+  background:rgba(37,99,235,0.08);
+  border:1px solid rgba(37,99,235,0.2);
+  font-size:.65rem;font-weight:600;letter-spacing:.06em;
+  color:#1A4DB8;font-family:var(--mono);
+  text-transform:uppercase;margin-left:.4rem;
+}
+
+/* ═══════════════════════════════ FOOTER ══════════════════════════ */
+.page-footer{
+  text-align:center;padding:1.5rem;
+  font-size:.68rem;color:var(--ink3);
+  border-top:1px solid var(--rule);
+  font-family:var(--mono);letter-spacing:.06em;
+}
+</style>
+</head>
+<body>
+
+<!-- SITE NAV -->
+<nav class="lomon-sitenav">
+  <a class="lsn-brand" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-academy-portal.html">Lomon <span>Academy</span></a>
+  <div class="lsn-links">
+    <a class="lsn-btn lsn-portal" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-academy-portal.html">🌅 Portal</a>
+    <a class="lsn-btn lsn-active" href="#">📖 Tutor Primers</a>
+    <a class="lsn-btn" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-achievement-system.html">🏅 Badges</a>
+    <a class="lsn-btn" href="https://salomon1010.github.io/LOMON-ACADEMY/glory-w1d1-lesson.html">🎯 W1 Lesson</a>
+    <a class="lsn-btn" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-friday-report.html">📊 Report</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-eyebrow">Lomon Academy · Claude Tutor Primers</div>
+  <h1 class="hero-title">Read this <em>before</em><br>you open IXL</h1>
+  <p class="hero-sub">
+    A <strong>5-minute primer</strong> for every skill you're practicing this week.
+    Read your tab, understand the rule, see the examples — then go to IXL already loaded.
+    You will score higher and finish faster.
+  </p>
+  <div class="week-badge">📅 Week 1 · April 21–25, 2026 · Update each Sunday</div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- KID TABS -->
+  <div class="kid-tabs">
+    <button class="kid-tab active-glory" onclick="show('glory',this)">
+      <span class="kt-name" style="color:var(--glory)">Glory</span>
+      <span class="kt-grade">GR7 · METZ</span>
+    </button>
+    <button class="kid-tab" onclick="show('kendra',this)">
+      <span class="kt-name">Kendra</span>
+      <span class="kt-grade">GR6 · BALDWIN</span>
+    </button>
+    <button class="kid-tab" onclick="show('grace',this)">
+      <span class="kt-name">Grace</span>
+      <span class="kt-grade">GR4 · BALDWIN</span>
+    </button>
+    <button class="kid-tab" onclick="show('angely',this)">
+      <span class="kt-name">Angely</span>
+      <span class="kt-grade">GR3 · BALDWIN</span>
+    </button>
+  </div>
+
+  <!-- ╔═════════════════════════════════════╗
+       ║           GLORY  GR 7              ║
+       ╚═════════════════════════════════════╝ -->
+  <div class="kid-panel active" id="panel-glory">
+    <div class="skill-set">
+
+      <!-- GLORY: NLB — Connotation -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--glory-pill);color:var(--glory)">NLB</span>
+            <div>
+              <div class="primer-skill">Positive &amp; Negative Connotation</div>
+              <div class="primer-strand">Vocabulary · Grade 7 · Language Arts</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/ela/grade-7/positive-and-negative-connotation" target="_blank"
+             style="color:var(--glory);border-color:var(--glory-pill);background:var(--glory-l)">
+            Open IXL NLB ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 5 min · then open IXL</div>
+
+          <div class="step-row">
+            <span class="step-label" style="color:var(--glory)">The Rule</span>
+            <div class="step-content">
+              <strong>Connotation</strong> is the emotional feeling a word carries — not its dictionary definition.
+              Two words can mean the same thing but feel completely different.<br><br>
+              <strong>Positive connotation</strong> = the word feels admiring, warm, or respectful.<br>
+              <strong>Negative connotation</strong> = the word feels critical, cold, or dismissive.<br>
+              <strong>Neutral connotation</strong> = the word just states a fact with no emotional charge.
+            </div>
+          </div>
+
+          <div class="step-row">
+            <span class="step-label" style="color:var(--glory)">See It</span>
+            <div class="step-content">
+              All three words below mean <em>"a person who saves money."</em> Same denotation — completely different feeling:
+              <div class="example-block">
+                <div class="ex ex-pos"><span class="ex-label">Positive</span>"She is very <span class="key">thrifty</span>." — feels like a compliment: smart, careful, admirable.</div>
+                <div class="ex ex-neut"><span class="ex-label">Neutral</span>"She is very <span class="key">economical</span>." — just a fact, no judgment either way.</div>
+                <div class="ex ex-neg"><span class="ex-label">Negative</span>"She is very <span class="key">cheap</span>." — feels like a criticism: stingy, selfish, unwilling to give.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-row">
+            <span class="step-label" style="color:var(--glory)">The Trick</span>
+            <div class="step-content">
+              On IXL, ask yourself: <em>"If someone used this word about me, would I feel good or bad?"</em><br>
+              If good → <strong>positive</strong>. If bad → <strong>negative</strong>. If neither → <strong>neutral</strong>.<br><br>
+              Watch for <strong>context</strong>: the sentence around the word often gives you clues about which direction the author intended.
+            </div>
+          </div>
+
+          <div class="step-row">
+            <span class="step-label" style="color:var(--glory)">3 More Pairs</span>
+            <div class="step-content">
+              <div class="example-block">
+                <div class="ex ex-pos"><span class="ex-label">Positive → Negative</span><span class="key">confident</span> → <span class="key">arrogant</span> · <span class="key">curious</span> → <span class="key">nosy</span> · <span class="key">assertive</span> → <span class="key">pushy</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">Which word has a more negative connotation: <span>"slender"</span> or <span>"scrawny"</span>? And why? Say your answer out loud before you go. Then check on IXL.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GLORY: QWF — Subordinating Conjunctions -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--glory-pill);color:var(--glory)">QWF</span>
+            <div>
+              <div class="primer-skill">Subordinating Conjunctions</div>
+              <div class="primer-strand">Grammar · Grade 7 · Language Arts</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/ela/grade-7/identify-subordinating-conjunctions" target="_blank"
+             style="color:var(--glory);border-color:var(--glory-pill);background:var(--glory-l)">
+            Open IXL QWF ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 5 min · then open IXL</div>
+
+          <div class="step-row">
+            <span class="step-label" style="color:var(--glory)">The Rule</span>
+            <div class="step-content">
+              A <strong>subordinating conjunction</strong> connects a <em>dependent clause</em> to a <em>main clause</em> and shows the logical relationship between them.<br><br>
+              The 5 you must know: <code>because</code> · <code>although</code> · <code>since</code> · <code>while</code> · <code>unless</code><br><br>
+              <strong>Comma rule:</strong> If the dependent clause comes FIRST → use a comma. If it comes second → no comma needed.
+            </div>
+          </div>
+
+          <div class="step-row">
+            <span class="step-label" style="color:var(--glory)">See It</span>
+            <div class="step-content">
+              <div class="example-block">
+                <div class="ex ex-pos"><span class="ex-label">because = reason</span>She studied hard <span class="key">because</span> she wanted to ace the test. <em>(why she studied)</em></div>
+                <div class="ex ex-neut"><span class="ex-label">although = surprise</span><span class="key">Although</span> it rained, they played outside. <em>(unexpected outcome — comma after clause)</em></div>
+                <div class="ex ex-neg"><span class="ex-label">unless = condition</span>I won't stop <span class="key">unless</span> you give me a good reason. <em>(only if something else happens)</em></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-row">
+            <span class="step-label" style="color:var(--glory)">The Trick</span>
+            <div class="step-content">
+              Ask: <em>what is the relationship between the two ideas?</em><br>
+              Reason → <code>because</code> / <code>since</code> &nbsp;·&nbsp; Surprise/contrast → <code>although</code> &nbsp;·&nbsp; Same time → <code>while</code> &nbsp;·&nbsp; Condition → <code>unless</code>
+            </div>
+          </div>
+
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">Fill in the blank: <span>"___ she was nervous, she performed perfectly."</span> Which conjunction fits? Say why. Then open IXL.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GLORY: 3R8 — Count money -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--glory-pill);color:var(--glory)">3R8</span>
+            <div>
+              <div class="primer-skill">Count Money Up to $5</div>
+              <div class="primer-strand">Math · Measurement gap fix · Grade 7</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/math/grade-2/count-money-up-to-5-dollars" target="_blank"
+             style="color:var(--glory);border-color:var(--glory-pill);background:var(--glory-l)">
+            Open IXL 3R8 ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 3 min · this one is quick</div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--glory)">The Rule</span>
+            <div class="step-content">
+              Count from the <strong>highest value coin/bill down to the lowest</strong>. Add each as you go.<br>
+              <code>$1 bill = 100¢</code> · <code>Quarter = 25¢</code> · <code>Dime = 10¢</code> · <code>Nickel = 5¢</code> · <code>Penny = 1¢</code><br><br>
+              This skill is a measurement gap — knock it out fast, aim for SmartScore 80+ in one session.
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check</div>
+            <div class="quiz-q">You have: 1 dollar bill, 2 quarters, 1 dime, 3 pennies. <span>What is the total?</span> Say the answer before you open IXL. <em>(Answer: $1.63)</em></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GLORY: Science Primer -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:#C0D4FF;color:#1A4DB8">BIO</span>
+            <div>
+              <div class="primer-skill">Classify Symbiotic Relationships <span class="science-tag">🔬 Science</span></div>
+              <div class="primer-strand">Life Science · Grade 7 · Critical Thinking</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/science/grade-7/classify-symbiotic-relationships" target="_blank"
+             style="color:#1A4DB8;border-color:#C0D4FF;background:#EEF3FF">
+            Open IXL Science ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> 5 min primer · builds analytical thinking</div>
+          <div class="step-row">
+            <span class="step-label" style="color:#1A4DB8">The Rule</span>
+            <div class="step-content">
+              <strong>Symbiosis</strong> = a long-term relationship between two different species. There are 3 types:<br><br>
+              <strong>Mutualism</strong> — both species benefit. <em>(+/+)</em><br>
+              <strong>Commensalism</strong> — one benefits, the other is unaffected. <em>(+/0)</em><br>
+              <strong>Parasitism</strong> — one benefits, the other is harmed. <em>(+/−)</em>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:#1A4DB8">See It</span>
+            <div class="step-content">
+              <div class="example-block">
+                <div class="ex ex-pos"><span class="ex-label">Mutualism +/+</span>Bees collect nectar <em>(benefit: food)</em> and pollinate flowers <em>(benefit: reproduction)</em>. Both win.</div>
+                <div class="ex ex-neut"><span class="ex-label">Commensalism +/0</span>Barnacles attach to whales to travel long distances. The whale is not helped or harmed.</div>
+                <div class="ex ex-neg"><span class="ex-label">Parasitism +/−</span>A tapeworm lives inside a dog, taking its nutrients. Dog loses, tapeworm wins.</div>
+              </div>
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">A clownfish hides in a sea anemone. The anemone's stinging tentacles protect the clownfish. The clownfish chases away fish that eat the anemone. <span>What type of symbiosis is this?</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /skill-set glory -->
+  </div><!-- /panel-glory -->
+
+
+  <!-- ╔═════════════════════════════════════╗
+       ║           KENDRA  GR 6             ║
+       ╚═════════════════════════════════════╝ -->
+  <div class="kid-panel" id="panel-kendra">
+    <div class="skill-set">
+
+      <!-- KENDRA: GF5 — Opinion passage -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--kendra-pill);color:var(--kendra)">GF5</span>
+            <div>
+              <div class="primer-skill">Complete the Opinion Passage with an Example</div>
+              <div class="primer-strand">Writing Strategies · Grade 6 · Language Arts</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/ela/grade-2/complete-the-opinion-passage-with-an-example" target="_blank"
+             style="color:var(--kendra);border-color:var(--kendra-pill);background:var(--kendra-l)">
+            Open IXL GF5 ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 5 min · then open IXL</div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--kendra)">The Rule</span>
+            <div class="step-content">
+              An <strong>opinion passage</strong> has 3 parts: <strong>Opinion → Reason → Example.</strong><br><br>
+              The <em>opinion</em> is what you believe. The <em>reason</em> explains why. The <em>example</em> is a real, specific detail that proves your reason is true. Without an example, your reason floats — it's not convincing.
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--kendra)">See It</span>
+            <div class="step-content">
+              <div class="example-block">
+                <div class="ex ex-pos"><span class="ex-label">Opinion</span>I think <span class="key">libraries are the most important buildings in a community.</span></div>
+                <div class="ex ex-neut"><span class="ex-label">Reason</span>They give everyone free access to knowledge and learning.</div>
+                <div class="ex ex-pos"><span class="ex-label">Example (this is what IXL tests)</span>For instance, <span class="key">our school library has over 3,000 books that any student can borrow for free,</span> including books about science, history, and every type of story imaginable.</div>
+              </div>
+              The example is specific — it has a number, a place, a detail. "Libraries are great" is not an example. "Our library has 3,000 free books" is.
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--kendra)">The Trick</span>
+            <div class="step-content">
+              When IXL asks you to complete the passage, look for the sentence that has a <strong>specific, real-sounding detail</strong>. Opinion sentences use "I think/believe." Reason sentences say "because/since." Example sentences use <code>for instance</code>, <code>for example</code>, <code>such as</code>, or a specific fact.
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">Read this: <span>"I think kids should eat breakfast every morning. Eating breakfast helps your brain focus. ___."</span> Which sentence best completes it: A) "Breakfast is really important." or B) "For example, studies show students who eat breakfast score 20% higher on tests." Say why before you open IXL.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KENDRA: 36M — Adverbs -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--kendra-pill);color:var(--kendra)">36M</span>
+            <div>
+              <div class="primer-skill">Use Adverbs to Compare</div>
+              <div class="primer-strand">Grammar · Grade 6 · Language Arts</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/ela/grade-3/use-adverbs-to-compare" target="_blank"
+             style="color:var(--kendra);border-color:var(--kendra-pill);background:var(--kendra-l)">
+            Open IXL 36M ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 5 min · then open IXL</div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--kendra)">The Rule</span>
+            <div class="step-content">
+              <strong>Comparative adverbs</strong> compare two actions. <strong>Superlative adverbs</strong> compare three or more.<br><br>
+              Short adverbs: add <code>-er</code> (comparative) / <code>-est</code> (superlative) → <em>fast → faster → fastest</em><br>
+              Long adverbs: use <code>more</code> / <code>most</code> → <em>carefully → more carefully → most carefully</em><br>
+              Irregular: <em>well → better → best</em> &nbsp;·&nbsp; <em>badly → worse → worst</em>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--kendra)">See It</span>
+            <div class="step-content">
+              <div class="example-block">
+                <div class="ex ex-pos"><span class="ex-label">Comparing 2 things</span>Kendra runs <span class="key">faster</span> than her sister. <em>(two people — use comparative)</em></div>
+                <div class="ex ex-neut"><span class="ex-label">Comparing 3+ things</span>Of all the runners, she ran <span class="key">most quickly</span>. <em>(group of many — use superlative)</em></div>
+              </div>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--kendra)">The Trick</span>
+            <div class="step-content">
+              Count the things being compared. <strong>Two things?</strong> → use <em>-er</em> or <em>more</em>. <strong>Three or more?</strong> → use <em>-est</em> or <em>most</em>. Never say "more faster" or "most fastest" — that's a double comparison error.
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">Fill in the blank: <span>"Of all my friends, Kendra sings ___."</span> (beautiful) — should you use "more beautifully" or "most beautifully"? Say why.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KENDRA: QEB — Two-step equations -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--kendra-pill);color:var(--kendra)">QEB</span>
+            <div>
+              <div class="primer-skill">Solve Two-Step Equations</div>
+              <div class="primer-strand">Algebra · Math · Grade 6</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/math/grade-6/solve-two-step-equations" target="_blank"
+             style="color:var(--kendra);border-color:var(--kendra-pill);background:var(--kendra-l)">
+            Open IXL QEB ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 5 min · then open IXL</div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--kendra)">The Rule</span>
+            <div class="step-content">
+              A two-step equation needs <strong>two operations</strong> to isolate the variable. Always work in this order:<br><br>
+              <strong>Step 1:</strong> Undo addition or subtraction (using the opposite operation).<br>
+              <strong>Step 2:</strong> Undo multiplication or division (using the opposite operation).<br><br>
+              Whatever you do to one side, do the <em>exact same thing</em> to the other side.
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--kendra)">See It</span>
+            <div class="step-content">
+              Solve: <code>2x + 3 = 11</code><br><br>
+              <div class="example-block">
+                <div class="ex ex-neut"><span class="ex-label">Step 1 — undo the +3</span>Subtract 3 from both sides → <code>2x = 8</code></div>
+                <div class="ex ex-pos"><span class="ex-label">Step 2 — undo the ×2</span>Divide both sides by 2 → <code>x = 4</code></div>
+              </div>
+              <br>Check: <code>2(4) + 3 = 11 ✓</code> Always check your answer by plugging it back in.
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">Solve this: <span>3x − 5 = 16</span>. Work it out step by step before you open IXL. What is x? <em>(Answer: x = 7)</em></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KENDRA: Science -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:#C0D4FF;color:#1A4DB8">BIO</span>
+            <div>
+              <div class="primer-skill">Understanding Cells <span class="science-tag">🔬 Science</span></div>
+              <div class="primer-strand">Life Science · Grade 6 · Critical Thinking</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/science/grade-6/understanding-cells" target="_blank"
+             style="color:#1A4DB8;border-color:#C0D4FF;background:#EEF3FF">
+            Open IXL Science ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> 5 min primer · builds vocabulary</div>
+          <div class="step-row">
+            <span class="step-label" style="color:#1A4DB8">The Rule</span>
+            <div class="step-content">
+              <strong>Cells</strong> are the basic unit of all living things. Key vocabulary:<br><br>
+              <strong>Cell membrane</strong> — controls what goes in and out (like a security guard).<br>
+              <strong>Nucleus</strong> — the control center, contains DNA (like the brain).<br>
+              <strong>Cytoplasm</strong> — the jelly-like fluid that fills the cell.<br>
+              <strong>Mitochondria</strong> — produces energy for the cell (the "powerhouse").<br>
+              <strong>Cell wall</strong> — rigid outer layer found in <em>plant cells only</em>, not animal cells.
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">Which part of the cell controls what enters and exits? And which organelle is found in plant cells but NOT animal cells? <span>Say both answers before you open IXL.</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /skill-set kendra -->
+  </div><!-- /panel-kendra -->
+
+
+  <!-- ╔═════════════════════════════════════╗
+       ║           GRACE  GR 4              ║
+       ╚═════════════════════════════════════╝ -->
+  <div class="kid-panel" id="panel-grace">
+    <div class="skill-set">
+
+      <!-- GRACE: 8ZJ — Possessive pronouns -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--grace-pill);color:var(--grace)">8ZJ</span>
+            <div>
+              <div class="primer-skill">Choose the Correct Possessive Pronoun</div>
+              <div class="primer-strand">Grammar · Grade 4 · Language Arts · Priority gap</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/ela/grade-1/choose-the-correct-possessive-pronoun" target="_blank"
+             style="color:var(--grace);border-color:var(--grace-pill);background:var(--grace-l)">
+            Open IXL 8ZJ ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 5 min · this is your #1 priority skill</div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--grace)">The Rule</span>
+            <div class="step-content">
+              A <strong>possessive pronoun</strong> shows who owns something. There are two kinds:<br><br>
+              <strong>Used before a noun:</strong> <code>my</code> · <code>your</code> · <code>his</code> · <code>her</code> · <code>its</code> · <code>our</code> · <code>their</code><br>
+              <em>"That is <strong>my</strong> book."</em><br><br>
+              <strong>Used alone (no noun after):</strong> <code>mine</code> · <code>yours</code> · <code>his</code> · <code>hers</code> · <code>its</code> · <code>ours</code> · <code>theirs</code><br>
+              <em>"That book is <strong>mine</strong>."</em>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--grace)">See It</span>
+            <div class="step-content">
+              <div class="example-block">
+                <div class="ex ex-pos"><span class="ex-label">Correct</span>"That is <span class="key">her</span> pencil." · "The pencil is <span class="key">hers</span>."</div>
+                <div class="ex ex-neg"><span class="ex-label">Incorrect</span>"That is <span class="key">hers</span> pencil." ✗ (never put mine/yours/hers before a noun)</div>
+              </div>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--grace)">The Trick</span>
+            <div class="step-content">
+              Look at what comes after the blank. <strong>If a noun comes after</strong> (pencil, book, dog) → use <em>my/your/his/her/our/their</em>. <strong>If nothing comes after</strong> → use <em>mine/yours/his/hers/ours/theirs</em>.
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">Choose the right word: <span>"Is that ___ lunchbox?" (your / yours)</span> and <span>"That lunchbox is ___." (your / yours)</span> Say both answers before you open IXL.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRACE: WHZ — Plurals -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--grace-pill);color:var(--grace)">WHZ</span>
+            <div>
+              <div class="primer-skill">Use Regular Plurals with -s and -es</div>
+              <div class="primer-strand">Grammar · Grade 4 · Language Arts</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/ela/grade-2/use-regular-plurals-with-s-and-es" target="_blank"
+             style="color:var(--grace);border-color:var(--grace-pill);background:var(--grace-l)">
+            Open IXL WHZ ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 4 min · then open IXL</div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--grace)">The Rule</span>
+            <div class="step-content">
+              <strong>Add -s</strong> to most words → <em>cat → cats, dog → dogs, book → books</em><br><br>
+              <strong>Add -es</strong> when the word ends in: <code>s</code> · <code>ss</code> · <code>sh</code> · <code>ch</code> · <code>x</code> · <code>z</code><br>
+              → <em>bus → buses, dish → dishes, watch → watches, box → boxes</em><br><br>
+              <strong>Memory trick:</strong> If you can't say the word easily without adding a syllable, you need <em>-es</em>. "Bushs" is hard to say → "buses" is correct.
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">Make these plural: <span>bench · wish · cat · fox · lamp.</span> Say all five answers before opening IXL. <em>(Answers: benches, wishes, cats, foxes, lamps)</em></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRACE: QDT — Picture graphs -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--grace-pill);color:var(--grace)">QDT</span>
+            <div>
+              <div class="primer-skill">Interpret Picture Graphs</div>
+              <div class="primer-strand">Math · Data · Grade 4</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/math/grade-2/interpret-picture-graphs-i" target="_blank"
+             style="color:var(--grace);border-color:var(--grace-pill);background:var(--grace-l)">
+            Open IXL QDT ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 4 min · then open IXL</div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--grace)">The Rule</span>
+            <div class="step-content">
+              A <strong>picture graph</strong> uses symbols or pictures to represent data. Always check the <strong>KEY</strong> first — it tells you how many each picture is worth.<br><br>
+              If the key says ⭐ = 2 students, and you count 4 stars → that category has <em>4 × 2 = 8 students</em>.
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--grace)">The Trick</span>
+            <div class="step-content">
+              Three things to always check: <strong>1)</strong> Read the title first. <strong>2)</strong> Read the key — what is each picture worth? <strong>3)</strong> Count the pictures for each row, then multiply by the key value.
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">If ⭐ = 5 votes, and "Pizza" row has 3 stars and "Tacos" row has 5 stars: <span>How many more votes did Tacos get than Pizza?</span> Say your answer before opening IXL. <em>(Answer: 10 more)</em></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRACE: Science -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:#C0D4FF;color:#1A4DB8">PLT</span>
+            <div>
+              <div class="primer-skill">Flowering Plant Life Cycles <span class="science-tag">🔬 Science</span></div>
+              <div class="primer-strand">Life Science · Grade 4 · Critical Thinking</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/science/grade-4/describe-and-construct-flowering-plant-life-cycles" target="_blank"
+             style="color:#1A4DB8;border-color:#C0D4FF;background:#EEF3FF">
+            Open IXL Science ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> 5 min primer · builds vocabulary</div>
+          <div class="step-row">
+            <span class="step-label" style="color:#1A4DB8">The Rule</span>
+            <div class="step-content">
+              Flowering plants go through 4 stages in order:<br><br>
+              <strong>1. Seed</strong> → <strong>2. Germination</strong> (seed sprouts, roots grow) → <strong>3. Seedling/Growth</strong> (stem, leaves appear) → <strong>4. Adult plant with flowers</strong> → Pollination → Seeds form → cycle repeats.<br><br>
+              Key word: <strong>pollination</strong> = pollen moves from one flower to another (by bees, wind, or water) which allows seeds to form.
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">What stage comes right after germination? And what must happen for a plant to produce seeds? <span>Say both answers before you open IXL.</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /skill-set grace -->
+  </div><!-- /panel-grace -->
+
+
+  <!-- ╔═════════════════════════════════════╗
+       ║           ANGELY  GR 3             ║
+       ╚═════════════════════════════════════╝ -->
+  <div class="kid-panel" id="panel-angely">
+    <div class="skill-set">
+
+      <!-- ANGELY: U72 — Combine sentences -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--angely-pill);color:var(--angely)">U72</span>
+            <div>
+              <div class="primer-skill">Combine Sentences — Predicates</div>
+              <div class="primer-strand">Writing · Grade 3 · Language Arts · #1 Priority</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/ela/grade-2/combine-sentences-predicates" target="_blank"
+             style="color:var(--angely);border-color:var(--angely-pill);background:var(--angely-l)">
+            Open IXL U72 ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 5 min · do this skill FIRST every day</div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--angely)">The Rule</span>
+            <div class="step-content">
+              When two sentences have the <strong>same subject</strong> (who/what), you can join their predicates (the action part) using <code>and</code>.<br><br>
+              This makes your writing flow better and sound less choppy.
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--angely)">See It</span>
+            <div class="step-content">
+              <div class="example-block">
+                <div class="ex ex-neg"><span class="ex-label">Two choppy sentences</span>"The dog <span class="key">ran</span> across the yard. The dog <span class="key">barked</span> at the squirrel."</div>
+                <div class="ex ex-pos"><span class="ex-label">Combined — much better!</span>"The dog <span class="key">ran across the yard and barked</span> at the squirrel."</div>
+              </div>
+              The subject (the dog) appears only once. The two actions are joined with <em>and</em>.
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--angely)">The Trick</span>
+            <div class="step-content">
+              <strong>Step 1:</strong> Find the subject in both sentences — are they the same?<br>
+              <strong>Step 2:</strong> If yes, keep the subject once, add both predicates, join with <em>and</em>.<br>
+              <strong>Step 3:</strong> Read your new sentence out loud. Does it sound smooth?
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">Combine these: <span>"Angely jumped rope." and "Angely sang a song."</span> What is the combined sentence? Say it out loud before you open IXL. <em>(Answer: Angely jumped rope and sang a song.)</em></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANGELY: TGU — Context clues -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--angely-pill);color:var(--angely)">TGU</span>
+            <div>
+              <div class="primer-skill">Use Context Clues to Find Word Meaning</div>
+              <div class="primer-strand">Reading Strategies · Grade 3 · Language Arts</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/ela/grade-1/use-context-to-identify-the-meaning-of-a-word" target="_blank"
+             style="color:var(--angely);border-color:var(--angely-pill);background:var(--angely-l)">
+            Open IXL TGU ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 5 min · then open IXL</div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--angely)">The Rule</span>
+            <div class="step-content">
+              When you see a word you don't know, <strong>don't skip it</strong> — look at the words and sentences around it. They give you <em>context clues</em> that help you figure out what it means.<br><br>
+              The sentence is like a puzzle. The mystery word is one piece, and the other pieces help you figure out its shape.
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--angely)">See It</span>
+            <div class="step-content">
+              <div class="example-block">
+                <div class="ex ex-pos"><span class="ex-label">Example</span>"The puppy was <span class="key">famished</span> after running all day, so she gobbled up her entire bowl of food."</div>
+              </div>
+              <br>What does <em>famished</em> mean? The clues say: she ran all day → she ate her whole bowl fast. <strong>Famished must mean very hungry.</strong>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--angely)">The Trick</span>
+            <div class="step-content">
+              <strong>Step 1:</strong> Find the mystery word. <strong>Step 2:</strong> Read the whole sentence. <strong>Step 3:</strong> Ask — "What is happening here?" <strong>Step 4:</strong> Guess the meaning. <strong>Step 5:</strong> Try your guess — does the sentence make sense?
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">Read this: <span>"She was so <em>exhausted</em> from playing that she fell asleep the moment her head touched the pillow."</span> What does exhausted mean? Say your answer before opening IXL.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANGELY: HUX — Numbers to hundreds -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:var(--angely-pill);color:var(--angely)">HUX</span>
+            <div>
+              <div class="primer-skill">Convert To/From a Number — Up to Hundreds</div>
+              <div class="primer-strand">Math · Numbers &amp; Operations · Grade 3</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/math/grade-2/convert-to-from-a-number-up-to-hundreds" target="_blank"
+             style="color:var(--angely);border-color:var(--angely-pill);background:var(--angely-l)">
+            Open IXL HUX ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> Read for 4 min · then open IXL</div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--angely)">The Rule</span>
+            <div class="step-content">
+              Every number has <strong>3 place values</strong>: <code>hundreds</code> · <code>tens</code> · <code>ones</code><br><br>
+              <strong>Reading a number:</strong> The digit on the left = hundreds, middle = tens, right = ones.<br>
+              The number 347 = <em>3 hundreds + 4 tens + 7 ones</em> = <em>300 + 40 + 7</em><br><br>
+              <strong>Writing a number from parts:</strong> 5 hundreds + 2 tens + 8 ones = <em>528</em>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-label" style="color:var(--angely)">See It</span>
+            <div class="step-content">
+              <div class="example-block">
+                <div class="ex ex-pos"><span class="ex-label">Number → Parts</span>462 = <span class="key">4 hundreds + 6 tens + 2 ones</span> = 400 + 60 + 2</div>
+                <div class="ex ex-neut"><span class="ex-label">Parts → Number</span>7 hundreds + 0 tens + 3 ones = <span class="key">703</span> (don't forget the zero!)</div>
+              </div>
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">What number is: <span>8 hundreds + 1 ten + 5 ones?</span> Say the answer before you open IXL. <em>(Answer: 815)</em></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANGELY: Science -->
+      <div class="primer-card">
+        <div class="primer-header">
+          <div class="primer-header-left">
+            <span class="ixl-code" style="background:#C0D4FF;color:#1A4DB8">ANI</span>
+            <div>
+              <div class="primer-skill">Animal Life Cycle Diagrams <span class="science-tag">🔬 Science</span></div>
+              <div class="primer-strand">Life Science · Grade 3 · Critical Thinking</div>
+            </div>
+          </div>
+          <a class="ixl-link" href="https://www.ixl.com/science/grade-3/construct-animal-life-cycle-diagrams" target="_blank"
+             style="color:#1A4DB8;border-color:#C0D4FF;background:#EEF3FF">
+            Open IXL Science ↗
+          </a>
+        </div>
+        <div class="primer-body">
+          <div class="timer-pill"><span class="timer-dot"></span> 5 min primer · builds world knowledge</div>
+          <div class="step-row">
+            <span class="step-label" style="color:#1A4DB8">The Rule</span>
+            <div class="step-content">
+              Animals go through <strong>life cycle stages</strong> — birth, growth, reproduction, death. Most animals follow one of two patterns:<br><br>
+              <strong>Simple life cycle:</strong> Egg → Young → Adult → Egg again <em>(dogs, birds, fish)</em><br>
+              <strong>Metamorphosis:</strong> Egg → Larva → Pupa → Adult <em>(butterflies, frogs)</em><br><br>
+              <strong>Key vocabulary:</strong> <em>larva</em> = baby form (caterpillar) · <em>pupa</em> = resting stage (cocoon) · <em>metamorphosis</em> = big body change
+            </div>
+          </div>
+          <div class="quiz-box">
+            <div class="quiz-label">Quick self-check before IXL</div>
+            <div class="quiz-q">A butterfly starts as an egg. What are the 3 stages that come after the egg before it becomes an adult butterfly? <span>Say all 3 in order before you open IXL.</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /skill-set angely -->
+  </div><!-- /panel-angely -->
+
+</main>
+
+<footer class="page-footer">
+  Lomon Academy · Tutor Primers · Week 1 · April 21–25, 2026 · Update every Sunday with new week's skills
+</footer>
+
+<script>
+function show(kid, btn) {
+  document.querySelectorAll('.kid-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.kid-tab').forEach(t => {
+    t.className = 'kid-tab';
+  });
+  document.getElementById(`panel-${kid}`).classList.add('active');
+  btn.classList.add(`active-${kid}`);
+}
+</script>
+</body>
+</html>
