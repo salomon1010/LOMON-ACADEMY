@@ -601,9 +601,55 @@ body {
   z-index: 999;
 }
 .save-indicator.show { opacity: 1; }
+
+/* ── LOMON SITE NAV ─────────────────────────────────────────────── */
+.lomon-sitenav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem 1.5rem;
+  background:rgba(8,9,15,0.97);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(16px);
+  position:sticky;top:0;z-index:9999;
+  flex-wrap:wrap;gap:.5rem;
+}
+.lsn-brand{
+  font-family:'Fraunces','Playfair Display','Syne',Georgia,serif;
+  font-size:.95rem;font-weight:900;letter-spacing:-.03em;
+  color:#F2F0FF;text-decoration:none;white-space:nowrap;
+}
+.lsn-brand span{color:#F5C542}
+.lsn-links{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap}
+.lsn-btn{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.28rem .75rem;border-radius:20px;
+  font-size:.7rem;font-weight:500;letter-spacing:.02em;
+  text-decoration:none;border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.5);background:transparent;
+  transition:all .15s;white-space:nowrap;font-family:inherit;
+  cursor:pointer;
+}
+.lsn-btn:hover{color:#F2F0FF;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06)}
+.lsn-btn.lsn-active{color:#F5C542;border-color:rgba(245,197,66,.4);background:rgba(245,197,66,.08);font-weight:600}
+.lsn-btn.lsn-portal{color:#4ADE80;border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.07)}
+.lsn-btn.lsn-portal:hover{background:rgba(74,222,128,.14)}
+@media(max-width:600px){.lomon-sitenav{padding:.5rem 1rem}.lsn-brand{font-size:.85rem}}
+
 </style>
 </head>
 <body>
+
+<!-- ── LOMON SITE NAV ─────────────────────────────── -->
+<nav class="lomon-sitenav" aria-label="Lomon Academy site navigation">
+  <a class="lsn-brand" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-academy-portal.html">
+    Lomon <span>Academy</span>
+  </a>
+  <div class="lsn-links">
+  <a class="lsn-btn lsn-portal" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-academy-portal.html">🌅 Portal</a>
+  <a class="lsn-btn" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-achievement-system.html">🏅 Badges & Streaks</a>
+  <a class="lsn-btn" href="https://salomon1010.github.io/LOMON-ACADEMY/glory-w1d1-lesson.html">🎯 W1 Lesson</a>
+  <a class="lsn-btn lsn-active" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-friday-report.html">📊 Friday Report</a>
+  </div>
+</nav>
 
 <!-- ═══════════ PAGE HEADER ═══════════ -->
 <header class="page-header">

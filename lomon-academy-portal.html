@@ -524,6 +524,81 @@ body::before {
   letter-spacing: 0.06em;
 }
 
+/* ── QUICK LINKS BAR ───────────────────────────────────────────── */
+.quick-links-bar {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.6rem 2rem;
+  background: rgba(11,15,26,0.7);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.ql-label {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-3);
+  margin-right: 0.2rem; white-space: nowrap;
+}
+.ql-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.32rem 0.85rem;
+  border-radius: 20px; border: 1px solid var(--border2);
+  background: var(--card); color: var(--text-2);
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: all 0.15s; white-space: nowrap;
+}
+.ql-btn:hover { background: var(--surface); color: var(--text-1); border-color: var(--text-3); transform: translateY(-1px); }
+.ql-btn.ql-achievement { border-color: rgba(245,197,66,0.4); color: var(--gold); }
+.ql-btn.ql-achievement:hover { background: rgba(245,197,66,0.08); }
+.ql-btn.ql-lesson { border-color: rgba(22,163,74,0.4); color: #4ADE80; }
+.ql-btn.ql-lesson:hover { background: rgba(22,163,74,0.08); }
+.ql-btn.ql-report { border-color: rgba(232,84,84,0.4); color: #F87171; }
+.ql-btn.ql-report:hover { background: rgba(232,84,84,0.08); }
+
+/* ── SYNC TOAST ────────────────────────────────────────────────── */
+.sync-toast {
+  position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%);
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: 100px; padding: 0.4rem 1rem;
+  font-size: 0.72rem; color: var(--text-2);
+  font-family: var(--sans); letter-spacing: 0.04em;
+  opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  z-index: 9999; white-space: nowrap;
+}
+.sync-toast.show { opacity: 1; }
+
+/* ── SCIENCE SECTION ───────────────────────────────────────────── */
+.science-card {
+  grid-column: 1 / -1;
+  border-radius: 14px; padding: 1.1rem 1.5rem;
+}
+.science-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.55rem; margin-top: 0.75rem; }
+@media(max-width:700px){ .science-grid { grid-template-columns: 1fr 1fr; } }
+.sci-item {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 0.55rem 0.75rem;
+  background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+  border-radius: 10px; text-decoration: none;
+  transition: all 0.15s;
+}
+.sci-item:hover { background: rgba(255,255,255,0.05); border-color: var(--border2); }
+.sci-badge {
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 600;
+  padding: 0.18rem 0.45rem; border-radius: 5px;
+  flex-shrink: 0; letter-spacing: 0.05em;
+}
+.sci-info { flex: 1; min-width: 0; }
+.sci-skill { font-size: 0.78rem; color: var(--text-1); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sci-strand { font-size: 0.65rem; color: var(--text-3); margin-top: 0.08rem; }
+.sci-arrow { font-size: 0.65rem; color: var(--text-3); flex-shrink: 0; transition: transform 0.15s; }
+.sci-item:hover .sci-arrow { transform: translateX(2px); color: var(--text-2); }
+.sci-note { font-size: 0.68rem; color: var(--text-3); margin-top: 0.5rem; display: flex; align-items: center; gap: 0.3rem; }
+
+/* Science badge colors per kid */
+.glory-sci-badge  { background: rgba(22,163,74,0.15);  color: var(--glory-s);  border: 1px solid rgba(22,163,74,0.25); }
+.kendra-sci-badge { background: rgba(232,124,59,0.15); color: var(--kendra-s); border: 1px solid rgba(232,124,59,0.25); }
+.grace-sci-badge  { background: rgba(219,39,119,0.15); color: var(--grace-s);  border: 1px solid rgba(219,39,119,0.25); }
+.angely-sci-badge { background: rgba(37,99,235,0.15);  color: var(--angely-s); border: 1px solid rgba(37,99,235,0.25); }
+
 /* ── RESPONSIVE ────────────────────────────────────────────────── */
 @media (max-width: 700px) {
   .tab-panel.active { grid-template-columns: 1fr; }
@@ -534,10 +609,149 @@ body::before {
   .tab-nav { grid-template-columns: repeat(2, 1fr); }
   .site-header { padding: 1rem; }
   .header-right { gap: 0.75rem; }
+  .quick-links-bar { padding: 0.5rem 1rem; }
 }
+/* ── GITHUB MODAL ──────────────────────────────────────────────── */
+.gh-modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center; padding: 1rem;
+}
+.gh-modal {
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: 20px; padding: 2rem; max-width: 460px; width: 100%;
+}
+.gh-modal-title {
+  font-family: var(--serif); font-size: 1.25rem; font-weight: 700;
+  color: var(--text-1); margin-bottom: 0.5rem;
+}
+.gh-modal-sub { font-size: 0.82rem; color: var(--text-2); line-height: 1.6; margin-bottom: 1.25rem; }
+.gh-modal-sub a { color: var(--glory-s); }
+.gh-modal-sub code {
+  font-family: var(--mono); font-size: 0.75rem;
+  background: var(--surface); padding: 0.1rem 0.35rem; border-radius: 4px;
+  color: var(--text-1);
+}
+.gh-token-input {
+  width: 100%; padding: 0.65rem 0.85rem;
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: 10px; color: var(--text-1);
+  font-family: var(--mono); font-size: 0.85rem; outline: none;
+  margin-bottom: 0.5rem;
+}
+.gh-token-input:focus { border-color: var(--glory-h); }
+.gh-token-error { font-size: 0.75rem; color: var(--danger); margin-bottom: 0.75rem; min-height: 1rem; }
+.gh-modal-btns { display: flex; gap: 0.6rem; }
+.gh-save-btn {
+  flex: 1; padding: 0.6rem; background: var(--glory-h);
+  border: none; border-radius: 10px; color: #fff;
+  font-family: var(--sans); font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s;
+}
+.gh-save-btn:hover { filter: brightness(1.15); }
+.gh-cancel-btn {
+  padding: 0.6rem 1rem; background: transparent;
+  border: 1px solid var(--border2); border-radius: 10px;
+  color: var(--text-2); font-family: var(--sans); font-size: 0.85rem;
+  cursor: pointer; transition: all 0.15s;
+}
+.gh-cancel-btn:hover { background: var(--surface); }
+
+/* ── SYNC STATUS BAR ───────────────────────────────────────────── */
+.sync-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.4rem 2rem; background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid var(--border); gap: 1rem; flex-wrap: wrap;
+}
+.sync-bar-left { display: flex; align-items: center; gap: 0.5rem; }
+#sync-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #F5A623; flex-shrink: 0;
+  transition: background 0.4s;
+}
+#sync-status-text { font-size: 0.68rem; color: var(--text-3); font-family: var(--mono); }
+.gh-setup-btn {
+  font-size: 0.65rem; padding: 0.2rem 0.65rem;
+  border: 1px solid var(--border2); border-radius: 10px;
+  background: transparent; color: var(--text-3);
+  cursor: pointer; font-family: var(--sans); transition: all 0.15s;
+}
+.gh-setup-btn:hover { color: var(--text-1); border-color: var(--text-3); }
+
+/* ── LOMON SITE NAV ─────────────────────────────────────────────── */
+.lomon-sitenav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem 1.5rem;
+  background:rgba(8,9,15,0.97);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(16px);
+  position:sticky;top:0;z-index:9999;
+  flex-wrap:wrap;gap:.5rem;
+}
+.lsn-brand{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:.95rem;font-weight:900;letter-spacing:-.03em;
+  color:#F2F0FF;text-decoration:none;white-space:nowrap;
+}
+.lsn-brand span{color:#F5C542}
+.lsn-links{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap}
+.lsn-btn{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.28rem .75rem;border-radius:20px;
+  font-size:.7rem;font-weight:500;letter-spacing:.02em;
+  text-decoration:none;border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.5);background:transparent;
+  transition:all .15s;white-space:nowrap;font-family:inherit;cursor:pointer;
+}
+.lsn-btn:hover{color:#F2F0FF;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06)}
+.lsn-btn.lsn-active{color:#F5C542;border-color:rgba(245,197,66,.4);background:rgba(245,197,66,.08);font-weight:600}
+.lsn-btn.lsn-portal{color:#4ADE80;border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.07)}
+.lsn-btn.lsn-portal:hover{background:rgba(74,222,128,.14)}
+@media(max-width:600px){.lomon-sitenav{padding:.5rem 1rem}.lsn-brand{font-size:.85rem}}
+
 </style>
 </head>
 <body>
+<!-- ── LOMON SITE NAV ─────────────────────────────── -->
+<nav class="lomon-sitenav" aria-label="Lomon Academy site navigation">
+  <a class="lsn-brand" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-academy-portal.html">
+    Lomon <span>Academy</span>
+  </a>
+  <div class="lsn-links">
+  <a class="lsn-btn lsn-portal lsn-active" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-academy-portal.html">🌅 Portal</a>
+  <a class="lsn-btn" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-achievement-system.html">🏅 Badges &amp; Streaks</a>
+  <a class="lsn-btn" href="https://salomon1010.github.io/LOMON-ACADEMY/glory-w1d1-lesson.html">🎯 W1 Lesson</a>
+  <a class="lsn-btn" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-friday-report.html">📊 Friday Report</a>
+  </div>
+</nav>
+
+
+<!-- GITHUB TOKEN MODAL -->
+<div class="gh-modal-overlay" id="gh-modal">
+  <div class="gh-modal">
+    <div class="gh-modal-title">🔗 Connect to GitHub</div>
+    <div class="gh-modal-sub">
+      To sync scores across all devices, enter your GitHub Personal Access Token.<br><br>
+      <strong>How to get one (2 minutes):</strong><br>
+      1. Go to <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
+      2. Name it <code>Lomon Academy</code> · Expiry: <code>90 days</code><br>
+      3. Check the <code>repo</code> scope checkbox<br>
+      4. Click <strong>Generate token</strong> → paste it below<br><br>
+      <span style="color:var(--text-3);font-size:0.75rem">Token is saved only on this device and sent only to GitHub's API.</span>
+    </div>
+    <input class="gh-token-input" id="gh-token-input" type="password"
+      placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off"
+      onkeydown="if(event.key==='Enter') saveToken()">
+    <div class="gh-token-error" id="gh-token-error"></div>
+    <div class="gh-modal-btns">
+      <button class="gh-save-btn" onclick="saveToken()">Save &amp; Connect</button>
+      <button class="gh-cancel-btn" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- SYNC TOAST -->
+<div class="sync-toast" id="sync-toast"></div>
 
 <!-- HEADER -->
 <header class="site-header">
@@ -561,6 +775,23 @@ body::before {
     <div class="quote-text" id="quote-text">Loading…</div>
     <div class="quote-author" id="quote-author"></div>
   </div>
+</div>
+
+<!-- QUICK LINKS BAR -->
+<div class="quick-links-bar">
+  <span class="ql-label">Quick open →</span>
+  <a class="ql-btn ql-achievement" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-achievement-system.html" target="_blank" rel="noopener">🏅 Badges &amp; Streaks</a>
+  <a class="ql-btn ql-lesson" href="https://salomon1010.github.io/LOMON-ACADEMY/glory-w1d1-lesson.html" target="_blank" rel="noopener">🎯 Glory W1 Lesson</a>
+  <a class="ql-btn ql-report" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-friday-report.html" target="_blank" rel="noopener">📊 Friday Report</a>
+</div>
+
+<!-- SYNC STATUS BAR -->
+<div class="sync-bar">
+  <div class="sync-bar-left">
+    <div id="sync-dot"></div>
+    <span id="sync-status-text">Connecting to GitHub…</span>
+  </div>
+  <button class="gh-setup-btn" onclick="promptForToken()">⚙ GitHub token</button>
 </div>
 
 <!-- MAIN -->
@@ -659,7 +890,7 @@ body::before {
           <div class="score-subject">Math</div>
           <div class="score-input-row">
             <input class="score-input" type="number" id="glory-math" value="750" min="0" max="1300"
-              oninput="updateScores('glory')" onfocus="this.select()">
+              oninput="updateScores('glory'); autoSaveOnInput('glory')" onfocus="this.select()">
             <span class="score-divider">/1300</span>
           </div>
           <div>
@@ -671,7 +902,7 @@ body::before {
           <div class="score-subject">Language Arts</div>
           <div class="score-input-row">
             <input class="score-input" type="number" id="glory-la" value="400" min="0" max="1300"
-              oninput="updateScores('glory')" onfocus="this.select()">
+              oninput="updateScores('glory'); autoSaveOnInput('glory')" onfocus="this.select()">
             <span class="score-divider">/1300</span>
           </div>
           <div>
@@ -710,6 +941,44 @@ body::before {
         <div class="flow-step"><div class="flow-time">60 – 80 min</div><div class="flow-action">Writing prompt &amp; draft</div></div>
         <div class="flow-step"><div class="flow-time">80 – 90 min</div><div class="flow-action">Log SmartScores in Sheets</div></div>
       </div>
+    </div>
+
+    <div class="card science-card glory-theme" style="border-color: rgba(22,163,74,0.18);">
+      <div class="card-label">🔬 IXL Science — Critical Thinking Builder</div>
+      <div style="font-size:0.78rem;color:var(--text-2);line-height:1.5;">Grade 7 Science · Analyze data · Build vocabulary · Deepen understanding of the world</div>
+      <div class="science-grid">
+        <a class="sci-item" href="https://www.ixl.com/science/grade-7/classify-symbiotic-relationships" target="_blank" rel="noopener">
+          <span class="sci-badge glory-sci-badge">BIO</span>
+          <div class="sci-info"><div class="sci-skill">Classify symbiotic relationships</div><div class="sci-strand">Life Science · Gr7</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-7/the-chemistry-of-cellular-respiration" target="_blank" rel="noopener">
+          <span class="sci-badge glory-sci-badge">CHM</span>
+          <div class="sci-info"><div class="sci-skill">Chemistry of cellular respiration</div><div class="sci-strand">Life Science · Gr7</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-7/investigate-primary-succession" target="_blank" rel="noopener">
+          <span class="sci-badge glory-sci-badge">ECO</span>
+          <div class="sci-info"><div class="sci-skill">Investigate primary succession</div><div class="sci-strand">Ecology · Gr7</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-7/label-earth-layers" target="_blank" rel="noopener">
+          <span class="sci-badge glory-sci-badge">GEO</span>
+          <div class="sci-info"><div class="sci-skill">Label Earth layers</div><div class="sci-strand">Earth Science · Gr7</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-7/analyze-histograms" target="_blank" rel="noopener">
+          <span class="sci-badge glory-sci-badge">DATA</span>
+          <div class="sci-info"><div class="sci-skill">Analyze histograms</div><div class="sci-strand">Data Analysis · Gr7</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-7/identify-science-inquiry-skills" target="_blank" rel="noopener">
+          <span class="sci-badge glory-sci-badge">INQ</span>
+          <div class="sci-info"><div class="sci-skill">Identify science inquiry skills</div><div class="sci-strand">Scientific Method · Gr7</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+      </div>
+      <div class="sci-note">🔬 Do 1 science skill per week — builds analytical thinking for Integrated Gifted Program</div>
     </div>
 
   </div><!-- /glory -->
@@ -771,7 +1040,7 @@ body::before {
           <div class="score-subject">Math</div>
           <div class="score-input-row">
             <input class="score-input" type="number" id="kendra-math" value="740" min="0" max="1300"
-              oninput="updateScores('kendra')" onfocus="this.select()">
+              oninput="updateScores('kendra'); autoSaveOnInput('kendra')" onfocus="this.select()">
             <span class="score-divider">/1300</span>
           </div>
           <div>
@@ -783,7 +1052,7 @@ body::before {
           <div class="score-subject">Language Arts</div>
           <div class="score-input-row">
             <input class="score-input" type="number" id="kendra-la" value="330" min="0" max="1300"
-              oninput="updateScores('kendra')" onfocus="this.select()">
+              oninput="updateScores('kendra'); autoSaveOnInput('kendra')" onfocus="this.select()">
             <span class="score-divider">/1300</span>
           </div>
           <div>
@@ -822,6 +1091,44 @@ body::before {
         <div class="flow-step"><div class="flow-time">60 – 80 min</div><div class="flow-action">Opinion paragraph draft</div></div>
         <div class="flow-step"><div class="flow-time">80 – 90 min</div><div class="flow-action">Log SmartScores in Sheets</div></div>
       </div>
+    </div>
+
+    <div class="card science-card kendra-theme" style="border-color: rgba(232,124,59,0.18);">
+      <div class="card-label">🔬 IXL Science — Critical Thinking Builder</div>
+      <div style="font-size:0.78rem;color:var(--text-2);line-height:1.5;">Grade 6 Science · Analyze data · Build vocabulary · Deepen understanding of the world</div>
+      <div class="science-grid">
+        <a class="sci-item" href="https://www.ixl.com/science/grade-6/understanding-cells" target="_blank" rel="noopener">
+          <span class="sci-badge kendra-sci-badge">BIO</span>
+          <div class="sci-info"><div class="sci-skill">Understanding cells</div><div class="sci-strand">Life Science · Gr6</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-6/how-does-particle-motion-affect-temperature" target="_blank" rel="noopener">
+          <span class="sci-badge kendra-sci-badge">PHY</span>
+          <div class="sci-info"><div class="sci-skill">Particle motion and temperature</div><div class="sci-strand">Physical Science · Gr6</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-6/moss-and-fern-life-cycles" target="_blank" rel="noopener">
+          <span class="sci-badge kendra-sci-badge">ECO</span>
+          <div class="sci-info"><div class="sci-skill">Moss and fern life cycles</div><div class="sci-strand">Life Science · Gr6</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-6/animal-cell-diagrams-label-parts" target="_blank" rel="noopener">
+          <span class="sci-badge kendra-sci-badge">CEL</span>
+          <div class="sci-info"><div class="sci-skill">Animal cell diagrams: label parts</div><div class="sci-strand">Biology · Gr6</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-6/read-a-table" target="_blank" rel="noopener">
+          <span class="sci-badge kendra-sci-badge">DATA</span>
+          <div class="sci-info"><div class="sci-skill">Read a table</div><div class="sci-strand">Data Analysis · Gr6</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-6/identify-science-inquiry-skills" target="_blank" rel="noopener">
+          <span class="sci-badge kendra-sci-badge">INQ</span>
+          <div class="sci-info"><div class="sci-skill">Science inquiry skills</div><div class="sci-strand">Scientific Method · Gr6</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+      </div>
+      <div class="sci-note">🔬 Do 1 science skill per week — builds vocabulary and data analysis skills</div>
     </div>
 
   </div><!-- /kendra -->
@@ -883,7 +1190,7 @@ body::before {
           <div class="score-subject">Math</div>
           <div class="score-input-row">
             <input class="score-input" type="number" id="grace-math" value="520" min="0" max="1300"
-              oninput="updateScores('grace')" onfocus="this.select()">
+              oninput="updateScores('grace'); autoSaveOnInput('grace')" onfocus="this.select()">
             <span class="score-divider">/1300</span>
           </div>
           <div>
@@ -895,7 +1202,7 @@ body::before {
           <div class="score-subject">Language Arts</div>
           <div class="score-input-row">
             <input class="score-input" type="number" id="grace-la" value="320" min="0" max="1300"
-              oninput="updateScores('grace')" onfocus="this.select()">
+              oninput="updateScores('grace'); autoSaveOnInput('grace')" onfocus="this.select()">
             <span class="score-divider">/1300</span>
           </div>
           <div>
@@ -934,6 +1241,44 @@ body::before {
         <div class="flow-step"><div class="flow-time">60 – 80 min</div><div class="flow-action">5 sentences writing journal</div></div>
         <div class="flow-step"><div class="flow-time">80 – 90 min</div><div class="flow-action">Log SmartScores in Sheets</div></div>
       </div>
+    </div>
+
+    <div class="card science-card grace-theme" style="border-color: rgba(219,39,119,0.18);">
+      <div class="card-label">🔬 IXL Science — Critical Thinking Builder</div>
+      <div style="font-size:0.78rem;color:var(--text-2);line-height:1.5;">Grade 4 Science · Analyze data · Build vocabulary · Deepen understanding of the world</div>
+      <div class="science-grid">
+        <a class="sci-item" href="https://www.ixl.com/science/grade-4/describe-and-construct-flowering-plant-life-cycles" target="_blank" rel="noopener">
+          <span class="sci-badge grace-sci-badge">PLT</span>
+          <div class="sci-info"><div class="sci-skill">Flowering plant life cycles</div><div class="sci-strand">Life Science · Gr4</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-4/read-a-topographic-map" target="_blank" rel="noopener">
+          <span class="sci-badge grace-sci-badge">GEO</span>
+          <div class="sci-info"><div class="sci-skill">Read a topographic map</div><div class="sci-strand">Earth Science · Gr4</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-4/how-do-rock-layers-form" target="_blank" rel="noopener">
+          <span class="sci-badge grace-sci-badge">ROK</span>
+          <div class="sci-info"><div class="sci-skill">How do rock layers form?</div><div class="sci-strand">Earth Science · Gr4</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-4/evaluate-multiple-design-solutions" target="_blank" rel="noopener">
+          <span class="sci-badge grace-sci-badge">ENG</span>
+          <div class="sci-info"><div class="sci-skill">Evaluate design solutions</div><div class="sci-strand">Engineering · Gr4</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-4/interpret-data-in-a-bar-graph" target="_blank" rel="noopener">
+          <span class="sci-badge grace-sci-badge">DATA</span>
+          <div class="sci-info"><div class="sci-skill">Interpret data in a bar graph</div><div class="sci-strand">Data Analysis · Gr4</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-4/identify-mixtures-and-solutions" target="_blank" rel="noopener">
+          <span class="sci-badge grace-sci-badge">CHM</span>
+          <div class="sci-info"><div class="sci-skill">Mixtures and solutions</div><div class="sci-strand">Physical Science · Gr4</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+      </div>
+      <div class="sci-note">🔬 Do 1 science skill per week — builds new vocabulary and analytical thinking</div>
     </div>
 
   </div><!-- /grace -->
@@ -995,7 +1340,7 @@ body::before {
           <div class="score-subject">Math</div>
           <div class="score-input-row">
             <input class="score-input" type="number" id="angely-math" value="380" min="0" max="1300"
-              oninput="updateScores('angely')" onfocus="this.select()">
+              oninput="updateScores('angely'); autoSaveOnInput('angely')" onfocus="this.select()">
             <span class="score-divider">/1300</span>
           </div>
           <div>
@@ -1007,7 +1352,7 @@ body::before {
           <div class="score-subject">Language Arts</div>
           <div class="score-input-row">
             <input class="score-input" type="number" id="angely-la" value="220" min="0" max="1300"
-              oninput="updateScores('angely')" onfocus="this.select()">
+              oninput="updateScores('angely'); autoSaveOnInput('angely')" onfocus="this.select()">
             <span class="score-divider">/1300</span>
           </div>
           <div>
@@ -1048,6 +1393,44 @@ body::before {
       </div>
     </div>
 
+    <div class="card science-card angely-theme" style="border-color: rgba(37,99,235,0.18);">
+      <div class="card-label">🔬 IXL Science — Critical Thinking Builder</div>
+      <div style="font-size:0.78rem;color:var(--text-2);line-height:1.5;">Grade 3 Science · Analyze data · Build vocabulary · Deepen understanding of the world</div>
+      <div class="science-grid">
+        <a class="sci-item" href="https://www.ixl.com/science/grade-3/construct-animal-life-cycle-diagrams" target="_blank" rel="noopener">
+          <span class="sci-badge angely-sci-badge">ANI</span>
+          <div class="sci-info"><div class="sci-skill">Animal life cycle diagrams</div><div class="sci-strand">Life Science · Gr3</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-3/compare-fossils-to-modern-organisms" target="_blank" rel="noopener">
+          <span class="sci-badge angely-sci-badge">FOS</span>
+          <div class="sci-info"><div class="sci-skill">Compare fossils to modern organisms</div><div class="sci-strand">Earth Science · Gr3</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-3/collect-and-graph-temperature-data" target="_blank" rel="noopener">
+          <span class="sci-badge angely-sci-badge">DATA</span>
+          <div class="sci-info"><div class="sci-skill">Collect and graph temperature data</div><div class="sci-strand">Data · Gr3</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-3/introduction-to-static-electricity" target="_blank" rel="noopener">
+          <span class="sci-badge angely-sci-badge">PHY</span>
+          <div class="sci-info"><div class="sci-skill">Intro to static electricity</div><div class="sci-strand">Physical Science · Gr3</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-3/identify-plant-adaptations" target="_blank" rel="noopener">
+          <span class="sci-badge angely-sci-badge">PLT</span>
+          <div class="sci-info"><div class="sci-skill">Identify plant adaptations</div><div class="sci-strand">Life Science · Gr3</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+        <a class="sci-item" href="https://www.ixl.com/science/grade-3/reading-and-making-bar-graphs" target="_blank" rel="noopener">
+          <span class="sci-badge angely-sci-badge">GRH</span>
+          <div class="sci-info"><div class="sci-skill">Reading and making bar graphs</div><div class="sci-strand">Data Analysis · Gr3</div></div>
+          <span class="sci-arrow">↗</span>
+        </a>
+      </div>
+      <div class="sci-note">🔬 Do 1 science skill per week — builds vocabulary and world understanding</div>
+    </div>
+
   </div><!-- /angely -->
 
 </main>
@@ -1085,12 +1468,13 @@ const quotes = [
 
 // ── INIT ─────────────────────────────────────────────────────────
 function init() {
-  loadSaved();
+  loadLocalFallback();   // instant local paint while GitHub loads
   updateAllTabs();
   startClock();
   setDate();
   setQuote();
   Object.keys(kids).forEach(k => updateScores(k));
+  syncScoresDown();      // then fetch latest from GitHub
 }
 
 // ── CLOCK ─────────────────────────────────────────────────────────
@@ -1173,41 +1557,189 @@ function updateScores(kid) {
   document.getElementById(`tab-${kid}-la`).textContent   = `LA ${laVal}`;
 }
 
-// ── SAVE / LOAD ───────────────────────────────────────────────────
-function saveScores(kid) {
-  const data = {
-    math: document.getElementById(`${kid}-math`).value,
-    la:   document.getElementById(`${kid}-la`).value,
-    saved: new Date().toLocaleString(),
-  };
+// ── GITHUB SYNC CONFIG ───────────────────────────────────────────
+const GH_REPO = 'salomon1010/LOMON-ACADEMY';
+const GH_FILE = 'scores.json';
+const GH_RAW  = `https://raw.githubusercontent.com/${GH_REPO}/main/${GH_FILE}`;
+const GH_API  = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`;
+const PAT_KEY = 'lomon-gh-pat';
+
+// ── TOKEN HELPERS ─────────────────────────────────────────────────
+function getToken()  { try { return localStorage.getItem(PAT_KEY) || ''; } catch(e) { return ''; } }
+function setToken(t) { try { localStorage.setItem(PAT_KEY, t.trim()); } catch(e) {} }
+function hasToken()  { return !!getToken(); }
+
+function promptForToken() { document.getElementById('gh-modal').style.display = 'flex'; }
+function closeModal()     { document.getElementById('gh-modal').style.display = 'none'; }
+
+function saveToken() {
+  const t = document.getElementById('gh-token-input').value.trim();
+  if (!t.startsWith('ghp_') && !t.startsWith('github_pat_')) {
+    document.getElementById('gh-token-error').textContent = '⚠ Token must start with ghp_ or github_pat_';
+    return;
+  }
+  setToken(t);
+  document.getElementById('gh-token-input').value = '';
+  document.getElementById('gh-token-error').textContent = '';
+  closeModal();
+  showToast('✓ Token saved — syncing scores now…');
+  syncScoresDown();
+}
+
+// ── LOAD SCORES FROM GITHUB (all devices) ────────────────────────
+async function syncScoresDown() {
+  setSyncStatus('syncing');
   try {
-    localStorage.setItem(`lomon-${kid}`, JSON.stringify(data));
-    const btn = document.getElementById(`${kid}-save-btn`);
-    btn.textContent = '✓ Saved!'; btn.classList.add('saved');
-    setTimeout(() => { btn.textContent = '💾 Save scores'; btn.classList.remove('saved'); }, 2000);
+    const r = await fetch(GH_RAW + '?t=' + Date.now());
+    if (!r.ok) throw new Error('no file');
+    const data = await r.json();
+    if (data.scores) {
+      Object.keys(kids).forEach(kid => {
+        const s = data.scores[kid];
+        if (!s) return;
+        if (s.math) document.getElementById(`${kid}-math`).value = s.math;
+        if (s.la)   document.getElementById(`${kid}-la`).value   = s.la;
+      });
+      updateAllTabs();
+      setSyncStatus('ok', data.saved || '');
+      try { localStorage.setItem('lomon-scores-v2', JSON.stringify(data)); } catch(e) {}
+    }
   } catch(e) {
-    // localStorage unavailable (file:// in some browsers) — show inline confirmation only
-    const btn = document.getElementById(`${kid}-save-btn`);
-    btn.textContent = '✓ Noted'; btn.classList.add('saved');
-    setTimeout(() => { btn.textContent = '💾 Save scores'; btn.classList.remove('saved'); }, 2000);
+    loadLocalFallback();
+    setSyncStatus('local');
   }
 }
 
-function loadSaved() {
-  Object.keys(kids).forEach(kid => {
-    try {
-      const raw = localStorage.getItem(`lomon-${kid}`);
-      if (!raw) return;
-      const data = JSON.parse(raw);
-      if (data.math) document.getElementById(`${kid}-math`).value = data.math;
-      if (data.la)   document.getElementById(`${kid}-la`).value   = data.la;
-    } catch(e) {}
+// ── SAVE SCORES TO GITHUB (writes scores.json to repo) ───────────
+async function saveScores(kid) {
+  if (!hasToken()) { promptForToken(); return; }
+
+  const btn = document.getElementById(`${kid}-save-btn`);
+  btn.textContent = '⏳ Saving…'; btn.disabled = true;
+
+  const all = {};
+  Object.keys(kids).forEach(k => {
+    all[k] = {
+      math: document.getElementById(`${k}-math`).value,
+      la:   document.getElementById(`${k}-la`).value,
+    };
   });
+  const payload = { scores: all, saved: new Date().toLocaleString(), savedBy: kid };
+
+  try {
+    const token = getToken();
+    // Get current SHA so GitHub allows the update
+    let sha = null;
+    try {
+      const check = await fetch(GH_API, {
+        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+      });
+      if (check.ok) { const j = await check.json(); sha = j.sha; }
+    } catch(e) {}
+
+    const body = {
+      message: `Scores update — ${new Date().toLocaleString()}`,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2)))),
+    };
+    if (sha) body.sha = sha;
+
+    const push = await fetch(GH_API, {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${token}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (push.ok) {
+      btn.textContent = '✓ Synced!'; btn.classList.add('saved');
+      setSyncStatus('ok', new Date().toLocaleTimeString());
+      showToast('✓ Scores saved to GitHub — all devices updated');
+      try { localStorage.setItem('lomon-scores-v2', JSON.stringify(payload)); } catch(e) {}
+      setTimeout(() => { btn.textContent = '💾 Save scores'; btn.classList.remove('saved'); btn.disabled = false; }, 2500);
+    } else if (push.status === 401) {
+      throw new Error('bad_token');
+    } else {
+      throw new Error('push_failed ' + push.status);
+    }
+  } catch(e) {
+    btn.disabled = false;
+    if (e.message === 'bad_token') {
+      btn.textContent = '⚠ Bad token';
+      setSyncStatus('error');
+      showToast('⚠ Token rejected — click to re-enter');
+      setTimeout(() => { promptForToken(); btn.textContent = '💾 Save scores'; }, 1000);
+    } else {
+      btn.textContent = '⚠ Failed';
+      setSyncStatus('error');
+      showToast('⚠ Could not reach GitHub — check connection');
+      setTimeout(() => { btn.textContent = '💾 Save scores'; }, 2500);
+    }
+  }
 }
+
+// ── LOCAL FALLBACK ────────────────────────────────────────────────
+function loadLocalFallback() {
+  try {
+    const raw = localStorage.getItem('lomon-scores-v2');
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (data.scores) {
+        Object.keys(kids).forEach(kid => {
+          const s = data.scores[kid];
+          if (!s) return;
+          if (s.math) document.getElementById(`${kid}-math`).value = s.math;
+          if (s.la)   document.getElementById(`${kid}-la`).value   = s.la;
+        });
+        return;
+      }
+    }
+    Object.keys(kids).forEach(kid => {
+      try {
+        const old = localStorage.getItem(`lomon-${kid}`);
+        if (!old) return;
+        const d = JSON.parse(old);
+        if (d.math) document.getElementById(`${kid}-math`).value = d.math;
+        if (d.la)   document.getElementById(`${kid}-la`).value   = d.la;
+      } catch(e) {}
+    });
+  } catch(e) {}
+}
+
+// ── SYNC STATUS ───────────────────────────────────────────────────
+function setSyncStatus(state, detail='') {
+  const el  = document.getElementById('sync-status-text');
+  const dot = document.getElementById('sync-dot');
+  if (!el || !dot) return;
+  const map = {
+    ok:      { color: '#27C685', text: `GitHub synced${detail ? ' · ' + detail : ''}` },
+    syncing: { color: '#F5A623', text: 'Syncing with GitHub…' },
+    local:   { color: '#F5A623', text: 'No GitHub data yet · save to create it' },
+    error:   { color: '#E85454', text: 'Sync error · check token' },
+  };
+  const s = map[state] || map.local;
+  dot.style.background = s.color;
+  el.textContent = s.text;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('sync-toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function autoSaveOnInput(kid) { /* no-op — save is explicit */ }
 
 function updateAllTabs() {
   Object.keys(kids).forEach(k => updateScores(k));
 }
+
+// Auto-refresh every 60 seconds to catch other devices' saves
+setInterval(syncScoresDown, 60000);
 
 // ── BOOT ──────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', init);

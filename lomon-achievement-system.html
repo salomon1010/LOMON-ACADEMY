@@ -608,9 +608,55 @@ body::before{
   margin-bottom:.3rem;
 }
 .j-entry-text{color:var(--t1)}
+
+/* ── LOMON SITE NAV ─────────────────────────────────────────────── */
+.lomon-sitenav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem 1.5rem;
+  background:rgba(8,9,15,0.97);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(16px);
+  position:sticky;top:0;z-index:9999;
+  flex-wrap:wrap;gap:.5rem;
+}
+.lsn-brand{
+  font-family:'Fraunces','Playfair Display','Syne',Georgia,serif;
+  font-size:.95rem;font-weight:900;letter-spacing:-.03em;
+  color:#F2F0FF;text-decoration:none;white-space:nowrap;
+}
+.lsn-brand span{color:#F5C542}
+.lsn-links{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap}
+.lsn-btn{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.28rem .75rem;border-radius:20px;
+  font-size:.7rem;font-weight:500;letter-spacing:.02em;
+  text-decoration:none;border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.5);background:transparent;
+  transition:all .15s;white-space:nowrap;font-family:inherit;
+  cursor:pointer;
+}
+.lsn-btn:hover{color:#F2F0FF;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06)}
+.lsn-btn.lsn-active{color:#F5C542;border-color:rgba(245,197,66,.4);background:rgba(245,197,66,.08);font-weight:600}
+.lsn-btn.lsn-portal{color:#4ADE80;border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.07)}
+.lsn-btn.lsn-portal:hover{background:rgba(74,222,128,.14)}
+@media(max-width:600px){.lomon-sitenav{padding:.5rem 1rem}.lsn-brand{font-size:.85rem}}
+
 </style>
 </head>
 <body>
+
+<!-- ── LOMON SITE NAV ─────────────────────────────── -->
+<nav class="lomon-sitenav" aria-label="Lomon Academy site navigation">
+  <a class="lsn-brand" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-academy-portal.html">
+    Lomon <span>Academy</span>
+  </a>
+  <div class="lsn-links">
+  <a class="lsn-btn lsn-portal" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-academy-portal.html">🌅 Portal</a>
+  <a class="lsn-btn lsn-active" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-achievement-system.html">🏅 Badges & Streaks</a>
+  <a class="lsn-btn" href="https://salomon1010.github.io/LOMON-ACADEMY/glory-w1d1-lesson.html">🎯 W1 Lesson</a>
+  <a class="lsn-btn" href="https://salomon1010.github.io/LOMON-ACADEMY/lomon-friday-report.html">📊 Friday Report</a>
+  </div>
+</nav>
 
 <!-- ═══════════ NAV ═══════════ -->
 <nav class="top-nav">
@@ -672,6 +718,14 @@ body::before{
       <span>💎 Diamond — Legend Badges</span>
     </div>
     <div class="badge-grid" id="diamond-badges"></div>
+
+  <!-- SCIENCE BADGES -->
+  <div class="badge-section">
+    <div class="badge-section-title">
+      <span>🔬 Science — Critical Thinking Badges</span>
+    </div>
+    <div class="badge-grid" id="science-badges"></div>
+  </div>
   </div>
 </div>
 
@@ -876,6 +930,31 @@ const BADGES = [
   { tier:'gold', id:'grace-la-350',  icon:'🌸', name:'Grace Rises',        kids:'grace',  trigger:'Grace reaches LA SmartScore 350 — first milestone gate Week 3', ixl:'LA strands' },
   { tier:'gold', id:'angely-la-248', icon:'🦋', name:'Angely Takes Off',   kids:'angely', trigger:'Angely reaches LA SmartScore 248 — first milestone gate Week 3', ixl:'LA strands' },
 
+
+  // Science — Bronze
+  { tier:'bronze', id:'sci-first',      icon:'🔬', name:'First Experiment', kids:'all',    trigger:'Complete your very first IXL Science session (any grade-level skill)', ixl:'Science · Any' },
+  { tier:'bronze', id:'sci-data-gr7',   icon:'📊', name:'Data Reader Gr7',  kids:'glory',  trigger:'Glory reaches SmartScore 70+ on Analyze Histograms (Grade 7 Science)', ixl:'Science · Gr7' },
+  { tier:'bronze', id:'sci-data-gr6',   icon:'📊', name:'Data Reader Gr6',  kids:'kendra', trigger:'Kendra reaches SmartScore 70+ on Read a Table (Grade 6 Science)', ixl:'Science · Gr6' },
+  { tier:'bronze', id:'sci-data-gr4',   icon:'📊', name:'Data Reader Gr4',  kids:'grace',  trigger:'Grace reaches SmartScore 70+ on Interpret Data in a Bar Graph (Grade 4 Science)', ixl:'Science · Gr4' },
+  { tier:'bronze', id:'sci-data-gr3',   icon:'📊', name:'Data Reader Gr3',  kids:'angely', trigger:'Angely reaches SmartScore 70+ on Reading and Making Bar Graphs (Grade 3 Science)', ixl:'Science · Gr3' },
+
+  // Science — Silver
+  { tier:'silver', id:'sci-life-glory',  icon:'🧬', name:'Life Scientist',   kids:'glory',  trigger:'Glory reaches SmartScore 70+ on Classify Symbiotic Relationships OR Chemistry of Cellular Respiration', ixl:'BIO · CHM · Gr7' },
+  { tier:'silver', id:'sci-life-kendra', icon:'🦠', name:'Cell Explorer',    kids:'kendra', trigger:'Kendra reaches SmartScore 70+ on Understanding Cells OR Animal Cell Diagrams', ixl:'BIO · CEL · Gr6' },
+  { tier:'silver', id:'sci-life-grace',  icon:'🌿', name:'Plant Scientist',  kids:'grace',  trigger:'Grace reaches SmartScore 70+ on Flowering Plant Life Cycles', ixl:'PLT · Gr4' },
+  { tier:'silver', id:'sci-life-angely', icon:'🦎', name:'Animal Expert',    kids:'angely', trigger:'Angely reaches SmartScore 70+ on Animal Life Cycle Diagrams OR Fossils', ixl:'ANI · FOS · Gr3' },
+  { tier:'silver', id:'sci-inquiry',     icon:'🔭', name:'Science Thinker',  kids:'all',    trigger:'Complete one Science Inquiry skill to SmartScore 70+ (any grade)', ixl:'INQ · Gr3-7' },
+  { tier:'silver', id:'sci-earth',       icon:'🌍', name:'Earth Explorer',   kids:'glory grace', trigger:'Glory: Label Earth Layers 70+ · Grace: Read a Topographic Map 70+', ixl:'GEO · Gr4/7' },
+  { tier:'silver', id:'sci-physics',     icon:'⚡', name:'Physics Fan',      kids:'kendra angely', trigger:'Kendra: Particle Motion 70+ · Angely: Intro to Static Electricity 70+', ixl:'PHY · Gr3/6' },
+  { tier:'silver', id:'sci-3skills',     icon:'🏆', name:'Science Triple',   kids:'all',    trigger:'Complete 3 different Science skills to SmartScore 70+ in any 3 weeks', ixl:'Any 3 Science skills' },
+
+  // Science — Gold
+  { tier:'gold', id:'sci-sweep-glory',   icon:'🌟', name:'Science Sweep Gr7', kids:'glory',  trigger:'Glory completes all 6 Science skills (BIO, CHM, ECO, GEO, DATA, INQ) to SmartScore 70+ by Week 12', ixl:'All 6 Gr7 Science' },
+  { tier:'gold', id:'sci-sweep-kendra',  icon:'🌟', name:'Science Sweep Gr6', kids:'kendra', trigger:'Kendra completes all 6 Science skills (BIO, PHY, ECO, CEL, DATA, INQ) to SmartScore 70+ by Week 12', ixl:'All 6 Gr6 Science' },
+  { tier:'gold', id:'sci-sweep-grace',   icon:'🌸', name:'Science Sweep Gr4', kids:'grace',  trigger:'Grace completes all 6 Science skills (PLT, GEO, ROK, ENG, DATA, CHM) to SmartScore 70+ by Week 12', ixl:'All 6 Gr4 Science' },
+  { tier:'gold', id:'sci-sweep-angely',  icon:'🦋', name:'Science Sweep Gr3', kids:'angely', trigger:'Angely completes all 6 Science skills (ANI, FOS, DATA, PHY, PLT, GRH) to SmartScore 70+ by Week 12', ixl:'All 6 Gr3 Science' },
+  { tier:'gold', id:'sci-analyst',       icon:'🔬', name:'Data Analyst',      kids:'all',    trigger:'Complete all Data Analysis Science skills for your grade to SmartScore 80+', ixl:'DATA strands · all grades' },
+
   // Diamond
   { tier:'diamond', id:'la-550',       icon:'💎', name:'Glory 550',          kids:'glory',  trigger:'Glory reaches LA SmartScore 550+ — 12-week graduation target', ixl:'All strands' },
   { tier:'diamond', id:'portfolio',    icon:'🗂️', name:'Portfolio Builder',   kids:'glory',  trigger:'Glory completes her essay portfolio (4 graded essays + 12 journal entries)', ixl:'Portfolio' },
@@ -933,9 +1012,9 @@ function showPage(id, btn) {
    BADGES
 ═══════════════════════════════════════════════════════════════ */
 function renderBadges(filter='all') {
-  ['bronze','silver','gold','diamond'].forEach(tier => {
+  ['bronze','silver','gold','diamond','science'].forEach(tier => {
     const badges = BADGES.filter(b => b.tier === tier && (filter === 'all' || b.kids.includes(filter)));
-    const el = document.getElementById(`${tier}-badges`);
+    const el = document.getElementById(`${tier}-badges`); if(!el) return;
     el.innerHTML = badges.map(b => {
       const earned = !!state.badges[b.id];
       return `<div class="badge-card ${earned?'earned':'locked'}" onclick="toggleBadge('${b.id}')" title="Click to mark earned">
