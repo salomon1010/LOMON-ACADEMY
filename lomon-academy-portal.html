@@ -22,25 +22,25 @@
   --sans:     'DM Sans', system-ui, sans-serif;
   --mono:     'DM Mono', 'Courier New', monospace;
 
-  --glory-h:  #3B6FE8;
-  --glory-s:  #5B8CF5;
-  --glory-bg: rgba(59,111,232,0.1);
-  --glory-glow: rgba(59,111,232,0.25);
+  --glory-h:  #16A34A;
+  --glory-s:  #4ADE80;
+  --glory-bg: rgba(22,163,74,0.1);
+  --glory-glow: rgba(22,163,74,0.25);
 
   --kendra-h:  #E87C3B;
   --kendra-s:  #F59A5B;
   --kendra-bg: rgba(232,124,59,0.1);
   --kendra-glow: rgba(232,124,59,0.25);
 
-  --grace-h:  #2EB87C;
-  --grace-s:  #4FD4A0;
-  --grace-bg: rgba(46,184,124,0.1);
-  --grace-glow: rgba(46,184,124,0.25);
+  --grace-h:  #DB2777;
+  --grace-s:  #F472B6;
+  --grace-bg: rgba(219,39,119,0.1);
+  --grace-glow: rgba(219,39,119,0.25);
 
-  --angely-h:  #C44BE8;
-  --angely-s:  #D97CF5;
-  --angely-bg: rgba(196,75,232,0.1);
-  --angely-glow: rgba(196,75,232,0.25);
+  --angely-h:  #2563EB;
+  --angely-s:  #60A5FA;
+  --angely-bg: rgba(37,99,235,0.1);
+  --angely-glow: rgba(37,99,235,0.25);
 
   --gold:  #F5C842;
   --gold2: #D4A017;
@@ -64,9 +64,9 @@ body::before {
   content: '';
   position: fixed; inset: 0; z-index: 0;
   background:
-    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(59,111,232,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 35% at 80% 90%, rgba(196,75,232,0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 30% at 70% 20%, rgba(46,184,124,0.05) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(22,163,74,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 35% at 80% 90%, rgba(37,99,235,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 70% 20%, rgba(219,39,119,0.05) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -446,10 +446,10 @@ body::before {
   0% { left: -60%; }
   100% { left: 160%; }
 }
-.glory-fill  { background: linear-gradient(90deg, var(--glory-h),  var(--glory-s));  }
+.glory-fill  { background: linear-gradient(90deg, #16A34A, #4ADE80); }
 .kendra-fill { background: linear-gradient(90deg, var(--kendra-h), var(--kendra-s)); }
-.grace-fill  { background: linear-gradient(90deg, var(--grace-h),  var(--grace-s));  }
-.angely-fill { background: linear-gradient(90deg, var(--angely-h), var(--angely-s)); }
+.grace-fill  { background: linear-gradient(90deg, #DB2777, #F472B6); }
+.angely-fill { background: linear-gradient(90deg, #2563EB, #60A5FA); }
 
 .milestone-row {
   display: flex; justify-content: space-between;
@@ -624,7 +624,7 @@ body::before {
     <div class="card ixl-card glory-theme" style="border-color: rgba(59,111,232,0.18);">
       <div class="card-label">Today's IXL Targets</div>
       <div class="ixl-list">
-        <a class="ixl-item" href="https://www.ixl.com/ela/grade-7/nlb" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-7/positive-and-negative-connotation" target="_blank" rel="noopener">
           <span class="ixl-code-badge">NLB</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Positive &amp; negative connotation</div>
@@ -632,7 +632,7 @@ body::before {
           </div>
           <span class="ixl-arrow">↗</span>
         </a>
-        <a class="ixl-item" href="https://www.ixl.com/ela/grade-7/qwf" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-7/identify-subordinating-conjunctions" target="_blank" rel="noopener">
           <span class="ixl-code-badge">QWF</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Subordinating conjunctions</div>
@@ -640,7 +640,7 @@ body::before {
           </div>
           <span class="ixl-arrow">↗</span>
         </a>
-        <a class="ixl-item" href="https://www.ixl.com/math/grade-7/3r8" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/math/grade-2/count-money-up-to-5-dollars" target="_blank" rel="noopener">
           <span class="ixl-code-badge">3R8</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Count money up to $5</div>
@@ -736,7 +736,7 @@ body::before {
     <div class="card ixl-card kendra-theme" style="border-color: rgba(232,124,59,0.18);">
       <div class="card-label">Today's IXL Targets</div>
       <div class="ixl-list">
-        <a class="ixl-item" href="https://www.ixl.com/ela/grade-6/gf5" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-2/complete-the-opinion-passage-with-an-example" target="_blank" rel="noopener">
           <span class="ixl-code-badge">GF5</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Complete opinion passage with example</div>
@@ -744,7 +744,7 @@ body::before {
           </div>
           <span class="ixl-arrow">↗</span>
         </a>
-        <a class="ixl-item" href="https://www.ixl.com/ela/grade-6/36m" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-3/use-adverbs-to-compare" target="_blank" rel="noopener">
           <span class="ixl-code-badge">36M</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Use adverbs to compare</div>
@@ -752,7 +752,7 @@ body::before {
           </div>
           <span class="ixl-arrow">↗</span>
         </a>
-        <a class="ixl-item" href="https://www.ixl.com/math/grade-6/qeb" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/math/grade-6/solve-two-step-equations" target="_blank" rel="noopener">
           <span class="ixl-code-badge">QEB</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Solve two-step equations</div>
@@ -848,7 +848,7 @@ body::before {
     <div class="card ixl-card grace-theme" style="border-color: rgba(46,184,124,0.18);">
       <div class="card-label">Today's IXL Targets</div>
       <div class="ixl-list">
-        <a class="ixl-item" href="https://www.ixl.com/ela/grade-4/8zj" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-1/choose-the-correct-possessive-pronoun" target="_blank" rel="noopener">
           <span class="ixl-code-badge">8ZJ</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Choose the correct possessive pronoun</div>
@@ -856,7 +856,7 @@ body::before {
           </div>
           <span class="ixl-arrow">↗</span>
         </a>
-        <a class="ixl-item" href="https://www.ixl.com/ela/grade-4/whz" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-2/use-regular-plurals-with-s-and-es" target="_blank" rel="noopener">
           <span class="ixl-code-badge">WHZ</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Use regular plurals with -s and -es</div>
@@ -864,7 +864,7 @@ body::before {
           </div>
           <span class="ixl-arrow">↗</span>
         </a>
-        <a class="ixl-item" href="https://www.ixl.com/math/grade-4/qdt" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/math/grade-2/interpret-picture-graphs-i" target="_blank" rel="noopener">
           <span class="ixl-code-badge">QDT</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Interpret picture graphs</div>
@@ -960,7 +960,7 @@ body::before {
     <div class="card ixl-card angely-theme" style="border-color: rgba(196,75,232,0.18);">
       <div class="card-label">Today's IXL Targets</div>
       <div class="ixl-list">
-        <a class="ixl-item" href="https://www.ixl.com/ela/grade-3/u72" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-2/combine-sentences-predicates" target="_blank" rel="noopener">
           <span class="ixl-code-badge">U72</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Combine sentences — predicates</div>
@@ -968,7 +968,7 @@ body::before {
           </div>
           <span class="ixl-arrow">↗</span>
         </a>
-        <a class="ixl-item" href="https://www.ixl.com/ela/grade-3/tgu" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/ela/grade-1/use-context-to-identify-the-meaning-of-a-word" target="_blank" rel="noopener">
           <span class="ixl-code-badge">TGU</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Use context clues to find word meaning</div>
@@ -976,7 +976,7 @@ body::before {
           </div>
           <span class="ixl-arrow">↗</span>
         </a>
-        <a class="ixl-item" href="https://www.ixl.com/math/grade-3/hux" target="_blank" rel="noopener">
+        <a class="ixl-item" href="https://www.ixl.com/math/grade-2/convert-to-from-a-number-up-to-hundreds" target="_blank" rel="noopener">
           <span class="ixl-code-badge">HUX</span>
           <div class="ixl-item-info">
             <div class="ixl-skill">Convert to/from a number — up to hundreds</div>
