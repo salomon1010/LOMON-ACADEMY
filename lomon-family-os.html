@@ -290,13 +290,17 @@ body::before{
   <div class="nav-links">
     <button class="nav-link active" onclick="showPage('home',this)">🏠 Home</button>
     <button class="nav-link" onclick="showPage('rituals',this)">📅 Rituals</button>
+    <button class="nav-link" onclick="showPage('rules',this)">📋 Rules</button>
+    <button class="nav-link" onclick="showPage('script',this)">🎬 Daily Script</button>
+    <button class="nav-link" onclick="showPage('enforce',this)">⚖️ Enforcement</button>
+    <button class="nav-link" onclick="showPage('scoreboard',this)">📊 Scoreboard</button>
+    <button class="nav-link" onclick="showPage('independence',this)">🎯 Independence</button>
     <button class="nav-link" onclick="showPage('kids',this)">👧 Kids</button>
     <button class="nav-link" onclick="showPage('couple',this)">💍 Couple</button>
-    <button class="nav-link" onclick="showPage('rules',this)">📋 Rules</button>
-    <button class="nav-link" onclick="showPage('screen',this)">📱 Screen Time</button>
-    <button class="nav-link" onclick="showPage('vote',this)">🗳️ Family Vote</button>
+    <button class="nav-link" onclick="showPage('screen',this)">📱 Screen</button>
+    <button class="nav-link" onclick="showPage('vote',this)">🗳️ Vote</button>
     <button class="nav-link" onclick="showPage('milestones',this)">⭐ Milestones</button>
-    <button class="nav-link" onclick="showPage('checkin',this)">🔄 Weekly Check-in</button>
+    <button class="nav-link" onclick="showPage('checkin',this)">🔄 Check-in</button>
   </div>
 </nav>
 <div class="toast" id="toast"></div>
@@ -385,9 +389,22 @@ body::before{
 
   <!-- Today's quick win -->
   <div class="card" style="margin-top:1.25rem;border-color:rgba(245,197,66,.2);background:var(--sal-bg)">
-    <div class="label-xs" style="color:var(--gold)">Today's most important thing</div>
-    <div style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--t1);margin-bottom:.3rem">"Happiness at home comes from consistent routines, not big moments."</div>
-    <div style="font-size:.82rem;color:var(--t2)">Pick one ritual from the Rituals tab. Do it today. Build from there.</div>
+    <div class="label-xs" style="color:var(--gold)">The principle that runs everything</div>
+    <div style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--t1);margin-bottom:.3rem">Consistency, not intensity. Systems, not intentions.</div>
+    <div style="font-size:.82rem;color:var(--t2);line-height:1.6">A "happy home" is the output of clear rules + immediate consequences + visible tracking. It is not the result of trying harder when things go wrong. Read the <strong>Daily Script</strong> tab before tough moments. Use the <strong>Enforcement Ladder</strong> when rules are broken. Track everything on the <strong>Scoreboard</strong>.</div>
+  </div>
+
+  <div class="card" style="margin-top:1rem;border-color:rgba(232,84,84,.15)">
+    <div class="label-xs" style="color:var(--red)">⚠ Reality check — this system fails if</div>
+    <div style="display:flex;flex-direction:column;gap:.35rem;margin-top:.5rem;font-size:.82rem;color:var(--t2);line-height:1.5">
+      <div>❌ You repeat instructions instead of enforcing them</div>
+      <div>❌ You ignore violations "just this once"</div>
+      <div>❌ You don't run the weekly meeting consistently</div>
+      <div>❌ You let your mood control your response</div>
+    </div>
+    <div style="margin-top:.85rem;padding-top:.75rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--green);font-weight:600">
+      ✓ It works when: rules are predictable · consequences are immediate · you stay consistent even when tired
+    </div>
   </div>
 </div>
 
@@ -405,6 +422,264 @@ body::before{
 
   <div class="section-title">Monthly Rituals</div>
   <div id="ritual-list-monthly"></div>
+</div>
+
+<!-- ══════════════════════════ DAILY SCRIPT ══════════════════════ -->
+<div class="page" id="page-script">
+  <div class="eyebrow">No Escalation · No Emotion · Just Execution</div>
+  <h1 class="page-title">Daily <em>Script</em></h1>
+  <p class="page-sub">You don't react — you <strong>execute</strong>. This is the difference between chaos and control. Read these scripts before tough moments. Practice them out loud once. Then use them word-for-word.</p>
+
+  <div class="grid-2" style="margin-bottom:1rem">
+    <div>
+      <div class="section-title" style="color:var(--gold)">A. Giving an instruction</div>
+      <div class="card" style="margin-bottom:.6rem">
+        <div class="label-xs">Step 1 — Say it once. Clear. Direct.</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"Kendra, start your homework now."</div>
+        <div style="font-size:.78rem;color:var(--t2)">Then <strong>stop talking</strong>. No follow-up. Wait 10 seconds.</div>
+      </div>
+      <div class="card" style="margin-bottom:.6rem">
+        <div class="label-xs">Step 2 — If no action in ~10 seconds</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"This is your second notice. If you don't start now, you lose screen time tonight."</div>
+        <div style="font-size:.78rem;color:var(--t2)"><strong>No discussion.</strong> State it once.</div>
+      </div>
+      <div class="card" style="border-color:rgba(232,84,84,.2)">
+        <div class="label-xs" style="color:var(--red)">Step 3 — If still no action</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--red);margin:.4rem 0;padding:.5rem .75rem;background:var(--red-bg);border-radius:6px">"You chose to lose screen time today."</div>
+        <div style="font-size:.78rem;color:var(--t2)"><strong>Enforce immediately.</strong> No arguing. No reversing.</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-title" style="color:var(--gold)">B. When child argues / negotiates</div>
+      <div class="card" style="margin-bottom:.6rem">
+        <div class="label-xs">Child says: "But I don't want to..."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"This is not a discussion. Do it now or accept the consequence."</div>
+        <div style="font-size:.78rem;color:var(--t2)">Repeat <strong>once only</strong>.</div>
+      </div>
+      <div class="card" style="border-color:rgba(232,84,84,.2)">
+        <div class="label-xs" style="color:var(--red)">If they continue arguing</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--red);margin:.4rem 0;padding:.5rem .75rem;background:var(--red-bg);border-radius:6px">"You're choosing the consequence."</div>
+        <div style="font-size:.78rem;color:var(--t2)"><strong>End interaction.</strong> Walk away.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:1rem">
+    <div>
+      <div class="section-title" style="color:var(--gold)">C. When child refuses homework</div>
+      <div class="card" style="margin-bottom:.6rem">
+        <div class="label-xs">Step 1 — Set the expectation</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"You try first for 10 minutes. Then I help."</div>
+      </div>
+      <div class="card">
+        <div class="label-xs">Step 2 — If they refuse</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"No homework = no screen time. Your choice."</div>
+        <div style="font-size:.78rem;color:var(--t2)"><strong>Do not help</strong> until they start. This protects independence.</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-title" style="color:var(--gold)">D. Disrespect (tone / attitude)</div>
+      <div class="card" style="margin-bottom:.6rem">
+        <div class="label-xs">Immediate interrupt</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"Stop. That's disrespectful. Try again correctly."</div>
+      </div>
+      <div class="card" style="border-color:rgba(232,84,84,.2)">
+        <div class="label-xs" style="color:var(--red)">If repeated</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--red);margin:.4rem 0;padding:.5rem .75rem;background:var(--red-bg);border-radius:6px">"You've lost privileges for today."</div>
+        <div style="font-size:.78rem;color:var(--t2)"><strong>No lecture.</strong> No emotional reaction.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="section-title" style="color:var(--green)">E. When they do something right</div>
+      <div class="card" style="border-color:rgba(39,198,133,.2);background:var(--green-bg)">
+        <div class="label-xs" style="color:var(--green)">Most parents miss this — then wonder why behavior doesn't stick</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--green);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"I saw you start your homework without being told. Good."</div>
+        <div style="font-size:.78rem;color:var(--t2)"><strong>Short. Direct. No exaggeration.</strong> Acknowledge the specific action, not a generic compliment.</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-title" style="color:var(--purple)">F. When YOU lose control (you will)</div>
+      <div class="card" style="border-color:rgba(168,85,247,.2)">
+        <div class="label-xs" style="color:var(--purple)">Reset fast — model self-correction</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--purple);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"I handled that wrong. Let's restart."</div>
+        <div style="font-size:.78rem;color:var(--t2)">Then <strong>reapply the rule calmly</strong>. No ego. Just correction. Your kids learn how to self-correct from watching you do it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.25rem;border-color:rgba(245,197,66,.2);background:var(--sal-bg)">
+    <div class="label-xs" style="color:var(--gold)">Your personal rules — if you break these, nothing works</div>
+    <div style="display:flex;flex-direction:column;gap:.4rem;margin-top:.4rem">
+      <div style="font-size:.85rem;color:var(--t2);padding:.4rem 0;border-bottom:1px solid var(--border)">❌ Don't repeat instructions more than twice</div>
+      <div style="font-size:.85rem;color:var(--t2);padding:.4rem 0;border-bottom:1px solid var(--border)">❌ Don't threaten consequences you won't enforce</div>
+      <div style="font-size:.85rem;color:var(--t2);padding:.4rem 0;border-bottom:1px solid var(--border)">❌ Don't ignore bad behavior "just today"</div>
+      <div style="font-size:.85rem;color:var(--t2);padding:.4rem 0">❌ Don't let your mood control your response</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ ENFORCEMENT ════════════════════════ -->
+<div class="page" id="page-enforce">
+  <div class="eyebrow">4-Level Enforcement Ladder · Critical Rule: Consequences Happen Immediately, Not Later</div>
+  <h1 class="page-title">Enforcement <em>Ladder</em></h1>
+  <p class="page-sub">When a rule is broken, you don't think — you escalate one level on this ladder. Predictable. Fair. Not emotional. The kids know exactly what happens.</p>
+
+  <div style="display:flex;flex-direction:column;gap:.85rem">
+    <div class="card" style="border-color:rgba(245,166,35,.25);background:rgba(245,166,35,.04)">
+      <div style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
+        <div style="width:48px;height:48px;border-radius:50%;background:var(--amber-bg);border:2px solid var(--amber);color:var(--amber);font-family:var(--serif);font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+        <div style="flex:1;min-width:200px">
+          <div style="font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--amber);margin-bottom:.3rem">Minor Issue → Reminder + Correction</div>
+          <div style="font-size:.85rem;color:var(--t2);line-height:1.6;margin-bottom:.5rem">First time something happens that day. Not done before. Small slip.</div>
+          <div style="font-family:var(--mono);font-size:.7rem;color:var(--amber);background:var(--s2);padding:.4rem .6rem;border-radius:6px;display:inline-block">Action: Quick reminder — "Hey, remember the rule." That's it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-color:rgba(245,197,66,.25);background:rgba(245,197,66,.04)">
+      <div style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
+        <div style="width:48px;height:48px;border-radius:50%;background:var(--sal-bg);border:2px solid var(--gold);color:var(--gold);font-family:var(--serif);font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+        <div style="flex:1;min-width:200px">
+          <div style="font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--gold);margin-bottom:.3rem">Repeated Behavior → Loss of Screen Time (Same Day)</div>
+          <div style="font-size:.85rem;color:var(--t2);line-height:1.6;margin-bottom:.5rem">They've already been reminded once today. Now they choose the consequence.</div>
+          <div style="font-family:var(--mono);font-size:.7rem;color:var(--gold);background:var(--s2);padding:.4rem .6rem;border-radius:6px;display:inline-block">Action: All screens off for the rest of today. No exceptions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-color:rgba(232,106,30,.25);background:rgba(232,106,30,.04)">
+      <div style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
+        <div style="width:48px;height:48px;border-radius:50%;background:var(--ken-bg);border:2px solid var(--kendra);color:var(--kendra);font-family:var(--serif);font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+        <div style="flex:1;min-width:200px">
+          <div style="font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--kendra);margin-bottom:.3rem">Serious or Repeated → Loss of Privileges (24–48 hours)</div>
+          <div style="font-size:.85rem;color:var(--t2);line-height:1.6;margin-bottom:.5rem">Lying. Disrespect after warning. Refusing to do homework. Behavior that affects the family.</div>
+          <div style="font-family:var(--mono);font-size:.7rem;color:var(--kendra);background:var(--s2);padding:.4rem .6rem;border-radius:6px;display:inline-block">Action: 24–48 hours no privileges (screens, friends, dessert, free time). Apply immediately.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-color:rgba(232,84,84,.25);background:rgba(232,84,84,.04)">
+      <div style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
+        <div style="width:48px;height:48px;border-radius:50%;background:var(--red-bg);border:2px solid var(--red);color:var(--red);font-family:var(--serif);font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
+        <div style="flex:1;min-width:200px">
+          <div style="font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--red);margin-bottom:.3rem">Pattern Behavior → Weekly Restriction + Family Meeting Discussion</div>
+          <div style="font-size:.85rem;color:var(--t2);line-height:1.6;margin-bottom:.5rem">Same problem multiple times in one week. Pattern of disrespect. System being challenged.</div>
+          <div style="font-family:var(--mono);font-size:.7rem;color:var(--red);background:var(--s2);padding:.4rem .6rem;border-radius:6px;display:inline-block">Action: Full weekly restriction + named at Sunday family meeting. The whole family hears the issue and the decision.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.25rem;border-color:rgba(232,84,84,.3);background:var(--red-bg)">
+    <div class="label-xs" style="color:var(--red)">⚠ Critical rule — never break this</div>
+    <div style="font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--t1);margin-top:.3rem;line-height:1.4">Consequences happen <em style="color:var(--red);font-style:italic">immediately</em>, not later.</div>
+    <div style="font-size:.82rem;color:var(--t2);line-height:1.6;margin-top:.5rem">If you say "we'll deal with it tonight" — you've already lost. The brain only connects behavior to consequence when they're tied together in time. "Tomorrow you lose..." doesn't work for kids. <strong>This minute. This hour. Today.</strong></div>
+  </div>
+
+  <div class="card" style="margin-top:1rem">
+    <div class="label-xs">Log a violation (track patterns)</div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0">
+      <select id="viol-who" class="response-area" style="min-height:unset;padding:.4rem .6rem;flex:1;min-width:120px">
+        <option value="">Who?</option>
+        <option>Glory</option><option>Kendra</option><option>Grace</option><option>Angely</option>
+      </select>
+      <select id="viol-level" class="response-area" style="min-height:unset;padding:.4rem .6rem;flex:1;min-width:120px">
+        <option value="">Level?</option>
+        <option value="1">L1 — Reminder</option>
+        <option value="2">L2 — Screen loss</option>
+        <option value="3">L3 — 24–48 hr</option>
+        <option value="4">L4 — Weekly</option>
+      </select>
+      <input id="viol-rule" class="response-area" style="min-height:unset;padding:.4rem .6rem;flex:2;min-width:140px" placeholder="What rule was broken?">
+      <button class="save-note-btn" onclick="logViolation()">Log →</button>
+    </div>
+    <div id="violations-log" style="margin-top:.5rem"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ SCOREBOARD ════════════════════════ -->
+<div class="page" id="page-scoreboard">
+  <div class="eyebrow">Visible Daily Tracking · Rewards & Consequences Decided by Data</div>
+  <h1 class="page-title">Weekly <em>Scoreboard</em></h1>
+  <p class="page-sub">Each child gets a daily mark. At week's end, count the green checks. <strong>6–7 = reward earned.</strong> <strong>0–4 = consequence applied.</strong> Print this. Post it on the fridge. Visibility creates accountability.</p>
+
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap">
+    <div class="label-xs" style="margin:0">Week of</div>
+    <input type="date" id="scoreboard-week" class="response-area" style="min-height:unset;padding:.35rem .6rem;width:auto;font-family:var(--mono);font-size:.8rem" onchange="saveScoreboardDate()">
+    <button class="save-note-btn" onclick="resetScoreboard()">↺ Start new week</button>
+  </div>
+
+  <div class="card" style="overflow-x:auto;margin-bottom:1.25rem">
+    <table style="width:100%;border-collapse:collapse;font-size:.82rem">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border2)">
+          <th style="text-align:left;padding:.5rem .4rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--t3);text-transform:uppercase">Child</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">MON</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">TUE</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">WED</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">THU</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">FRI</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">SAT</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">SUN</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">TOTAL</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">RESULT</th>
+        </tr>
+      </thead>
+      <tbody id="scoreboard-rows"></tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card" style="border-color:rgba(39,198,133,.2);background:var(--green-bg)">
+      <div class="label-xs" style="color:var(--green)">Daily checklist — each child must complete ALL</div>
+      <div style="display:flex;flex-direction:column;gap:.35rem;margin-top:.5rem;font-size:.85rem;color:var(--t1)">
+        <div>✅ Homework completed independently first</div>
+        <div>✅ Chores completed</div>
+        <div>✅ Followed instructions first time</div>
+        <div>✅ Respectful behavior (no yelling/arguing)</div>
+      </div>
+      <div style="font-size:.72rem;color:var(--t2);margin-top:.6rem;font-style:italic">If <strong>all 4</strong> are done → mark ✅ for the day. If 1–3 are done → mark ➖. If 0–1 → mark ❌.</div>
+    </div>
+    <div class="card">
+      <div class="label-xs">Weekly outcome rules</div>
+      <div style="display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem">
+        <div style="padding:.5rem .7rem;background:var(--green-bg);border-left:3px solid var(--green);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--t1)"><strong style="color:var(--green)">6–7 ✅ days</strong> → Reward earned: choice activity, extra screen time, or special privilege</div>
+        <div style="padding:.5rem .7rem;background:var(--amber-bg);border-left:3px solid var(--amber);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--t1)"><strong style="color:var(--amber)">5 ➖/✅ days</strong> → Neutral. No reward, no consequence. Try harder next week.</div>
+        <div style="padding:.5rem .7rem;background:var(--red-bg);border-left:3px solid var(--red);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--t1)"><strong style="color:var(--red)">0–4 ✅ days</strong> → Consequence: reduced privileges next week + family meeting discussion</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ INDEPENDENCE ═══════════════════════ -->
+<div class="page" id="page-independence">
+  <div class="eyebrow">Build Independence Gradually · Not Suddenly</div>
+  <h1 class="page-title">Independence <em>Framework</em></h1>
+  <p class="page-sub">The goal is <strong>responsibility without supervision</strong> — but only at the right pace. Each kid has different capacity. Push too fast and they fail. Hold them too tight and they never grow.</p>
+
+  <div class="card" style="margin-bottom:1.25rem;border-color:rgba(245,197,66,.2);background:var(--sal-bg)">
+    <div class="label-xs" style="color:var(--gold)">The Independence Rule</div>
+    <div style="font-size:.95rem;color:var(--t1);line-height:1.7;margin-top:.5rem">
+      <strong>Step 1:</strong> Child tries alone first.<br>
+      <strong>Step 2:</strong> Child asks for help if stuck.<br>
+      <strong>Step 3:</strong> Parent <em style="color:var(--gold)">supports</em> — does not <em style="color:var(--red)">do</em>.<br><br>
+      <strong style="color:var(--red)">If child skips Step 1 → no help is given.</strong> They go back and try first. This is non-negotiable.
+    </div>
+  </div>
+
+  <div id="independence-grid" style="display:flex;flex-direction:column;gap:.85rem"></div>
+
+  <div class="card" style="margin-top:1.25rem">
+    <div class="label-xs">Trust building progression</div>
+    <div style="font-size:.85rem;color:var(--t2);line-height:1.7;margin-top:.5rem">
+      <strong style="color:var(--green)">If child succeeds at a responsibility</strong> → increase it the next week (more independence, more trust, more privilege).<br><br>
+      <strong style="color:var(--amber)">If child fails</strong> → correct, don't immediately remove the responsibility. Removing too fast teaches "if I fail enough, I get out of it." That's the wrong lesson.<br><br>
+      <strong style="color:var(--purple)">Pattern of failure</strong> → step them back ONE level on the framework. Rebuild from there.
+    </div>
+  </div>
 </div>
 
 <!-- ══════════════════════════ KIDS ══════════════════════════ -->
@@ -810,21 +1085,35 @@ function renderCouple() {
 
 // ── RULES ─────────────────────────────────────────────────────
 const DEFAULT_RULES = [
-  { text: "<strong>Respect comes first.</strong> We speak kindly to each other. No yelling, no name-calling, no hitting. This applies to parents too." },
-  { text: "<strong>Academy Block is protected time.</strong> 4:45–6:15 PM is for learning — no screen time, no complaints about it." },
-  { text: "<strong>We eat together.</strong> Dinner is a phone-free zone. If you can't make it, you let the family know in advance." },
-  { text: "<strong>Everyone contributes.</strong> Each person has chores that belong to them. They get done before any screen time." },
-  { text: "<strong>Honesty over excuses.</strong> If you made a mistake, say so. We respond better to truth than to stories." },
-  { text: "<strong>Screen time is earned.</strong> Homework, chores, and Academy Block come first. Always." },
+  { num: 1, title: "Respect is mandatory", body: "<strong>No yelling, insults, or ignoring when spoken to.</strong>", violation: "Immediate correction + apology required within 5 minutes. This applies to parents too." },
+  { num: 2, title: "Instructions are followed the first time", body: "Parent gives instruction <strong>once</strong>. If ignored, consequence triggered.", violation: "No repetition. No negotiation. Direct to Level 2 enforcement." },
+  { num: 3, title: "Work before entertainment", body: "<strong>Homework + chores must be completed before any screen or leisure.</strong> No exceptions.", violation: "Screen time forfeited for the day if work is unfinished." },
+  { num: 4, title: "Screen time is controlled, not assumed", body: "Weekdays: <strong>max 1 hour</strong> after responsibilities. Weekends: <strong>max 2 hours</strong>. No screens during meals or after 8:30 PM.", violation: "Loss of screen time the next day per minute over the limit." },
+  { num: 5, title: "Everyone contributes daily", body: "No passive members in the household. Each child has assigned responsibilities.", violation: "Privileges paused until daily contribution is complete." },
+  { num: 6, title: "Truth is required", body: "Lying is the most serious offense in our home.", violation: "Automatic loss of privileges for 24–48 hours. No discussion." },
 ];
 function renderRules() {
   const el = document.getElementById('rules-list');
   if (!el) return;
   const rules = (state.rules && state.rules.length) ? state.rules : DEFAULT_RULES;
-  el.innerHTML = rules.map((r,i) => `<div class="rule-item">
-    <div class="rule-num">${i+1}</div>
-    <div class="rule-text">${r.text}</div>
-  </div>`).join('');
+  el.innerHTML = rules.map(r => {
+    if (r.text) {
+      // Old format fallback
+      return `<div class="rule-item"><div class="rule-num">${rules.indexOf(r)+1}</div><div class="rule-text">${r.text}</div></div>`;
+    }
+    return `<div class="rule-item" style="flex-direction:column;align-items:stretch">
+      <div style="display:flex;gap:.85rem;align-items:flex-start;margin-bottom:.5rem">
+        <div class="rule-num">${r.num}</div>
+        <div style="flex:1">
+          <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--t1);margin-bottom:.25rem">${r.title}</div>
+          <div class="rule-text">${r.body}</div>
+        </div>
+      </div>
+      <div style="margin-left:calc(26px + .85rem);padding:.5rem .7rem;background:var(--red-bg);border-left:3px solid var(--red);border-radius:0 6px 6px 0;font-size:.75rem;color:var(--t2);line-height:1.5">
+        <strong style="color:var(--red);font-weight:700;letter-spacing:.04em;font-size:.65rem;text-transform:uppercase">Violation →</strong> ${r.violation}
+      </div>
+    </div>`;
+  }).join('');
 }
 function addRule() {
   const input = document.getElementById('new-rule-input');
@@ -972,7 +1261,146 @@ function init() {
   renderScreen();
   renderVote();
   renderMilestones();
+  renderScoreboard();
+  renderIndependence();
+  renderViolations();
   loadCheckin();
+}
+
+// ── SCOREBOARD ────────────────────────────────────────────────
+const SB_KIDS = [
+  { id:'glory',  name:'Glory',  color:'var(--glory)' },
+  { id:'kendra', name:'Kendra', color:'var(--kendra)' },
+  { id:'grace',  name:'Grace',  color:'var(--grace)' },
+  { id:'angely', name:'Angely', color:'var(--angely)' },
+];
+const SB_DAYS = ['mon','tue','wed','thu','fri','sat','sun'];
+
+function renderScoreboard() {
+  const el = document.getElementById('scoreboard-rows');
+  if (!el) return;
+  if (!state.scoreboard) state.scoreboard = {};
+  if (!state.scoreboard.weekStart) {
+    const now = new Date();
+    const monday = new Date(now);
+    monday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+    state.scoreboard.weekStart = monday.toISOString().slice(0,10);
+  }
+  document.getElementById('scoreboard-week').value = state.scoreboard.weekStart;
+
+  el.innerHTML = SB_KIDS.map(k => {
+    if (!state.scoreboard[k.id]) state.scoreboard[k.id] = {};
+    let yes = 0, partial = 0, no = 0;
+    const cells = SB_DAYS.map(d => {
+      const v = state.scoreboard[k.id][d] || '';
+      if (v === '✅') yes++;
+      else if (v === '➖') partial++;
+      else if (v === '❌') no++;
+      const bg = v === '✅' ? 'var(--green-bg)' : v === '➖' ? 'var(--amber-bg)' : v === '❌' ? 'var(--red-bg)' : 'var(--s2)';
+      const color = v === '✅' ? 'var(--green)' : v === '➖' ? 'var(--amber)' : v === '❌' ? 'var(--red)' : 'var(--t3)';
+      return `<td style="padding:.3rem;text-align:center"><button onclick="cycleScoreboardCell('${k.id}','${d}')" style="width:34px;height:34px;border-radius:8px;background:${bg};border:1px solid ${color};color:${color};font-size:1rem;font-weight:700;cursor:pointer;font-family:var(--sans)">${v || '·'}</button></td>`;
+    }).join('');
+    const total = yes;
+    let result;
+    if (total >= 6) result = `<span style="color:var(--green);font-weight:700">🎁 Reward</span>`;
+    else if (total >= 5 || (yes + partial >= 5)) result = `<span style="color:var(--amber)">Neutral</span>`;
+    else result = `<span style="color:var(--red);font-weight:700">⚠ Consequence</span>`;
+    return `<tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:.5rem .4rem;font-family:var(--serif);font-weight:700;color:${k.color}">${k.name}</td>
+      ${cells}
+      <td style="padding:.4rem;text-align:center;font-family:var(--mono);font-weight:700">${yes}/7</td>
+      <td style="padding:.4rem;text-align:center;font-size:.8rem">${result}</td>
+    </tr>`;
+  }).join('');
+}
+function cycleScoreboardCell(kid, day) {
+  if (!state.scoreboard) state.scoreboard = {};
+  if (!state.scoreboard[kid]) state.scoreboard[kid] = {};
+  const cur = state.scoreboard[kid][day] || '';
+  const next = cur === '' ? '✅' : cur === '✅' ? '➖' : cur === '➖' ? '❌' : '';
+  state.scoreboard[kid][day] = next;
+  save(); renderScoreboard();
+}
+function saveScoreboardDate() {
+  const v = document.getElementById('scoreboard-week').value;
+  if (v) { state.scoreboard.weekStart = v; save(); }
+}
+function resetScoreboard() {
+  if (!confirm('Start a fresh week? This clears all current marks.')) return;
+  state.scoreboard = { weekStart: new Date().toISOString().slice(0,10) };
+  save(); renderScoreboard(); toast('New week started');
+}
+
+// ── INDEPENDENCE ──────────────────────────────────────────────
+const INDEPENDENCE = [
+  { id:'glory',  name:'Glory',  color:'var(--glory)',  age:'Gr 7 — Oldest',
+    homework:'Full homework independence — works alone, asks only after trying 10+ minutes',
+    chores:'Dishes rotation · Room maintenance · Helps supervise younger sisters',
+    growth:'Help oversee Angely\'s homework start. Trust her to lead routines when you are out.' },
+  { id:'kendra', name:'Kendra', color:'var(--kendra)', age:'Gr 6',
+    homework:'Homework with minimal supervision — independent start, brief check at end',
+    chores:'Laundry sorting · Table setup · Shared bathroom cleaning',
+    growth:'Build her into morning routine leader for her own time. She thrives on consistency.' },
+  { id:'grace',  name:'Grace',  color:'var(--grace)',  age:'Gr 4',
+    homework:'Homework with check at end — start alone, parent reviews completion',
+    chores:'Bedroom · Light cleaning · Pet care if applicable',
+    growth:'Add one new responsibility per month. Her confidence grows when she succeeds at small wins.' },
+  { id:'angely', name:'Angely', color:'var(--angely)', age:'Gr 3 — Youngest',
+    homework:'Guided homework start, then increasing independence — sit with her for the first 10 min, then let her continue alone',
+    chores:'Toys away · Simple tasks · Helping set table',
+    growth:'Most likely to be over-helped. Resist doing it for her — let her struggle through small things.' },
+];
+function renderIndependence() {
+  const el = document.getElementById('independence-grid');
+  if (!el) return;
+  el.innerHTML = INDEPENDENCE.map(k => `<div class="card" style="border-left:4px solid ${k.color}">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.65rem;flex-wrap:wrap;gap:.5rem">
+      <div style="font-family:var(--serif);font-size:1.15rem;font-weight:700;color:${k.color}">${k.name}</div>
+      <div style="font-family:var(--mono);font-size:.65rem;color:var(--t3);letter-spacing:.06em">${k.age}</div>
+    </div>
+    <div style="margin-bottom:.5rem">
+      <div class="label-xs">📚 Homework expectation</div>
+      <div style="font-size:.83rem;color:var(--t2);margin-top:.2rem">${k.homework}</div>
+    </div>
+    <div style="margin-bottom:.5rem">
+      <div class="label-xs">🧹 Daily chores</div>
+      <div style="font-size:.83rem;color:var(--t2);margin-top:.2rem">${k.chores}</div>
+    </div>
+    <div style="padding:.55rem .75rem;background:var(--s2);border-left:3px solid ${k.color};border-radius:0 6px 6px 0;margin-top:.5rem">
+      <div class="label-xs" style="color:${k.color}">🎯 Next growth step</div>
+      <div style="font-size:.83rem;color:var(--t1);margin-top:.2rem;line-height:1.55">${k.growth}</div>
+    </div>
+  </div>`).join('');
+}
+
+// ── VIOLATIONS LOG ────────────────────────────────────────────
+function logViolation() {
+  const who = document.getElementById('viol-who')?.value;
+  const level = document.getElementById('viol-level')?.value;
+  const rule = document.getElementById('viol-rule')?.value.trim();
+  if (!who || !level || !rule) return toast('Fill all 3 fields');
+  if (!state.violations) state.violations = [];
+  state.violations.unshift({ who, level, rule, date: new Date().toLocaleString() });
+  document.getElementById('viol-who').value = '';
+  document.getElementById('viol-level').value = '';
+  document.getElementById('viol-rule').value = '';
+  save(); renderViolations(); toast('⚠ Violation logged');
+}
+function renderViolations() {
+  const el = document.getElementById('violations-log');
+  if (!el) return;
+  const v = state.violations || [];
+  if (!v.length) { el.innerHTML = '<div style="font-size:.72rem;color:var(--t3);padding:.5rem 0">No violations logged.</div>'; return; }
+  el.innerHTML = '<div class="label-xs" style="margin-top:.6rem">Last 8 violations (look for patterns)</div>' +
+    v.slice(0,8).map(x => {
+      const colors = {'1':'var(--amber)','2':'var(--gold)','3':'var(--kendra)','4':'var(--red)'};
+      return `<div style="display:flex;align-items:center;gap:.6rem;padding:.5rem .65rem;background:var(--s2);border:1px solid var(--border);border-radius:6px;margin-bottom:.3rem;font-size:.78rem">
+        <span style="font-family:var(--mono);font-size:.65rem;color:var(--t3);min-width:90px">${x.date.split(',')[0]}</span>
+        <span style="font-weight:700;color:${colors[x.level]||'var(--t2)'};min-width:50px">${x.who}</span>
+        <span style="font-family:var(--mono);font-size:.6rem;padding:.1rem .4rem;background:var(--s3);border-radius:3px;color:${colors[x.level]||'var(--t3)'}">L${x.level}</span>
+        <span style="color:var(--t2);flex:1">${x.rule}</span>
+      </div>`;
+    }).join('');
 }
 
 init();
