@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lomon Family OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:     #0C0F1A;
+  --s1:     #121626;
+  --s2:     #181D30;
+  --s3:     #1F253E;
+  --border: rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.13);
+  --t1:     #F0EEF8;
+  --t2:     #8A88AA;
+  --t3:     #4A4866;
+
+  /* Family colors */
+  --sal:    #F5C542; --sal-bg: rgba(245,197,66,0.1);
+  --pas:    #E84393; --pas-bg: rgba(232,67,147,0.1);
+  --glory:  #16A34A; --glo-bg: rgba(22,163,74,0.1);
+  --kendra: #EA6A1E; --ken-bg: rgba(234,106,30,0.1);
+  --grace:  #DB2777; --gra-bg: rgba(219,39,119,0.1);
+  --angely: #2563EB; --ang-bg: rgba(37,99,235,0.1);
+
+  --gold:   #F5C542;
+  --green:  #27C685; --green-bg: rgba(39,198,133,0.12);
+  --red:    #E85454; --red-bg:   rgba(232,84,84,0.12);
+  --amber:  #F5A623; --amber-bg: rgba(245,166,35,0.12);
+  --purple: #A855F7;
+
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Outfit', system-ui, sans-serif;
+  --mono:  'JetBrains Mono', monospace;
+  --r: 12px; --r2: 18px; --r3: 26px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--t1);min-height:100vh}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 45% at 5% 0%,   rgba(245,197,66,0.05) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 95% 100%, rgba(232,67,147,0.05) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%,  rgba(22,163,74,0.03) 0%,transparent 70%);
+}
+
+/* ── NAV ──────────────────────────────────────────────────── */
+.site-nav{
+  position:sticky;top:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.6rem 1.75rem;gap:.75rem;flex-wrap:wrap;
+  background:rgba(12,15,26,0.96);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(16px);
+}
+.nav-brand{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--t1);letter-spacing:-.01em}
+.nav-brand span{color:var(--gold)}
+.nav-links{display:flex;gap:.25rem;flex-wrap:wrap}
+.nav-link{
+  font-size:.7rem;font-weight:500;padding:.28rem .75rem;border-radius:20px;
+  border:1px solid transparent;color:var(--t3);background:transparent;
+  cursor:pointer;transition:all .15s;text-decoration:none;font-family:var(--sans);
+}
+.nav-link:hover{color:var(--t2);background:var(--s2);border-color:var(--border)}
+.nav-link.active{color:var(--gold);background:var(--sal-bg);border-color:rgba(245,197,66,.3);font-weight:600}
+
+/* ── PAGE ──────────────────────────────────────────────────── */
+.page{display:none;position:relative;z-index:5;max-width:1060px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.page.active{display:block;animation:up .3s ease both}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── TYPOGRAPHY ────────────────────────────────────────────── */
+.page-title{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.4rem;line-height:1.1}
+.page-title em{font-style:italic;color:var(--gold)}
+.page-sub{font-size:.9rem;color:var(--t2);line-height:1.6;max-width:540px;margin-bottom:1.75rem}
+.eyebrow{font-family:var(--mono);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--t3);margin-bottom:.5rem}
+.section-title{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--t1);margin-bottom:.85rem}
+.label-xs{font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:.5rem}
+
+/* ── CARDS ─────────────────────────────────────────────────── */
+.card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:1.25rem 1.5rem}
+.card-sm{padding:.9rem 1rem;border-radius:var(--r)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+.grid-6{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem}
+@media(max-width:680px){.grid-2,.grid-3{grid-template-columns:1fr}.grid-6{grid-template-columns:repeat(3,1fr)}}
+
+/* ── FAMILY MEMBER PILLS ───────────────────────────────────── */
+.member-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;margin-bottom:1.5rem}
+@media(max-width:680px){.member-grid{grid-template-columns:repeat(3,1fr)}}
+.member-pill{
+  display:flex;flex-direction:column;align-items:center;gap:.3rem;
+  padding:.75rem .5rem;border-radius:var(--r2);
+  border:1px solid var(--border);background:var(--s2);
+  cursor:pointer;transition:all .2s;
+}
+.member-pill:hover{transform:translateY(-2px);border-color:var(--border2)}
+.member-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.member-name{font-family:var(--serif);font-size:.85rem;font-weight:700}
+.member-role{font-size:.58rem;color:var(--t3);font-family:var(--mono);letter-spacing:.06em}
+
+/* ── CHECKIN SECTION ───────────────────────────────────────── */
+.checkin-card{background:var(--s2);border:1px solid var(--border);border-radius:var(--r2);padding:1.25rem;margin-bottom:1rem}
+.checkin-prompt{font-size:.9rem;color:var(--t2);line-height:1.65;margin-bottom:.85rem}
+.checkin-prompt strong{color:var(--t1);font-weight:600}
+.response-area{
+  width:100%;min-height:90px;background:var(--s3);border:1px solid var(--border);
+  border-radius:var(--r);padding:.75rem;color:var(--t1);font-family:var(--sans);
+  font-size:.85rem;line-height:1.65;outline:none;resize:vertical;transition:border-color .15s;
+}
+.response-area:focus{border-color:var(--border2)}
+.response-area::placeholder{color:var(--t3)}
+.save-note-btn{
+  margin-top:.5rem;padding:.4rem 1rem;background:transparent;
+  border:1px solid var(--border2);border-radius:8px;
+  color:var(--t2);font-family:var(--sans);font-size:.75rem;
+  cursor:pointer;transition:all .15s;
+}
+.save-note-btn:hover{background:var(--s3);color:var(--t1)}
+.save-note-btn.saved{color:var(--green);border-color:rgba(39,198,133,.3)}
+
+/* ── RITUALS ───────────────────────────────────────────────── */
+.ritual-card{
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r2);padding:1rem 1.25rem;
+  display:flex;align-items:flex-start;gap:1rem;
+  transition:border-color .2s;
+}
+.ritual-card:hover{border-color:var(--border2)}
+.ritual-icon{font-size:1.5rem;flex-shrink:0;margin-top:.1rem}
+.ritual-body{flex:1}
+.ritual-name{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--t1);margin-bottom:.2rem}
+.ritual-desc{font-size:.82rem;color:var(--t2);line-height:1.55}
+.ritual-meta{font-family:var(--mono);font-size:.62rem;color:var(--t3);margin-top:.35rem;letter-spacing:.04em}
+.done-check{
+  width:26px;height:26px;border-radius:50%;border:2px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;transition:all .2s;font-size:.8rem;
+}
+.done-check.done{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.done-check:hover{border-color:var(--green)}
+
+/* ── CHILD ATTENTION TRACKER ───────────────────────────────── */
+.child-row{
+  display:flex;align-items:center;gap:1rem;
+  padding:.75rem 1rem;background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r);margin-bottom:.5rem;flex-wrap:wrap;
+}
+.child-color-bar{width:4px;height:40px;border-radius:2px;flex-shrink:0}
+.child-info{flex:1;min-width:120px}
+.child-name-main{font-family:var(--serif);font-size:1rem;font-weight:700}
+.child-note-sm{font-size:.72rem;color:var(--t2)}
+.attention-dots{display:flex;gap:.3rem;flex-wrap:wrap}
+.a-dot{
+  width:28px;height:28px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.62rem;font-family:var(--mono);font-weight:600;
+  border:1.5px solid var(--border);background:var(--s3);
+  color:var(--t3);cursor:pointer;transition:all .15s;
+}
+.a-dot:hover{border-color:var(--border2)}
+.a-dot.done{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.a-dot.label-day{cursor:default;background:transparent;border:none;color:var(--t3);font-size:.55rem;letter-spacing:.06em}
+.mini-note{width:160px}
+.mini-input{
+  width:100%;padding:.3rem .55rem;background:var(--s3);
+  border:1px solid var(--border);border-radius:6px;
+  color:var(--t1);font-family:var(--sans);font-size:.75rem;outline:none;
+}
+.mini-input:focus{border-color:var(--border2)}
+
+/* ── COUPLE SECTION ────────────────────────────────────────── */
+.couple-card{
+  background:linear-gradient(135deg,var(--sal-bg),var(--pas-bg));
+  border:1px solid rgba(245,197,66,.15);
+  border-radius:var(--r2);padding:1.5rem;
+  margin-bottom:1rem;
+}
+.couple-title{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--t1);margin-bottom:.3rem}
+.couple-sub{font-size:.82rem;color:var(--t2);margin-bottom:1.1rem;line-height:1.55}
+.resentment-btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.45rem 1.1rem;border-radius:8px;
+  font-size:.78rem;font-weight:600;cursor:pointer;
+  transition:all .15s;font-family:var(--sans);border:1px solid;
+  margin-right:.5rem;margin-bottom:.5rem;
+}
+.btn-gold{background:var(--sal-bg);border-color:rgba(245,197,66,.4);color:var(--gold)}
+.btn-gold:hover{background:rgba(245,197,66,.15)}
+.btn-pink{background:var(--pas-bg);border-color:rgba(232,67,147,.3);color:var(--pas)}
+.btn-pink:hover{background:rgba(232,67,147,.15)}
+
+/* ── RULES BOARD ───────────────────────────────────────────── */
+.rule-item{
+  display:flex;align-items:flex-start;gap:.85rem;
+  padding:.7rem 1rem;background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r);margin-bottom:.5rem;
+}
+.rule-num{
+  width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--gold);
+  background:var(--sal-bg);border:1px solid rgba(245,197,66,.3);flex-shrink:0;
+}
+.rule-text{font-size:.85rem;color:var(--t2);line-height:1.6}
+.rule-text strong{color:var(--t1);font-weight:600}
+
+/* ── SCREEN TIME ───────────────────────────────────────────── */
+.screen-child-block{
+  background:var(--s2);border:1px solid var(--border);border-radius:var(--r2);padding:1rem;
+}
+.screen-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
+.screen-name{font-family:var(--serif);font-size:.95rem;font-weight:700}
+.screen-limit{font-family:var(--mono);font-size:.7rem;color:var(--t3);padding:.15rem .45rem;background:var(--s3);border-radius:5px}
+.screen-bar-wrap{height:8px;background:var(--s3);border-radius:4px;overflow:hidden;margin-bottom:.35rem}
+.screen-bar{height:100%;border-radius:4px;transition:width .6s ease}
+.screen-meta{display:flex;justify-content:space-between;font-size:.65rem;font-family:var(--mono);color:var(--t3)}
+.screen-input-row{display:flex;align-items:center;gap:.5rem;margin-top:.6rem}
+.screen-input{
+  width:70px;padding:.3rem .45rem;background:var(--s3);border:1px solid var(--border);
+  border-radius:6px;color:var(--t1);font-family:var(--mono);font-size:.82rem;outline:none;
+  -moz-appearance:textfield;text-align:center;
+}
+.screen-input::-webkit-outer-spin-button,.screen-input::-webkit-inner-spin-button{-webkit-appearance:none}
+.screen-input:focus{border-color:var(--border2)}
+.screen-label{font-size:.7rem;color:var(--t3)}
+
+/* ── VOTE ──────────────────────────────────────────────────── */
+.vote-option{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.65rem 1rem;background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r);margin-bottom:.5rem;cursor:pointer;transition:all .15s;
+}
+.vote-option:hover{border-color:var(--border2)}
+.vote-option.selected{background:var(--sal-bg);border-color:rgba(245,197,66,.4)}
+.vote-label{font-size:.88rem;color:var(--t1)}
+.vote-count{font-family:var(--mono);font-size:.75rem;color:var(--t2)}
+.vote-bar-row{height:4px;border-radius:2px;background:var(--s3);margin-top:.3rem;overflow:hidden}
+.vote-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .5s}
+
+/* ── MILESTONE ─────────────────────────────────────────────── */
+.milestone-entry{
+  display:flex;align-items:flex-start;gap:.9rem;
+  padding:.8rem 1rem;background:var(--s2);border:1px solid var(--border);
+  border-radius:var(--r);margin-bottom:.5rem;
+}
+.ms-date{font-family:var(--mono);font-size:.62rem;color:var(--t3);min-width:56px;padding-top:.1rem}
+.ms-who{font-family:var(--serif);font-size:.82rem;font-weight:700;margin-bottom:.1rem}
+.ms-text{font-size:.82rem;color:var(--t2);line-height:1.5}
+
+/* ── JOURNAL ENTRIES ───────────────────────────────────────── */
+.j-entry{padding:.7rem .85rem;background:var(--s2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:.5rem}
+.j-meta{font-family:var(--mono);font-size:.6rem;color:var(--t3);margin-bottom:.25rem}
+.j-text{font-size:.82rem;color:var(--t1);line-height:1.6}
+
+/* ── TOAST ─────────────────────────────────────────────────── */
+.toast{
+  position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);
+  background:var(--s1);border:1px solid var(--border2);border-radius:100px;
+  padding:.4rem 1.1rem;font-size:.72rem;color:var(--t2);font-family:var(--mono);
+  opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;white-space:nowrap;
+}
+.toast.show{opacity:1}
+
+/* ── WEEK CHECK-IN FLOW ────────────────────────────────────── */
+.checkin-step{
+  background:var(--s2);border:1px solid var(--border);border-radius:var(--r2);
+  padding:1.25rem;margin-bottom:.85rem;
+}
+.step-badge{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--mono);font-size:.62rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.2rem .6rem;border-radius:20px;
+  background:var(--sal-bg);color:var(--gold);
+  border:1px solid rgba(245,197,66,.3);margin-bottom:.65rem;
+}
+.step-q{font-size:.9rem;color:var(--t1);font-weight:500;margin-bottom:.6rem;line-height:1.55}
+.step-q em{color:var(--gold);font-style:normal}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-brand">Lomon <span>Family</span></div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="showPage('home',this)">🏠 Home</button>
+    <button class="nav-link" onclick="showPage('rituals',this)">📅 Rituals</button>
+    <button class="nav-link" onclick="showPage('kids',this)">👧 Kids</button>
+    <button class="nav-link" onclick="showPage('couple',this)">💍 Couple</button>
+    <button class="nav-link" onclick="showPage('rules',this)">📋 Rules</button>
+    <button class="nav-link" onclick="showPage('screen',this)">📱 Screen Time</button>
+    <button class="nav-link" onclick="showPage('vote',this)">🗳️ Family Vote</button>
+    <button class="nav-link" onclick="showPage('milestones',this)">⭐ Milestones</button>
+    <button class="nav-link" onclick="showPage('checkin',this)">🔄 Weekly Check-in</button>
+  </div>
+</nav>
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════ HOME ══════════════════════════ -->
+<div class="page active" id="page-home">
+  <div class="eyebrow">Lomon Family OS · Manassas, Virginia</div>
+  <h1 class="page-title">Building a <em>successful</em><br>family — together</h1>
+  <p class="page-sub">Your family dashboard. Six people, one shared operating system. Consistent routines, real connection, and a happy home don't come from big moments — they come from small habits done every day.</p>
+
+  <!-- Family members -->
+  <div class="label-xs">Your family</div>
+  <div class="member-grid" style="margin-bottom:1.75rem">
+    <div class="member-pill" onclick="showPage('couple',document.querySelector(`[onclick*=couple]`))">
+      <div class="member-avatar" style="background:var(--sal-bg);color:var(--sal)">👨</div>
+      <span class="member-name" style="color:var(--sal)">Salomon</span>
+      <span class="member-role">DAD · LEADER</span>
+    </div>
+    <div class="member-pill" onclick="showPage('couple',document.querySelector(`[onclick*=couple]`))">
+      <div class="member-avatar" style="background:var(--pas-bg);color:var(--pas)">👩</div>
+      <span class="member-name" style="color:var(--pas)">Pascaline</span>
+      <span class="member-role">MOM · PARTNER</span>
+    </div>
+    <div class="member-pill">
+      <div class="member-avatar" style="background:var(--glo-bg);color:var(--glory)">👧</div>
+      <span class="member-name" style="color:var(--glory)">Glory</span>
+      <span class="member-role">GR7 · GIFTED</span>
+    </div>
+    <div class="member-pill">
+      <div class="member-avatar" style="background:var(--ken-bg);color:var(--kendra)">👧</div>
+      <span class="member-name" style="color:var(--kendra)">Kendra</span>
+      <span class="member-role">GR6 · CURIOUS</span>
+    </div>
+    <div class="member-pill">
+      <div class="member-avatar" style="background:var(--gra-bg);color:var(--grace)">👧</div>
+      <span class="member-name" style="color:var(--grace)">Grace</span>
+      <span class="member-role">GR4 · CREATIVE</span>
+    </div>
+    <div class="member-pill">
+      <div class="member-avatar" style="background:var(--ang-bg);color:var(--angely)">👧</div>
+      <span class="member-name" style="color:var(--angely)">Angely</span>
+      <span class="member-role">GR3 · ENERGETIC</span>
+    </div>
+  </div>
+
+  <!-- 6 Pillars -->
+  <div class="label-xs">Your 6 pillars</div>
+  <div class="grid-2" style="gap:.75rem">
+    <div class="card card-sm" style="border-color:rgba(245,197,66,.2)">
+      <div style="font-size:1.2rem;margin-bottom:.4rem">🏗️</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--gold);margin-bottom:.25rem">Structure & Routines</div>
+      <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Daily rhythms, morning briefings, chore fairness. Consistency builds security for your kids.</div>
+      <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('rituals',document.querySelector('[onclick*=rituals]'))">→ Rituals tab</button></div>
+    </div>
+    <div class="card card-sm" style="border-color:rgba(232,67,147,.2)">
+      <div style="font-size:1.2rem;margin-bottom:.4rem">💍</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--pas);margin-bottom:.25rem">Marriage Health</div>
+      <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Weekly check-ins with Pascaline, I-statements, conflict resolution before resentment builds.</div>
+      <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('couple',document.querySelector('[onclick*=couple]'))">→ Couple tab</button></div>
+    </div>
+    <div class="card card-sm" style="border-color:rgba(22,163,74,.2)">
+      <div style="font-size:1.2rem;margin-bottom:.4rem">👧</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--glory);margin-bottom:.25rem">Individual Attention</div>
+      <div style="font-size:.78rem;color:var(--t2);line-height:1.5">5 minutes per child per day of focused, undivided attention. Log what they care about this week.</div>
+      <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('kids',document.querySelector('[onclick*=kids]'))">→ Kids tab</button></div>
+    </div>
+    <div class="card card-sm" style="border-color:rgba(37,99,235,.2)">
+      <div style="font-size:1.2rem;margin-bottom:.4rem">📱</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--angely);margin-bottom:.25rem">Environment Control</div>
+      <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Screen time rules backed by WHO/AAP guidelines. You control the inputs — devices, content, hours.</div>
+      <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('screen',document.querySelector('[onclick*=screen]'))">→ Screen Time tab</button></div>
+    </div>
+    <div class="card card-sm" style="border-color:rgba(168,85,247,.2)">
+      <div style="font-size:1.2rem;margin-bottom:.4rem">🧘</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--purple);margin-bottom:.25rem">Model the Behavior</div>
+      <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Your kids watch you more than they listen to you. Calm reactions, reading, discipline — all modeled.</div>
+      <div style="margin-top:.5rem"><span style="font-size:.72rem;color:var(--t3)">Your journal → Weekly Check-in tab</span></div>
+    </div>
+    <div class="card card-sm" style="border-color:rgba(39,198,133,.2)">
+      <div style="font-size:1.2rem;margin-bottom:.4rem">🔄</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--green);margin-bottom:.25rem">Weekly Family Check-in</div>
+      <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Sunday 30 minutes. Every person speaks. Problems surface early. Solutions decided together.</div>
+      <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('checkin',document.querySelector('[onclick*=checkin]'))">→ Check-in tab</button></div>
+    </div>
+  </div>
+
+  <!-- Today's quick win -->
+  <div class="card" style="margin-top:1.25rem;border-color:rgba(245,197,66,.2);background:var(--sal-bg)">
+    <div class="label-xs" style="color:var(--gold)">Today's most important thing</div>
+    <div style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--t1);margin-bottom:.3rem">"Happiness at home comes from consistent routines, not big moments."</div>
+    <div style="font-size:.82rem;color:var(--t2)">Pick one ritual from the Rituals tab. Do it today. Build from there.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ RITUALS ═══════════════════════ -->
+<div class="page" id="page-rituals">
+  <div class="eyebrow">Pillar 1 — Structure & Routines</div>
+  <h1 class="page-title">Family <em>Rituals</em></h1>
+  <p class="page-sub">These are the weekly rhythms that make your home feel safe and connected. Mark each one done as you complete it. Start with 2–3 and build from there.</p>
+
+  <div class="section-title">Daily Rituals</div>
+  <div id="ritual-list-daily" style="margin-bottom:1.5rem"></div>
+
+  <div class="section-title">Weekly Rituals</div>
+  <div id="ritual-list-weekly" style="margin-bottom:1.5rem"></div>
+
+  <div class="section-title">Monthly Rituals</div>
+  <div id="ritual-list-monthly"></div>
+</div>
+
+<!-- ══════════════════════════ KIDS ══════════════════════════ -->
+<div class="page" id="page-kids">
+  <div class="eyebrow">Pillar 3 — Individual Attention</div>
+  <h1 class="page-title">Each Child, <em>Every Week</em></h1>
+  <p class="page-sub">Every child needs to feel individually seen — not just as one of four. Track your 1-on-1 time and note what each child is going through right now.</p>
+
+  <div class="section-title">This Week — 1-on-1 Time Tracker</div>
+  <div id="child-tracker" style="margin-bottom:1.75rem"></div>
+
+  <div class="section-title">What each child needs right now</div>
+  <div id="child-needs"></div>
+</div>
+
+<!-- ══════════════════════════ COUPLE ════════════════════════ -->
+<div class="page" id="page-couple">
+  <div class="eyebrow">Pillar 2 — Marriage Health</div>
+  <h1 class="page-title">Salomon <em>&</em> Pascaline</h1>
+  <p class="page-sub">Your marriage is the foundation. If it's strong, the kids feel it. A 1-hour weekly check-in — no kids, no devices — is the single highest-leverage thing you can do for your family.</p>
+
+  <div class="couple-card">
+    <div class="couple-title">Weekly Couple Check-in</div>
+    <div class="couple-sub">Use this every Sunday evening. One person reads the question, both answer honestly. No fixing — just listening first.</div>
+    <button class="resentment-btn btn-gold" onclick="startCoupleCheckin()">▶ Start this week's check-in</button>
+    <button class="resentment-btn btn-pink" onclick="logDateIdea()">💝 Log a date idea</button>
+  </div>
+
+  <div id="couple-checkin-area"></div>
+
+  <div style="margin-top:1.25rem">
+    <div class="section-title">I-Statement Builder</div>
+    <div class="card" style="margin-bottom:.75rem">
+      <div class="label-xs">Formula: "I feel ___ when ___ because ___. I need ___."</div>
+      <div style="font-size:.82rem;color:var(--t2);line-height:1.6;margin:.5rem 0">This replaces blame ("You always…") with ownership ("I feel…"). Use this when something is bothering you before it becomes resentment.</div>
+      <div style="display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem">
+        <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem">
+          <span style="color:var(--t3);min-width:70px">I feel</span>
+          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="hurt / ignored / overwhelmed / disconnected" id="istat-feel">
+        </div>
+        <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem">
+          <span style="color:var(--t3);min-width:70px">when</span>
+          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="describe the situation" id="istat-when">
+        </div>
+        <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem">
+          <span style="color:var(--t3);min-width:70px">because</span>
+          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="the impact on you" id="istat-because">
+        </div>
+        <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem">
+          <span style="color:var(--t3);min-width:70px">I need</span>
+          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="what would help you" id="istat-need">
+        </div>
+        <button class="save-note-btn" onclick="buildIStatement()">Build statement →</button>
+      </div>
+      <div id="istat-result" style="margin-top:.75rem;display:none;padding:.75rem;background:var(--s3);border-radius:var(--r);font-size:.88rem;color:var(--t1);line-height:1.65;font-style:italic"></div>
+    </div>
+
+    <div class="section-title">Date Ideas Log</div>
+    <div class="card" style="margin-bottom:.5rem">
+      <div class="label-xs">No-kids time ideas</div>
+      <div id="date-ideas-list" style="margin-bottom:.6rem"></div>
+      <div style="display:flex;gap:.5rem">
+        <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="Add a date idea..." id="date-idea-input">
+        <button class="save-note-btn" onclick="addDateIdea()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ RULES ══════════════════════════ -->
+<div class="page" id="page-rules">
+  <div class="eyebrow">Pillar 1 — Clear Rules</div>
+  <h1 class="page-title">Family <em>Rules</em></h1>
+  <p class="page-sub">Rules posted visibly and explained clearly create safety — not restriction. Kids thrive with clear expectations. Review these together as a family once a month.</p>
+
+  <div class="grid-2">
+    <div>
+      <div class="section-title">Non-negotiable rules</div>
+      <div id="rules-list"></div>
+    </div>
+    <div>
+      <div class="section-title">Add a new family rule</div>
+      <div class="checkin-card">
+        <textarea class="response-area" id="new-rule-input" placeholder="Write the rule clearly: what it is, why it matters, and what happens if it's broken..."></textarea>
+        <button class="save-note-btn" onclick="addRule()">Add to family rules</button>
+      </div>
+      <div class="section-title" style="margin-top:1rem">Positive discipline script</div>
+      <div class="card">
+        <div style="font-size:.82rem;color:var(--t2);line-height:1.65">
+          Instead of: <em style="color:var(--red)">"Stop doing that!"</em><br><br>
+          Try: <strong style="color:var(--t1)">"I can see you're frustrated. In our family we handle that by ___. Can you try that?"</strong><br><br>
+          Instead of punishing behavior, name it and redirect it. The rule is the reference — not your emotion in the moment.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ SCREEN TIME ════════════════════ -->
+<div class="page" id="page-screen">
+  <div class="eyebrow">Pillar 4 — Environment Control</div>
+  <h1 class="page-title">Screen Time <em>Rules</em></h1>
+  <p class="page-sub">WHO/AAP guidelines adapted for your family. You control the inputs your children receive — this shapes their attention, mood, and values more than almost anything else.</p>
+  <div class="grid-2" id="screen-grid" style="margin-bottom:1.5rem"></div>
+  <div class="card" style="border-color:rgba(245,197,66,.2)">
+    <div class="label-xs">Non-negotiable screen rules for all kids</div>
+    <div style="display:flex;flex-direction:column;gap:.4rem;margin-top:.4rem">
+      <div style="font-size:.82rem;color:var(--t2);padding:.4rem 0;border-bottom:1px solid var(--border)">📵 No screens during meals — meals are for conversation and connection</div>
+      <div style="font-size:.82rem;color:var(--t2);padding:.4rem 0;border-bottom:1px solid var(--border)">🌙 All devices off 1 hour before bedtime — protects sleep and melatonin</div>
+      <div style="font-size:.82rem;color:var(--t2);padding:.4rem 0;border-bottom:1px solid var(--border)">🏫 No screens during Academy Block — learning time is protected time</div>
+      <div style="font-size:.82rem;color:var(--t2);padding:.4rem 0;border-bottom:1px solid var(--border)">✅ Homework/chores completed before any recreational screen time</div>
+      <div style="font-size:.82rem;color:var(--t2);padding:.4rem 0">👨‍👩‍👧 You can always see what they're watching — no private screen time in bedrooms</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ VOTE ═══════════════════════════ -->
+<div class="page" id="page-vote">
+  <div class="eyebrow">Family Democracy — Collective Decision Making</div>
+  <h1 class="page-title">Family <em>Vote</em></h1>
+  <p class="page-sub">When kids have a voice in family decisions, they own the outcome. Use this for weekend activities, vacation plans, movie night picks, dinner choices — anything you're happy with either way.</p>
+
+  <div class="card" style="margin-bottom:1.25rem">
+    <div class="label-xs">Current vote question</div>
+    <input class="response-area" style="min-height:unset;padding:.45rem .75rem;font-size:.95rem;margin-bottom:.65rem" id="vote-question" placeholder="What are we deciding? E.g. 'Where should we go this Saturday?'" oninput="updateVoteQuestion()">
+    <div id="vote-options-list"></div>
+    <div style="display:flex;gap:.5rem;margin-top:.65rem">
+      <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" id="vote-option-input" placeholder="Add an option..." onkeydown="if(event.key==='Enter') addVoteOption()">
+      <button class="save-note-btn" onclick="addVoteOption()">Add option</button>
+      <button class="save-note-btn" onclick="clearVote()">↺ New vote</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label-xs">Who has voted</div>
+    <div id="voter-grid" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.4rem"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ MILESTONES ════════════════════ -->
+<div class="page" id="page-milestones">
+  <div class="eyebrow">Family Memory — Record What Matters</div>
+  <h1 class="page-title">Family <em>Milestones</em></h1>
+  <p class="page-sub">Log every growth moment, achievement, and breakthrough. In 5 years, this becomes the story of your family's journey. Don't let these moments disappear.</p>
+
+  <div class="grid-2">
+    <div>
+      <div class="section-title">Log a milestone</div>
+      <div class="checkin-card">
+        <div style="margin-bottom:.5rem">
+          <div class="label-xs">Who is it for?</div>
+          <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.3rem" id="ms-who-selector">
+            <button class="save-note-btn" onclick="selectMsWho(this,'Salomon')" data-who="Salomon">👨 Salomon</button>
+            <button class="save-note-btn" onclick="selectMsWho(this,'Pascaline')" data-who="Pascaline">👩 Pascaline</button>
+            <button class="save-note-btn" onclick="selectMsWho(this,'Glory')" data-who="Glory">Glory</button>
+            <button class="save-note-btn" onclick="selectMsWho(this,'Kendra')" data-who="Kendra">Kendra</button>
+            <button class="save-note-btn" onclick="selectMsWho(this,'Grace')" data-who="Grace">Grace</button>
+            <button class="save-note-btn" onclick="selectMsWho(this,'Angely')" data-who="Angely">Angely</button>
+            <button class="save-note-btn" onclick="selectMsWho(this,'Family')" data-who="Family">🏠 Family</button>
+          </div>
+        </div>
+        <div class="label-xs" style="margin-top:.5rem">What happened?</div>
+        <textarea class="response-area" id="ms-text" placeholder="Describe the moment — be specific. What did they do, say, or overcome?" style="margin-top:.3rem"></textarea>
+        <button class="save-note-btn" onclick="addMilestone()" style="margin-top:.4rem">Record milestone ⭐</button>
+      </div>
+    </div>
+    <div>
+      <div class="section-title">Recent milestones</div>
+      <div id="milestones-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ WEEKLY CHECK-IN ══════════════ -->
+<div class="page" id="page-checkin">
+  <div class="eyebrow">Weekly Family Meeting — Sunday 30 minutes</div>
+  <h1 class="page-title">Weekly <em>Check-in</em></h1>
+  <p class="page-sub">The single most powerful habit you can build. Every person speaks, every person is heard. Problems surface early. Wins are celebrated. The week ahead gets planned together.</p>
+
+  <div style="display:flex;flex-direction:column;gap:.85rem">
+
+    <div class="checkin-step">
+      <div class="step-badge">Step 1 · 5 min · Everyone</div>
+      <div class="step-q">🌟 <em>What was your best moment this week?</em> Start with the youngest, go around the circle. No interruptions.</div>
+      <textarea class="response-area" placeholder="Notes from this week's answers..." id="ci-best"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-best')">Save notes</button>
+    </div>
+
+    <div class="checkin-step">
+      <div class="step-badge">Step 2 · 5 min · Everyone</div>
+      <div class="step-q">😤 <em>Was there anything hard or unfair this week?</em> Each person gets 60 seconds. No defending — just listening.</div>
+      <textarea class="response-area" placeholder="Issues raised this week..." id="ci-hard"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-hard')">Save notes</button>
+    </div>
+
+    <div class="checkin-step">
+      <div class="step-badge">Step 3 · 5 min · Kids</div>
+      <div class="step-q">🗳️ <em>Family vote topic this week:</em> <em>Use the Vote tab to let kids pick something for the week ahead.</em></div>
+      <textarea class="response-area" placeholder="What we're deciding... what was voted on..." id="ci-vote"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-vote')">Save notes</button>
+    </div>
+
+    <div class="checkin-step">
+      <div class="step-badge">Step 4 · 5 min · Parents only (after kids)</div>
+      <div class="step-q">💍 <em>Salomon & Pascaline: What do we need from each other next week?</em> One sentence each — specific and kind.</div>
+      <textarea class="response-area" placeholder="What we agreed on..." id="ci-couple"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-couple')">Save notes</button>
+    </div>
+
+    <div class="checkin-step">
+      <div class="step-badge">Step 5 · 5 min · Everyone</div>
+      <div class="step-q">📅 <em>What are we looking forward to next week?</em> Each person names one thing. End on a high note.</div>
+      <textarea class="response-area" placeholder="What the family is looking forward to..." id="ci-ahead"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-ahead')">Save notes</button>
+    </div>
+
+    <div class="checkin-step" style="background:var(--sal-bg);border-color:rgba(245,197,66,.2)">
+      <div class="step-badge">Salomon's personal reflection · Private</div>
+      <div class="step-q">🧘 <em>How am I modeling the behavior I want to see?</em> Am I calm, present, consistent? What do I want to do better next week?</div>
+      <textarea class="response-area" id="ci-self" placeholder="Your personal reflection — this is private..."></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-self')">Save reflection</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── STATE ────────────────────────────────────────────────────
+let state = {
+  rituals: {}, childTime: {}, childNotes: {}, rules: [],
+  dates: [], istatements: [], milestones: [], vote: { q:'', options:[], voters:[] },
+  checkin: {}, coupleNotes: [],
+};
+try { state = JSON.parse(localStorage.getItem('lomon-family-os')) || state; } catch(e) {}
+function save() { try { localStorage.setItem('lomon-family-os', JSON.stringify(state)); } catch(e) {} }
+
+// ── NAV ──────────────────────────────────────────────────────
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ── RITUALS ───────────────────────────────────────────────────
+const RITUALS = {
+  daily: [
+    { id:'morning', icon:'🌅', name:'Morning Briefing (5 min)', desc:"Someone reads today's schedule aloud at breakfast — who's going where, what's due, who needs what. Everyone starts aligned.", meta:'7:00 AM · Mon–Fri' },
+    { id:'dinner',  icon:'🍽️', name:'No-Phone Dinner', desc:'Phones in a basket. 20 minutes of real conversation. Ask: "What made you laugh today?" or "Tell me something you learned." Every night.', meta:'6:30 PM · Every day' },
+    { id:'academy', icon:'📚', name:'Academy Block', desc:'4:45–6:15 PM for the kids. You are present — not doing other things. Presence, even silent, tells kids they matter.', meta:'4:45 PM · Mon–Fri' },
+    { id:'bedtime', icon:'🌙', name:'Bedtime Connection (3 min)', desc:"One question per child before lights out: 'What was the hardest part of today?' 3 minutes. Undivided attention. No fixing, just listening.", meta:'8:30 PM · Every night' },
+  ],
+  weekly: [
+    { id:'checkin_fam', icon:'🔄', name:'Weekly Family Check-in', desc:'30 minutes every Sunday. Every person speaks. Use the Check-in tab for structure. This is your single most important family habit.', meta:'Sunday · 7:00 PM · 30 min' },
+    { id:'checkin_couple', icon:'💍', name:'Weekly Couple Check-in', desc:'1 hour with Pascaline — no kids, no phones. What went well? What frustrated you? What do you need next week? Check-in tab has the questions.', meta:'Sunday · 9:00 PM · 1 hour' },
+    { id:'labor', icon:'⚖️', name:'Household Labor Review', desc:'5 minutes. Is the household work split fairly? Is Pascaline doing more than she should? Name it and rebalance before it becomes resentment.', meta:'Sunday · 5 min' },
+    { id:'friday', icon:'🎉', name:'Friday Celebration Dinner', desc:"Each person shares one win from the week — no matter how small. 'I finished my IXL.' 'I helped someone.' Celebrate effort, not just results.", meta:'Friday evening' },
+    { id:'date', icon:'❤️', name:'Date with Pascaline', desc:"At least 1 hour alone together. No planning required — coffee, a walk, just talking. The marriage comes first. Kids are secure when parents are connected.", meta:'Weekly · any day' },
+  ],
+  monthly: [
+    { id:'1on1_glory',  icon:'👧', name:"1-on-1 with Glory",  desc:"An hour with just Glory. Let her pick the activity. No agenda, no correction. She needs to know she is interesting to you beyond her grades.", meta:'Monthly · any time' },
+    { id:'1on1_kendra', icon:'👧', name:"1-on-1 with Kendra", desc:"An hour with just Kendra. Ask her what she's curious about. Her questions are often the most surprising.", meta:'Monthly · any time' },
+    { id:'1on1_grace',  icon:'👧', name:"1-on-1 with Grace",  desc:"An hour with just Grace. She's creative — do something creative together. Draw, cook, build. No phones, no sisters.", meta:'Monthly · any time' },
+    { id:'1on1_angely', icon:'👧', name:"1-on-1 with Angely", desc:"An hour with just Angely. She's the youngest — she needs individual attention most. Silliness counts. Make her feel big.", meta:'Monthly · any time' },
+    { id:'family_adventure', icon:'🏞️', name:'Monthly Family Adventure', desc:"One experience together every month — doesn't need to be expensive. A hike, a museum, a new restaurant, a drive. Shared memories beat screen time.", meta:'Once per month' },
+    { id:'labor_deep', icon:'📊', name:'Household Fairness Review', desc:"Look at who did what this month — cooking, cleaning, school runs, homework help. Make it visible and fair. Resentment is usually unspoken inequality.", meta:'Last Sunday of month' },
+  ]
+};
+
+function renderRituals() {
+  ['daily','weekly','monthly'].forEach(type => {
+    const el = document.getElementById(`ritual-list-${type}`);
+    if (!el) return;
+    el.innerHTML = RITUALS[type].map(r => {
+      const done = !!state.rituals[r.id];
+      return `<div class="ritual-card" style="margin-bottom:.5rem">
+        <span class="ritual-icon">${r.icon}</span>
+        <div class="ritual-body">
+          <div class="ritual-name">${r.name}</div>
+          <div class="ritual-desc">${r.desc}</div>
+          <div class="ritual-meta">${r.meta}</div>
+        </div>
+        <div class="done-check ${done?'done':''}" onclick="toggleRitual('${r.id}')">${done?'✓':''}</div>
+      </div>`;
+    }).join('');
+  });
+}
+function toggleRitual(id) {
+  state.rituals[id] = !state.rituals[id]; save(); renderRituals();
+  toast(state.rituals[id] ? '✓ Marked done' : 'Unmarked');
+}
+
+// ── KIDS ──────────────────────────────────────────────────────
+const KIDS = [
+  { id:'glory',  name:'Glory',  color:'var(--glory)',  role:'Gr7 · Gifted · IXL target LA 550', need:'She needs to feel intellectually respected — not just managed. Ask about her ideas.' },
+  { id:'kendra', name:'Kendra', color:'var(--kendra)', role:'Gr6 · LA gap is widest (410 pts below Math)', need:'She needs consistency and fairness. Notices everything. Acknowledge what she does well.' },
+  { id:'grace',  name:'Grace',  color:'var(--grace)',  role:'Gr4 · Grammar 240 — floor-level', need:'She needs creative expression. Don\'t always push academics. Let her make things.' },
+  { id:'angely', name:'Angely', color:'var(--angely)', role:'Gr3 · Writing 170 — most urgent', need:'She needs individual attention most. Youngest = most overlooked. Make her feel big.' },
+];
+const DAYS = ['M','T','W','T','F','S','S'];
+
+function renderKids() {
+  const tracker = document.getElementById('child-tracker');
+  const needs = document.getElementById('child-needs');
+  if (!tracker || !needs) return;
+
+  tracker.innerHTML = KIDS.map(k => {
+    if (!state.childTime[k.id]) state.childTime[k.id] = [0,0,0,0,0,0,0];
+    const dots = DAYS.map((d,i) => {
+      const done = state.childTime[k.id][i];
+      return `<div class="a-dot ${done?'done':''}" onclick="toggleChildDay('${k.id}',${i})" title="${d}">${done?'✓':d}</div>`;
+    }).join('');
+    const total = state.childTime[k.id].filter(Boolean).length;
+    return `<div class="child-row">
+      <div class="child-color-bar" style="background:${k.color}"></div>
+      <div class="child-info">
+        <div class="child-name-main" style="color:${k.color}">${k.name}</div>
+        <div class="child-note-sm">${k.role}</div>
+      </div>
+      <div class="attention-dots">${dots}</div>
+      <div style="font-family:var(--mono);font-size:.68rem;color:${total>=5?'var(--green)':total>=3?'var(--amber)':'var(--red)'};min-width:40px;text-align:right">${total}/7 days</div>
+    </div>`;
+  }).join('');
+
+  needs.innerHTML = KIDS.map(k => {
+    const note = state.childNotes[k.id] || '';
+    return `<div class="checkin-card" style="margin-bottom:.75rem">
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:${k.color};margin-bottom:.3rem">${k.name}</div>
+      <div style="font-size:.78rem;color:var(--t2);margin-bottom:.55rem;font-style:italic">${k.need}</div>
+      <div class="label-xs">What ${k.name} needs from you this week:</div>
+      <textarea class="response-area" style="min-height:70px;margin-top:.3rem" placeholder="What's on their mind? What do they need?" onchange="saveChildNote('${k.id}',this.value)">${note}</textarea>
+    </div>`;
+  }).join('');
+}
+function toggleChildDay(kid, day) {
+  if (!state.childTime[kid]) state.childTime[kid] = [0,0,0,0,0,0,0];
+  state.childTime[kid][day] = state.childTime[kid][day] ? 0 : 1;
+  save(); renderKids();
+}
+function saveChildNote(kid, val) { state.childNotes[kid] = val; save(); }
+
+// ── COUPLE ────────────────────────────────────────────────────
+const COUPLE_Qs = [
+  "What made you feel loved this week — and was there a moment where you felt unseen?",
+  "What frustrated you most about our home this week? What would you want to be different?",
+  "How are you really doing — not as a parent, but as a person?",
+  "What's one thing I could do next week that would make your life easier?",
+  "What do you want to look forward to together in the next month?",
+];
+
+function startCoupleCheckin() {
+  const area = document.getElementById('couple-checkin-area');
+  const today = new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  area.innerHTML = `<div class="checkin-card">
+    <div class="label-xs" style="color:var(--gold)">Couple Check-in · ${today}</div>
+    ${COUPLE_Qs.map((q,i) => `
+      <div style="margin-bottom:1rem">
+        <div style="font-size:.9rem;color:var(--t1);font-weight:500;margin-bottom:.4rem">Q${i+1}: ${q}</div>
+        <textarea class="response-area" style="min-height:70px" placeholder="Notes from this conversation..." id="couple-q${i}"></textarea>
+      </div>
+    `).join('')}
+    <button class="save-note-btn" onclick="saveCouple()">Save this week's check-in</button>
+  </div>`;
+}
+function saveCouple() {
+  const entry = { date: new Date().toLocaleDateString(), notes: COUPLE_Qs.map((_,i) => document.getElementById(`couple-q${i}`)?.value || '') };
+  if (!state.coupleNotes) state.coupleNotes = [];
+  state.coupleNotes.unshift(entry); save();
+  toast('✓ Couple check-in saved');
+}
+function buildIStatement() {
+  const feel = document.getElementById('istat-feel')?.value;
+  const when = document.getElementById('istat-when')?.value;
+  const because = document.getElementById('istat-because')?.value;
+  const need = document.getElementById('istat-need')?.value;
+  if (!feel || !when) return toast('Fill in at least "feel" and "when"');
+  const result = document.getElementById('istat-result');
+  result.style.display = 'block';
+  result.textContent = `"I feel ${feel} when ${when}${because ? ' because ' + because : ''}. I need ${need || 'you to know this'}."`
+}
+function addDateIdea() {
+  const input = document.getElementById('date-idea-input');
+  if (!input?.value.trim()) return;
+  if (!state.dates) state.dates = [];
+  state.dates.unshift({ text: input.value.trim(), date: new Date().toLocaleDateString() });
+  input.value = ''; save(); renderCouple();
+}
+function logDateIdea() { document.getElementById('date-idea-input')?.focus(); }
+function renderCouple() {
+  const el = document.getElementById('date-ideas-list');
+  if (!el) return;
+  const dates = state.dates || [];
+  el.innerHTML = dates.length ? dates.slice(0,8).map(d => `<div class="j-entry"><div class="j-meta">${d.date}</div><div class="j-text">💝 ${d.text}</div></div>`).join('') : '<div style="font-size:.78rem;color:var(--t3)">No date ideas yet — add the first one.</div>';
+}
+
+// ── RULES ─────────────────────────────────────────────────────
+const DEFAULT_RULES = [
+  { text: "<strong>Respect comes first.</strong> We speak kindly to each other. No yelling, no name-calling, no hitting. This applies to parents too." },
+  { text: "<strong>Academy Block is protected time.</strong> 4:45–6:15 PM is for learning — no screen time, no complaints about it." },
+  { text: "<strong>We eat together.</strong> Dinner is a phone-free zone. If you can't make it, you let the family know in advance." },
+  { text: "<strong>Everyone contributes.</strong> Each person has chores that belong to them. They get done before any screen time." },
+  { text: "<strong>Honesty over excuses.</strong> If you made a mistake, say so. We respond better to truth than to stories." },
+  { text: "<strong>Screen time is earned.</strong> Homework, chores, and Academy Block come first. Always." },
+];
+function renderRules() {
+  const el = document.getElementById('rules-list');
+  if (!el) return;
+  const rules = (state.rules && state.rules.length) ? state.rules : DEFAULT_RULES;
+  el.innerHTML = rules.map((r,i) => `<div class="rule-item">
+    <div class="rule-num">${i+1}</div>
+    <div class="rule-text">${r.text}</div>
+  </div>`).join('');
+}
+function addRule() {
+  const input = document.getElementById('new-rule-input');
+  if (!input?.value.trim()) return;
+  if (!state.rules || !state.rules.length) state.rules = [...DEFAULT_RULES];
+  state.rules.push({ text: input.value.trim() });
+  input.value = ''; save(); renderRules(); toast('✓ Rule added');
+}
+
+// ── SCREEN TIME ───────────────────────────────────────────────
+const SCREEN_DATA = [
+  { id:'glory',  name:'Glory',  grade:7, color:'var(--glory)', limit:120, rec:'Up to 2 hrs/day recreational — AAP Gr7', note:'Academy time does NOT count as screen time' },
+  { id:'kendra', name:'Kendra', grade:6, color:'var(--kendra)',limit:120, rec:'Up to 2 hrs/day recreational — AAP Gr6', note:'School-related use excluded from limit' },
+  { id:'grace',  name:'Grace',  grade:4, color:'var(--grace)', limit:90,  rec:'Up to 1.5 hrs/day — AAP Gr4',          note:'1 hr homework + 90 min max recreational' },
+  { id:'angely', name:'Angely', grade:3, color:'var(--angely)',limit:60,  rec:'Up to 1 hr/day — WHO Gr3',             note:'Strictly enforced — most important to protect' },
+];
+function renderScreen() {
+  const grid = document.getElementById('screen-grid');
+  if (!grid) return;
+  grid.innerHTML = SCREEN_DATA.map(s => {
+    const used = state[`screen_${s.id}`] || 0;
+    const pct = Math.min(100, Math.round((used / s.limit) * 100));
+    const barColor = pct >= 90 ? 'var(--red)' : pct >= 70 ? 'var(--amber)' : s.color;
+    return `<div class="screen-child-block">
+      <div class="screen-header">
+        <div class="screen-name" style="color:${s.color}">${s.name}</div>
+        <div class="screen-limit">${s.limit} min/day</div>
+      </div>
+      <div class="screen-bar-wrap"><div class="screen-bar" style="width:${pct}%;background:${barColor}"></div></div>
+      <div class="screen-meta"><span>${used} min used</span><span>${Math.max(0,s.limit-used)} min left</span></div>
+      <div style="font-size:.7rem;color:var(--t3);margin:.3rem 0">${s.rec}</div>
+      <div class="screen-input-row">
+        <input class="screen-input" type="number" value="${used}" min="0" max="300" oninput="updateScreen('${s.id}',this.value)">
+        <span class="screen-label">minutes used today</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+function updateScreen(id, val) { state[`screen_${id}`] = parseInt(val)||0; save(); renderScreen(); }
+
+// ── VOTE ──────────────────────────────────────────────────────
+function renderVote() {
+  const el = document.getElementById('vote-options-list');
+  const qEl = document.getElementById('vote-question');
+  const vg = document.getElementById('voter-grid');
+  if (!el) return;
+  if (qEl && state.vote?.q) qEl.value = state.vote.q;
+  const opts = state.vote?.options || [];
+  const maxVotes = opts.length ? Math.max(...opts.map(o => o.votes||0), 1) : 1;
+  el.innerHTML = opts.length ? opts.map((o,i) => `<div class="vote-option" onclick="castVote(${i})">
+    <span class="vote-label">${o.text}</span>
+    <span class="vote-count">${o.votes||0} vote${o.votes!==1?'s':''}</span>
+    <div class="vote-bar-row"><div class="vote-fill" style="width:${Math.round(((o.votes||0)/maxVotes)*100)}%"></div></div>
+  </div>`).join('') : '<div style="font-size:.78rem;color:var(--t3)">Add options below to start the vote.</div>';
+  if (vg) {
+    const members = ['Salomon','Pascaline','Glory','Kendra','Grace','Angely'];
+    const voted = state.vote?.voters || [];
+    vg.innerHTML = members.map(m => `<div style="padding:.25rem .6rem;border-radius:20px;font-size:.7rem;border:1px solid ${voted.includes(m)?'var(--green)':'var(--border)'};background:${voted.includes(m)?'var(--green-bg)':'transparent'};color:${voted.includes(m)?'var(--green)':'var(--t3)'};cursor:pointer" onclick="toggleVoter('${m}')">${voted.includes(m)?'✓ ':''} ${m}</div>`).join('');
+  }
+}
+function addVoteOption() {
+  const input = document.getElementById('vote-option-input');
+  if (!input?.value.trim()) return;
+  if (!state.vote) state.vote = { q:'', options:[], voters:[] };
+  state.vote.options.push({ text: input.value.trim(), votes: 0 });
+  input.value = ''; save(); renderVote();
+}
+function castVote(idx) {
+  if (!state.vote?.options[idx]) return;
+  state.vote.options[idx].votes = (state.vote.options[idx].votes || 0) + 1;
+  save(); renderVote(); toast('✓ Vote cast!');
+}
+function toggleVoter(name) {
+  if (!state.vote.voters) state.vote.voters = [];
+  const i = state.vote.voters.indexOf(name);
+  if (i >= 0) state.vote.voters.splice(i,1); else state.vote.voters.push(name);
+  save(); renderVote();
+}
+function clearVote() {
+  state.vote = { q:'', options:[], voters:[] };
+  const qEl = document.getElementById('vote-question');
+  if (qEl) qEl.value = '';
+  save(); renderVote(); toast('New vote started');
+}
+function updateVoteQuestion() {
+  if (!state.vote) state.vote = { q:'', options:[], voters:[] };
+  state.vote.q = document.getElementById('vote-question')?.value || '';
+  save();
+}
+
+// ── MILESTONES ────────────────────────────────────────────────
+let msWho = '';
+function selectMsWho(btn, who) {
+  msWho = who;
+  document.querySelectorAll('#ms-who-selector button').forEach(b => b.classList.remove('saved'));
+  btn.classList.add('saved');
+}
+function addMilestone() {
+  const text = document.getElementById('ms-text')?.value.trim();
+  if (!text || !msWho) return toast('Pick a person and write what happened');
+  if (!state.milestones) state.milestones = [];
+  state.milestones.unshift({ who: msWho, text, date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) });
+  document.getElementById('ms-text').value = ''; msWho = '';
+  document.querySelectorAll('#ms-who-selector button').forEach(b => b.classList.remove('saved'));
+  save(); renderMilestones(); toast('⭐ Milestone recorded!');
+}
+function renderMilestones() {
+  const el = document.getElementById('milestones-list');
+  if (!el) return;
+  const ms = state.milestones || [];
+  const MEMBER_COLORS = { Glory:'var(--glory)', Kendra:'var(--kendra)', Grace:'var(--grace)', Angely:'var(--angely)', Salomon:'var(--sal)', Pascaline:'var(--pas)', Family:'var(--gold)' };
+  el.innerHTML = ms.length ? ms.slice(0,15).map(m => `<div class="milestone-entry">
+    <div class="ms-date">${m.date}</div>
+    <div>
+      <div class="ms-who" style="color:${MEMBER_COLORS[m.who]||'var(--t2)'}">${m.who}</div>
+      <div class="ms-text">${m.text}</div>
+    </div>
+  </div>`).join('') : '<div style="font-size:.78rem;color:var(--t3)">No milestones yet — record the first one.</div>';
+}
+
+// ── CHECK-IN ─────────────────────────────────────────────────
+function saveCINote(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (!state.checkin) state.checkin = {};
+  state.checkin[id] = el.value;
+  save();
+  const btn = el.nextElementSibling;
+  if (btn) { btn.textContent = '✓ Saved'; btn.classList.add('saved'); setTimeout(() => { btn.textContent = 'Save notes'; btn.classList.remove('saved'); }, 2000); }
+}
+function loadCheckin() {
+  if (!state.checkin) return;
+  Object.entries(state.checkin).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val;
+  });
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+function init() {
+  renderRituals();
+  renderKids();
+  renderCouple();
+  renderRules();
+  renderScreen();
+  renderVote();
+  renderMilestones();
+  loadCheckin();
+}
+
+init();
+</script>
+</body>
+</html>
