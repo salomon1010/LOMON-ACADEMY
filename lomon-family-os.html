@@ -913,8 +913,8 @@ let state = {
   dates: [], istatements: [], milestones: [], vote: { q:'', options:[], voters:[] },
   checkin: {}, coupleNotes: [],
 };
-try { state = JSON.parse(localStorage.getItem('lomon-family-os')) || state; } catch(e) {}
-function save() { try { localStorage.setItem('lomon-family-os', JSON.stringify(state)); } catch(e) {} }
+try { state = JSON.parse(localStorage.getItem('nore-family-os')) || state; } catch(e) {}
+function save() { try { localStorage.setItem('nore-family-os', JSON.stringify(state)); } catch(e) {} }
 
 // ── NAV ──────────────────────────────────────────────────────
 function showPage(id, btn) {
