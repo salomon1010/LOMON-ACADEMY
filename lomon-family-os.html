@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nore Family OS</title>
+<title>Lomon Family OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -59,7 +59,7 @@ body::before{
 }
 .nav-brand{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--t1);letter-spacing:-.01em}
 .nav-brand span{color:var(--gold)}
-.nav-links{display:flex;gap:.25rem;flex-wrap:wrap}
+.nav-links{display:flex;gap:.25rem;flex-wrap:wrap;flex:1;min-width:0}
 .nav-link{
   font-size:.7rem;font-weight:500;padding:.28rem .75rem;border-radius:20px;
   border:1px solid transparent;color:var(--t3);background:transparent;
@@ -256,7 +256,41 @@ body::before{
 .j-meta{font-family:var(--mono);font-size:.6rem;color:var(--t3);margin-bottom:.25rem}
 .j-text{font-size:.82rem;color:var(--t1);line-height:1.6}
 
-/* ── TOAST ─────────────────────────────────────────────────── */
+/* ── LANGUAGE SWITCHER ────────────────────────────────────── */
+.lang-switcher{
+  position:relative;display:inline-flex;align-items:center;gap:.4rem;
+}
+.lang-btn{
+  display:inline-flex;align-items:center;gap:.35rem;
+  padding:.3rem .75rem;border-radius:20px;
+  border:1px solid var(--border2);background:var(--s2);
+  color:var(--t1);font-family:var(--sans);font-size:.72rem;
+  font-weight:600;cursor:pointer;transition:all .15s;
+}
+.lang-btn:hover{background:var(--s3);border-color:var(--gold)}
+.lang-flag{font-size:.95rem;line-height:1}
+.lang-arrow{font-size:.55rem;color:var(--t3);transition:transform .2s}
+.lang-switcher.open .lang-arrow{transform:rotate(180deg)}
+.lang-menu{
+  position:absolute;top:calc(100% + 6px);right:0;z-index:10000;
+  background:var(--s1);border:1px solid var(--border2);
+  border-radius:var(--r);overflow:hidden;
+  min-width:140px;box-shadow:0 8px 24px rgba(0,0,0,.4);
+  display:none;animation:menuIn .15s ease;
+}
+.lang-switcher.open .lang-menu{display:block}
+@keyframes menuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.lang-option{
+  display:flex;align-items:center;gap:.55rem;
+  padding:.55rem .85rem;cursor:pointer;
+  font-size:.78rem;color:var(--t1);
+  transition:background .12s;border:none;background:transparent;
+  width:100%;text-align:left;font-family:var(--sans);
+}
+.lang-option:hover{background:var(--s2)}
+.lang-option.active{background:var(--sal-bg);color:var(--gold);font-weight:600}
+.lang-option-flag{font-size:1rem;line-height:1}
+.lang-option-check{margin-left:auto;color:var(--gold);font-size:.8rem}
 .toast{
   position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);
   background:var(--s1);border:1px solid var(--border2);border-radius:100px;
@@ -286,33 +320,52 @@ body::before{
 
 <!-- NAV -->
 <nav class="site-nav">
-  <div class="nav-brand">Nore <span>Family</span></div>
+  <div class="nav-brand">Lomon <span>Family</span></div>
   <div class="nav-links">
-    <button class="nav-link active" onclick="showPage('home',this)">🏠 Home</button>
-    <button class="nav-link" onclick="showPage('rituals',this)">📅 Rituals</button>
-    <button class="nav-link" onclick="showPage('rules',this)">📋 Rules</button>
-    <button class="nav-link" onclick="showPage('script',this)">🎬 Daily Script</button>
-    <button class="nav-link" onclick="showPage('enforce',this)">⚖️ Enforcement</button>
-    <button class="nav-link" onclick="showPage('scoreboard',this)">📊 Scoreboard</button>
-    <button class="nav-link" onclick="showPage('independence',this)">🎯 Independence</button>
-    <button class="nav-link" onclick="showPage('kids',this)">👧 Kids</button>
-    <button class="nav-link" onclick="showPage('couple',this)">💍 Couple</button>
-    <button class="nav-link" onclick="showPage('screen',this)">📱 Screen</button>
-    <button class="nav-link" onclick="showPage('vote',this)">🗳️ Vote</button>
-    <button class="nav-link" onclick="showPage('milestones',this)">⭐ Milestones</button>
-    <button class="nav-link" onclick="showPage('checkin',this)">🔄 Check-in</button>
+    <button class="nav-link active" onclick="showPage('home',this)" data-i18n="nav.home">🏠 Home</button>
+    <button class="nav-link" onclick="showPage('rituals',this)" data-i18n="nav.rituals">📅 Rituals</button>
+    <button class="nav-link" onclick="showPage('rules',this)" data-i18n="nav.rules">📋 Rules</button>
+    <button class="nav-link" onclick="showPage('script',this)" data-i18n="nav.script">🎬 Daily Script</button>
+    <button class="nav-link" onclick="showPage('enforce',this)" data-i18n="nav.enforce">⚖️ Enforcement</button>
+    <button class="nav-link" onclick="showPage('scoreboard',this)" data-i18n="nav.scoreboard">📊 Scoreboard</button>
+    <button class="nav-link" onclick="showPage('independence',this)" data-i18n="nav.independence">🎯 Independence</button>
+    <button class="nav-link" onclick="showPage('kids',this)" data-i18n="nav.kids">👧 Kids</button>
+    <button class="nav-link" onclick="showPage('couple',this)" data-i18n="nav.couple">💍 Couple</button>
+    <button class="nav-link" onclick="showPage('screen',this)" data-i18n="nav.screen">📱 Screen</button>
+    <button class="nav-link" onclick="showPage('vote',this)" data-i18n="nav.vote">🗳️ Vote</button>
+    <button class="nav-link" onclick="showPage('milestones',this)" data-i18n="nav.milestones">⭐ Milestones</button>
+    <button class="nav-link" onclick="showPage('checkin',this)" data-i18n="nav.checkin">🔄 Check-in</button>
+  </div>
+  <div class="lang-switcher" id="lang-switcher">
+    <button class="lang-btn" onclick="toggleLangMenu()">
+      <span class="lang-flag" id="current-flag">🇬🇧</span>
+      <span id="current-lang">EN</span>
+      <span class="lang-arrow">▼</span>
+    </button>
+    <div class="lang-menu">
+      <button class="lang-option active" data-lang="en" onclick="setLang('en')">
+        <span class="lang-option-flag">🇬🇧</span>
+        <span>English</span>
+        <span class="lang-option-check">✓</span>
+      </button>
+      <button class="lang-option" data-lang="fr" onclick="setLang('fr')">
+        <span class="lang-option-flag">🇫🇷</span>
+        <span>Français</span>
+        <span class="lang-option-check" style="display:none">✓</span>
+      </button>
+    </div>
   </div>
 </nav>
 <div class="toast" id="toast"></div>
 
 <!-- ══════════════════════════ HOME ══════════════════════════ -->
 <div class="page active" id="page-home">
-  <div class="eyebrow">Nore Family OS · Manassas, Virginia</div>
-  <h1 class="page-title">Building a <em>successful</em><br>family — together</h1>
-  <p class="page-sub">Your family dashboard. Six people, one shared operating system. Consistent routines, real connection, and a happy home don't come from big moments — they come from small habits done every day.</p>
+  <div class="eyebrow" data-i18n="home.eyebrow">Lomon Family OS · Manassas, Virginia</div>
+  <h1 class="page-title" data-i18n="home.title">Building a <em>successful</em><br>family — together</h1>
+  <p class="page-sub" data-i18n="home.sub">Your family dashboard. Six people, one shared operating system. Consistent routines, real connection, and a happy home don't come from big moments — they come from small habits done every day.</p>
 
   <!-- Family members -->
-  <div class="label-xs">Your family</div>
+  <div class="label-xs" data-i18n="home.familyLabel">Your family</div>
   <div class="member-grid" style="margin-bottom:1.75rem">
     <div class="member-pill" onclick="showPage('couple',document.querySelector(`[onclick*=couple]`))">
       <div class="member-avatar" style="background:var(--sal-bg);color:var(--sal)">👨</div>
@@ -347,41 +400,41 @@ body::before{
   </div>
 
   <!-- 6 Pillars -->
-  <div class="label-xs">Your 6 pillars</div>
+  <div class="label-xs" data-i18n="home.pillarsLabel">Your 6 pillars</div>
   <div class="grid-2" style="gap:.75rem">
     <div class="card card-sm" style="border-color:rgba(245,197,66,.2)">
       <div style="font-size:1.2rem;margin-bottom:.4rem">🏗️</div>
-      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--gold);margin-bottom:.25rem">Structure & Routines</div>
-      <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Daily rhythms, morning briefings, chore fairness. Consistency builds security for your kids.</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--gold);margin-bottom:.25rem" data-i18n="home.p1.title">Structure & Routines</div>
+      <div style="font-size:.78rem;color:var(--t2);line-height:1.5" data-i18n="home.p1.body">Daily rhythms, morning briefings, chore fairness. Consistency builds security for your kids.</div>
       <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('rituals',document.querySelector('[onclick*=rituals]'))">→ Rituals tab</button></div>
     </div>
     <div class="card card-sm" style="border-color:rgba(232,67,147,.2)">
       <div style="font-size:1.2rem;margin-bottom:.4rem">💍</div>
-      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--pas);margin-bottom:.25rem">Marriage Health</div>
-      <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Weekly check-ins with Pascaline, I-statements, conflict resolution before resentment builds.</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--pas);margin-bottom:.25rem" data-i18n="home.p2.title">Marriage Health</div>
+      <div style="font-size:.78rem;color:var(--t2);line-height:1.5" data-i18n="home.p2.body">Weekly check-ins with Pascaline, I-statements, conflict resolution before resentment builds.</div>
       <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('couple',document.querySelector('[onclick*=couple]'))">→ Couple tab</button></div>
     </div>
     <div class="card card-sm" style="border-color:rgba(22,163,74,.2)">
       <div style="font-size:1.2rem;margin-bottom:.4rem">👧</div>
-      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--glory);margin-bottom:.25rem">Individual Attention</div>
-      <div style="font-size:.78rem;color:var(--t2);line-height:1.5">5 minutes per child per day of focused, undivided attention. Log what they care about this week.</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--glory);margin-bottom:.25rem" data-i18n="home.p3.title">Individual Attention</div>
+      <div style="font-size:.78rem;color:var(--t2);line-height:1.5" data-i18n="home.p3.body">5 minutes per child per day of focused, undivided attention. Log what they care about this week.</div>
       <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('kids',document.querySelector('[onclick*=kids]'))">→ Kids tab</button></div>
     </div>
     <div class="card card-sm" style="border-color:rgba(37,99,235,.2)">
       <div style="font-size:1.2rem;margin-bottom:.4rem">📱</div>
-      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--angely);margin-bottom:.25rem">Environment Control</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--angely);margin-bottom:.25rem" data-i18n="home.p4.title">Environment Control</div>
       <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Screen time rules backed by WHO/AAP guidelines. You control the inputs — devices, content, hours.</div>
       <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('screen',document.querySelector('[onclick*=screen]'))">→ Screen Time tab</button></div>
     </div>
     <div class="card card-sm" style="border-color:rgba(168,85,247,.2)">
       <div style="font-size:1.2rem;margin-bottom:.4rem">🧘</div>
-      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--purple);margin-bottom:.25rem">Model the Behavior</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--purple);margin-bottom:.25rem" data-i18n="home.p5.title">Model the Behavior</div>
       <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Your kids watch you more than they listen to you. Calm reactions, reading, discipline — all modeled.</div>
       <div style="margin-top:.5rem"><span style="font-size:.72rem;color:var(--t3)">Your journal → Weekly Check-in tab</span></div>
     </div>
     <div class="card card-sm" style="border-color:rgba(39,198,133,.2)">
       <div style="font-size:1.2rem;margin-bottom:.4rem">🔄</div>
-      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--green);margin-bottom:.25rem">Weekly Family Check-in</div>
+      <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--green);margin-bottom:.25rem" data-i18n="home.p6.title">Weekly Family Check-in</div>
       <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Sunday 30 minutes. Every person speaks. Problems surface early. Solutions decided together.</div>
       <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('checkin',document.querySelector('[onclick*=checkin]'))">→ Check-in tab</button></div>
     </div>
@@ -389,13 +442,13 @@ body::before{
 
   <!-- Today's quick win -->
   <div class="card" style="margin-top:1.25rem;border-color:rgba(245,197,66,.2);background:var(--sal-bg)">
-    <div class="label-xs" style="color:var(--gold)">The principle that runs everything</div>
-    <div style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--t1);margin-bottom:.3rem">Consistency, not intensity. Systems, not intentions.</div>
+    <div class="label-xs" style="color:var(--gold)" data-i18n="home.principleLabel">The principle that runs everything</div>
+    <div style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--t1);margin-bottom:.3rem" data-i18n="home.principleQuote">Consistency, not intensity. Systems, not intentions.</div>
     <div style="font-size:.82rem;color:var(--t2);line-height:1.6">A "happy home" is the output of clear rules + immediate consequences + visible tracking. It is not the result of trying harder when things go wrong. Read the <strong>Daily Script</strong> tab before tough moments. Use the <strong>Enforcement Ladder</strong> when rules are broken. Track everything on the <strong>Scoreboard</strong>.</div>
   </div>
 
   <div class="card" style="margin-top:1rem;border-color:rgba(232,84,84,.15)">
-    <div class="label-xs" style="color:var(--red)">⚠ Reality check — this system fails if</div>
+    <div class="label-xs" style="color:var(--red)" data-i18n="home.realityLabel">⚠ Reality check — this system fails if</div>
     <div style="display:flex;flex-direction:column;gap:.35rem;margin-top:.5rem;font-size:.82rem;color:var(--t2);line-height:1.5">
       <div>❌ You repeat instructions instead of enforcing them</div>
       <div>❌ You ignore violations "just this once"</div>
@@ -410,25 +463,25 @@ body::before{
 
 <!-- ══════════════════════════ RITUALS ═══════════════════════ -->
 <div class="page" id="page-rituals">
-  <div class="eyebrow">Pillar 1 — Structure & Routines</div>
-  <h1 class="page-title">Family <em>Rituals</em></h1>
-  <p class="page-sub">These are the weekly rhythms that make your home feel safe and connected. Mark each one done as you complete it. Start with 2–3 and build from there.</p>
+  <div class="eyebrow" data-i18n="rituals.eyebrow">Pillar 1 — Structure & Routines</div>
+  <h1 class="page-title" data-i18n="rituals.title">Family <em>Rituals</em></h1>
+  <p class="page-sub" data-i18n="rituals.sub">These are the weekly rhythms that make your home feel safe and connected. Mark each one done as you complete it. Start with 2–3 and build from there.</p>
 
-  <div class="section-title">Daily Rituals</div>
+  <div class="section-title" data-i18n="rituals.daily">Daily Rituals</div>
   <div id="ritual-list-daily" style="margin-bottom:1.5rem"></div>
 
-  <div class="section-title">Weekly Rituals</div>
+  <div class="section-title" data-i18n="rituals.weekly">Weekly Rituals</div>
   <div id="ritual-list-weekly" style="margin-bottom:1.5rem"></div>
 
-  <div class="section-title">Monthly Rituals</div>
+  <div class="section-title" data-i18n="rituals.monthly">Monthly Rituals</div>
   <div id="ritual-list-monthly"></div>
 </div>
 
 <!-- ══════════════════════════ DAILY SCRIPT ══════════════════════ -->
 <div class="page" id="page-script">
-  <div class="eyebrow">No Escalation · No Emotion · Just Execution</div>
-  <h1 class="page-title">Daily <em>Script</em></h1>
-  <p class="page-sub">You don't react — you <strong>execute</strong>. This is the difference between chaos and control. Read these scripts before tough moments. Practice them out loud once. Then use them word-for-word.</p>
+  <div class="eyebrow" data-i18n="script.eyebrow">No Escalation · No Emotion · Just Execution</div>
+  <h1 class="page-title" data-i18n="script.title">Daily <em>Script</em></h1>
+  <p class="page-sub" data-i18n="script.sub">You don't react — you <strong>execute</strong>. This is the difference between chaos and control. Read these scripts before tough moments. Practice them out loud once. Then use them word-for-word.</p>
 
   <div class="grid-2" style="margin-bottom:1rem">
     <div>
@@ -523,9 +576,9 @@ body::before{
 
 <!-- ══════════════════════════ ENFORCEMENT ════════════════════════ -->
 <div class="page" id="page-enforce">
-  <div class="eyebrow">4-Level Enforcement Ladder · Critical Rule: Consequences Happen Immediately, Not Later</div>
-  <h1 class="page-title">Enforcement <em>Ladder</em></h1>
-  <p class="page-sub">When a rule is broken, you don't think — you escalate one level on this ladder. Predictable. Fair. Not emotional. The kids know exactly what happens.</p>
+  <div class="eyebrow" data-i18n="enforce.eyebrow">4-Level Enforcement Ladder · Critical Rule: Consequences Happen Immediately, Not Later</div>
+  <h1 class="page-title" data-i18n="enforce.title">Enforcement <em>Ladder</em></h1>
+  <p class="page-sub" data-i18n="enforce.sub">When a rule is broken, you don't think — you escalate one level on this ladder. Predictable. Fair. Not emotional. The kids know exactly what happens.</p>
 
   <div style="display:flex;flex-direction:column;gap:.85rem">
     <div class="card" style="border-color:rgba(245,166,35,.25);background:rgba(245,166,35,.04)">
@@ -602,9 +655,9 @@ body::before{
 
 <!-- ══════════════════════════ SCOREBOARD ════════════════════════ -->
 <div class="page" id="page-scoreboard">
-  <div class="eyebrow">Visible Daily Tracking · Rewards & Consequences Decided by Data</div>
-  <h1 class="page-title">Weekly <em>Scoreboard</em></h1>
-  <p class="page-sub">Each child gets a daily mark. At week's end, count the green checks. <strong>6–7 = reward earned.</strong> <strong>0–4 = consequence applied.</strong> Print this. Post it on the fridge. Visibility creates accountability.</p>
+  <div class="eyebrow" data-i18n="scoreboard.eyebrow">Visible Daily Tracking · Rewards & Consequences Decided by Data</div>
+  <h1 class="page-title" data-i18n="scoreboard.title">Weekly <em>Scoreboard</em></h1>
+  <p class="page-sub" data-i18n="scoreboard.sub">Each child gets a daily mark. At week's end, count the green checks. <strong>6–7 = reward earned.</strong> <strong>0–4 = consequence applied.</strong> Print this. Post it on the fridge. Visibility creates accountability.</p>
 
   <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap">
     <div class="label-xs" style="margin:0">Week of</div>
@@ -656,9 +709,9 @@ body::before{
 
 <!-- ══════════════════════════ INDEPENDENCE ═══════════════════════ -->
 <div class="page" id="page-independence">
-  <div class="eyebrow">Build Independence Gradually · Not Suddenly</div>
-  <h1 class="page-title">Independence <em>Framework</em></h1>
-  <p class="page-sub">The goal is <strong>responsibility without supervision</strong> — but only at the right pace. Each kid has different capacity. Push too fast and they fail. Hold them too tight and they never grow.</p>
+  <div class="eyebrow" data-i18n="indep.eyebrow">Build Independence Gradually · Not Suddenly</div>
+  <h1 class="page-title" data-i18n="indep.title">Independence <em>Framework</em></h1>
+  <p class="page-sub" data-i18n="indep.sub">The goal is <strong>responsibility without supervision</strong> — but only at the right pace. Each kid has different capacity. Push too fast and they fail. Hold them too tight and they never grow.</p>
 
   <div class="card" style="margin-bottom:1.25rem;border-color:rgba(245,197,66,.2);background:var(--sal-bg)">
     <div class="label-xs" style="color:var(--gold)">The Independence Rule</div>
@@ -684,25 +737,25 @@ body::before{
 
 <!-- ══════════════════════════ KIDS ══════════════════════════ -->
 <div class="page" id="page-kids">
-  <div class="eyebrow">Pillar 3 — Individual Attention</div>
-  <h1 class="page-title">Each Child, <em>Every Week</em></h1>
-  <p class="page-sub">Every child needs to feel individually seen — not just as one of four. Track your 1-on-1 time and note what each child is going through right now.</p>
+  <div class="eyebrow" data-i18n="kids.eyebrow">Pillar 3 — Individual Attention</div>
+  <h1 class="page-title" data-i18n="kids.title">Each Child, <em>Every Week</em></h1>
+  <p class="page-sub" data-i18n="kids.sub">Every child needs to feel individually seen — not just as one of four. Track your 1-on-1 time and note what each child is going through right now.</p>
 
-  <div class="section-title">This Week — 1-on-1 Time Tracker</div>
+  <div class="section-title" data-i18n="kids.tracker">This Week — 1-on-1 Time Tracker</div>
   <div id="child-tracker" style="margin-bottom:1.75rem"></div>
 
-  <div class="section-title">What each child needs right now</div>
+  <div class="section-title" data-i18n="kids.needs">What each child needs right now</div>
   <div id="child-needs"></div>
 </div>
 
 <!-- ══════════════════════════ COUPLE ════════════════════════ -->
 <div class="page" id="page-couple">
-  <div class="eyebrow">Pillar 2 — Marriage Health</div>
-  <h1 class="page-title">Salomon <em>&</em> Pascaline</h1>
-  <p class="page-sub">Your marriage is the foundation. If it's strong, the kids feel it. A 1-hour weekly check-in — no kids, no devices — is the single highest-leverage thing you can do for your family.</p>
+  <div class="eyebrow" data-i18n="couple.eyebrow">Pillar 2 — Marriage Health</div>
+  <h1 class="page-title" data-i18n="couple.title">Salomon <em>&</em> Pascaline</h1>
+  <p class="page-sub" data-i18n="couple.sub">Your marriage is the foundation. If it's strong, the kids feel it. A 1-hour weekly check-in — no kids, no devices — is the single highest-leverage thing you can do for your family.</p>
 
   <div class="couple-card">
-    <div class="couple-title">Weekly Couple Check-in</div>
+    <div class="couple-title" data-i18n="couple.checkin">Weekly Couple Check-in</div>
     <div class="couple-sub">Use this every Sunday evening. One person reads the question, both answer honestly. No fixing — just listening first.</div>
     <button class="resentment-btn btn-gold" onclick="startCoupleCheckin()">▶ Start this week's check-in</button>
     <button class="resentment-btn btn-pink" onclick="logDateIdea()">💝 Log a date idea</button>
@@ -751,17 +804,17 @@ body::before{
 
 <!-- ══════════════════════════ RULES ══════════════════════════ -->
 <div class="page" id="page-rules">
-  <div class="eyebrow">Pillar 1 — Clear Rules</div>
-  <h1 class="page-title">Family <em>Rules</em></h1>
-  <p class="page-sub">Rules posted visibly and explained clearly create safety — not restriction. Kids thrive with clear expectations. Review these together as a family once a month.</p>
+  <div class="eyebrow" data-i18n="rules.eyebrow">Pillar 1 — Clear Rules</div>
+  <h1 class="page-title" data-i18n="rules.title">Family <em>Rules</em></h1>
+  <p class="page-sub" data-i18n="rules.sub">Rules posted visibly and explained clearly create safety — not restriction. Kids thrive with clear expectations. Review these together as a family once a month.</p>
 
   <div class="grid-2">
     <div>
-      <div class="section-title">Non-negotiable rules</div>
+      <div class="section-title" data-i18n="rules.nonNeg">Non-negotiable rules</div>
       <div id="rules-list"></div>
     </div>
     <div>
-      <div class="section-title">Add a new family rule</div>
+      <div class="section-title" data-i18n="rules.add">Add a new family rule</div>
       <div class="checkin-card">
         <textarea class="response-area" id="new-rule-input" placeholder="Write the rule clearly: what it is, why it matters, and what happens if it's broken..."></textarea>
         <button class="save-note-btn" onclick="addRule()">Add to family rules</button>
@@ -780,8 +833,8 @@ body::before{
 
 <!-- ══════════════════════════ SCREEN TIME ════════════════════ -->
 <div class="page" id="page-screen">
-  <div class="eyebrow">Pillar 4 — Environment Control</div>
-  <h1 class="page-title">Screen Time <em>Rules</em></h1>
+  <div class="eyebrow" data-i18n="screen.eyebrow">Pillar 4 — Environment Control</div>
+  <h1 class="page-title" data-i18n="screen.title">Screen Time <em>Rules</em></h1>
   <p class="page-sub">WHO/AAP guidelines adapted for your family. You control the inputs your children receive — this shapes their attention, mood, and values more than almost anything else.</p>
   <div class="grid-2" id="screen-grid" style="margin-bottom:1.5rem"></div>
   <div class="card" style="border-color:rgba(245,197,66,.2)">
@@ -798,9 +851,9 @@ body::before{
 
 <!-- ══════════════════════════ VOTE ═══════════════════════════ -->
 <div class="page" id="page-vote">
-  <div class="eyebrow">Family Democracy — Collective Decision Making</div>
-  <h1 class="page-title">Family <em>Vote</em></h1>
-  <p class="page-sub">When kids have a voice in family decisions, they own the outcome. Use this for weekend activities, vacation plans, movie night picks, dinner choices — anything you're happy with either way.</p>
+  <div class="eyebrow" data-i18n="vote.eyebrow">Family Democracy — Collective Decision Making</div>
+  <h1 class="page-title" data-i18n="vote.title">Family <em>Vote</em></h1>
+  <p class="page-sub" data-i18n="vote.sub">When kids have a voice in family decisions, they own the outcome. Use this for weekend activities, vacation plans, movie night picks, dinner choices — anything you're happy with either way.</p>
 
   <div class="card" style="margin-bottom:1.25rem">
     <div class="label-xs">Current vote question</div>
@@ -821,9 +874,9 @@ body::before{
 
 <!-- ══════════════════════════ MILESTONES ════════════════════ -->
 <div class="page" id="page-milestones">
-  <div class="eyebrow">Family Memory — Record What Matters</div>
-  <h1 class="page-title">Family <em>Milestones</em></h1>
-  <p class="page-sub">Log every growth moment, achievement, and breakthrough. In 5 years, this becomes the story of your family's journey. Don't let these moments disappear.</p>
+  <div class="eyebrow" data-i18n="milestones.eyebrow">Family Memory — Record What Matters</div>
+  <h1 class="page-title" data-i18n="milestones.title">Family <em>Milestones</em></h1>
+  <p class="page-sub" data-i18n="milestones.sub">Log every growth moment, achievement, and breakthrough. In 5 years, this becomes the story of your family's journey. Don't let these moments disappear.</p>
 
   <div class="grid-2">
     <div>
@@ -855,9 +908,9 @@ body::before{
 
 <!-- ══════════════════════════ WEEKLY CHECK-IN ══════════════ -->
 <div class="page" id="page-checkin">
-  <div class="eyebrow">Weekly Family Meeting — Sunday 30 minutes</div>
-  <h1 class="page-title">Weekly <em>Check-in</em></h1>
-  <p class="page-sub">The single most powerful habit you can build. Every person speaks, every person is heard. Problems surface early. Wins are celebrated. The week ahead gets planned together.</p>
+  <div class="eyebrow" data-i18n="checkin.eyebrow">Weekly Family Meeting — Sunday 30 minutes</div>
+  <h1 class="page-title" data-i18n="checkin.title">Weekly <em>Check-in</em></h1>
+  <p class="page-sub" data-i18n="checkin.sub">The single most powerful habit you can build. Every person speaks, every person is heard. Problems surface early. Wins are celebrated. The week ahead gets planned together.</p>
 
   <div style="display:flex;flex-direction:column;gap:.85rem">
 
@@ -907,14 +960,225 @@ body::before{
 </div>
 
 <script>
+// ── I18N ENGINE ──────────────────────────────────────────────
+const TRANSLATIONS = {
+  en: {
+    'nav.home':'🏠 Home','nav.rituals':'📅 Rituals','nav.rules':'📋 Rules','nav.script':'🎬 Daily Script','nav.enforce':'⚖️ Enforcement','nav.scoreboard':'📊 Scoreboard','nav.independence':'🎯 Independence','nav.kids':'👧 Kids','nav.couple':'💍 Couple','nav.screen':'📱 Screen','nav.vote':'🗳️ Vote','nav.milestones':'⭐ Milestones','nav.checkin':'🔄 Check-in',
+
+    'home.eyebrow':'Lomon Family OS · Manassas, Virginia',
+    'home.title':'Building a <em>successful</em><br>family — together',
+    'home.sub':"Your family dashboard. Six people, one shared operating system. Consistent routines, real connection, and a happy home don't come from big moments — they come from small habits done every day.",
+    'home.familyLabel':'Your family',
+    'home.pillarsLabel':'Your 6 pillars',
+    'home.p1.title':'Structure & Routines',
+    'home.p1.body':'Daily rhythms, morning briefings, chore fairness. Consistency builds security for your kids.',
+    'home.p2.title':'Marriage Health',
+    'home.p2.body':'Weekly check-ins with Pascaline, I-statements, conflict resolution before resentment builds.',
+    'home.p3.title':'Individual Attention',
+    'home.p3.body':'5 minutes per child per day of focused, undivided attention. Log what they care about this week.',
+    'home.p4.title':'Environment Control',
+    'home.p4.body':'WHO/AAP guidelines for screen time. You control the inputs your children receive — devices, content, hours.',
+    'home.p5.title':'Model the Behavior',
+    'home.p6.title':'Weekly Family Check-in',
+    'home.principleLabel':'The principle that runs everything',
+    'home.principleQuote':'Consistency, not intensity. Systems, not intentions.',
+    'home.realityLabel':'⚠ Reality check — this system fails if',
+
+    'rituals.eyebrow':'Pillar 1 — Structure & Routines',
+    'rituals.title':'Family <em>Rituals</em>',
+    'rituals.sub':'These are the weekly rhythms that make your home feel safe and connected. Mark each one done as you complete it. Start with 2–3 and build from there.',
+    'rituals.daily':'Daily Rituals','rituals.weekly':'Weekly Rituals','rituals.monthly':'Monthly Rituals',
+
+    'kids.eyebrow':'Pillar 3 — Individual Attention',
+    'kids.title':'Each Child, <em>Every Week</em>',
+    'kids.sub':'Every child needs to feel individually seen — not just as one of four. Track your 1-on-1 time and note what each child is going through right now.',
+    'kids.tracker':'This Week — 1-on-1 Time Tracker',
+    'kids.needs':'What each child needs right now',
+
+    'couple.eyebrow':'Pillar 2 — Marriage Health',
+    'couple.title':'Salomon <em>&</em> Pascaline',
+    'couple.sub':"Your marriage is the foundation. If it's strong, the kids feel it. A 1-hour weekly check-in — no kids, no devices — is the single highest-leverage thing you can do for your family.",
+    'couple.checkin':'Weekly Couple Check-in',
+
+    'rules.eyebrow':'Pillar 1 — Clear Rules',
+    'rules.title':'Family <em>Rules</em>',
+    'rules.sub':'Rules posted visibly and explained clearly create safety — not restriction. Kids thrive with clear expectations. Review these together as a family once a month.',
+    'rules.nonNeg':'Non-negotiable rules',
+    'rules.add':'Add a new family rule',
+
+    'script.eyebrow':'No Escalation · No Emotion · Just Execution',
+    'script.title':'Daily <em>Script</em>',
+    'script.sub':"You don't react — you <strong>execute</strong>. This is the difference between chaos and control. Read these scripts before tough moments. Practice them out loud once. Then use them word-for-word.",
+
+    'enforce.eyebrow':'4-Level Enforcement Ladder · Critical Rule: Consequences Happen Immediately, Not Later',
+    'enforce.title':'Enforcement <em>Ladder</em>',
+    'enforce.sub':"When a rule is broken, you don't think — you escalate one level on this ladder. Predictable. Fair. Not emotional. The kids know exactly what happens.",
+
+    'scoreboard.eyebrow':'Visible Daily Tracking · Rewards & Consequences Decided by Data',
+    'scoreboard.title':'Weekly <em>Scoreboard</em>',
+    'scoreboard.sub':"Each child gets a daily mark. At week's end, count the green checks. <strong>6–7 = reward earned.</strong> <strong>0–4 = consequence applied.</strong> Print this. Post it on the fridge. Visibility creates accountability.",
+
+    'indep.eyebrow':'Build Independence Gradually · Not Suddenly',
+    'indep.title':'Independence <em>Framework</em>',
+    'indep.sub':"The goal is <strong>responsibility without supervision</strong> — but only at the right pace. Each kid has different capacity. Push too fast and they fail. Hold them too tight and they never grow.",
+
+    'screen.eyebrow':'Pillar 4 — Environment Control',
+    'screen.title':'Screen Time <em>Rules</em>',
+    'screen.sub':"WHO/AAP guidelines adapted for your family. You control the inputs your children receive — this shapes their attention, mood, and values more than almost anything else.",
+
+    'vote.eyebrow':'Family Democracy — Collective Decision Making',
+    'vote.title':'Family <em>Vote</em>',
+    'vote.sub':"When kids have a voice in family decisions, they own the outcome. Use this for weekend activities, vacation plans, movie night picks, dinner choices — anything you're happy with either way.",
+
+    'milestones.eyebrow':'Family Memory — Record What Matters',
+    'milestones.title':'Family <em>Milestones</em>',
+    'milestones.sub':"Log every growth moment, achievement, and breakthrough. In 5 years, this becomes the story of your family's journey. Don't let these moments disappear.",
+
+    'checkin.eyebrow':'Weekly Family Meeting — Sunday 30 minutes',
+    'checkin.title':'Weekly <em>Check-in</em>',
+    'checkin.sub':'The single most powerful habit you can build. Every person speaks, every person is heard. Problems surface early. Wins are celebrated. The week ahead gets planned together.',
+  },
+  fr: {
+    'nav.home':'🏠 Accueil','nav.rituals':'📅 Rituels','nav.rules':'📋 Règles','nav.script':'🎬 Script Quotidien','nav.enforce':'⚖️ Application','nav.scoreboard':'📊 Tableau','nav.independence':'🎯 Autonomie','nav.kids':'👧 Enfants','nav.couple':'💍 Couple','nav.screen':'📱 Écrans','nav.vote':'🗳️ Vote','nav.milestones':'⭐ Étapes','nav.checkin':'🔄 Bilan',
+
+    'home.eyebrow':'Lomon Family OS · Manassas, Virginie',
+    'home.title':'Construire une famille<br><em>épanouie</em> — ensemble',
+    'home.sub':"Votre tableau de bord familial. Six personnes, un seul système d'exploitation partagé. Les routines régulières, la vraie connexion et un foyer heureux ne viennent pas des grands moments — ils viennent des petites habitudes pratiquées chaque jour.",
+    'home.familyLabel':'Votre famille',
+    'home.pillarsLabel':'Vos 6 piliers',
+    'home.p1.title':'Structure & Routines',
+    'home.p1.body':"Rythmes quotidiens, briefings du matin, équité dans les tâches. La constance crée la sécurité pour vos enfants.",
+    'home.p2.title':'Santé du Couple',
+    'home.p2.body':"Bilans hebdomadaires avec Pascaline, messages-Je, résolution des conflits avant que la rancune ne s'installe.",
+    'home.p3.title':'Attention Individuelle',
+    'home.p3.body':"5 minutes par enfant par jour d'attention concentrée et exclusive. Notez ce qui les préoccupe cette semaine.",
+    'home.p4.title':"Contrôle de l'Environnement",
+    'home.p4.body':"Recommandations OMS/AAP pour le temps d'écran. Vous contrôlez ce que vos enfants reçoivent — appareils, contenu, durée.",
+    'home.p5.title':"Modeler le Comportement",
+    'home.p6.title':"Bilan Familial Hebdomadaire",
+    'home.principleLabel':'Le principe qui dirige tout',
+    'home.principleQuote':"Constance, pas intensité. Systèmes, pas intentions.",
+    'home.realityLabel':"⚠ Vérité — ce système échoue si",
+
+    'rituals.eyebrow':'Pilier 1 — Structure & Routines',
+    'rituals.title':'<em>Rituels</em> Familiaux',
+    'rituals.sub':"Ce sont les rythmes hebdomadaires qui rendent votre foyer sûr et connecté. Cochez chaque rituel une fois accompli. Commencez par 2–3 et construisez à partir de là.",
+    'rituals.daily':'Rituels Quotidiens','rituals.weekly':'Rituels Hebdomadaires','rituals.monthly':'Rituels Mensuels',
+
+    'kids.eyebrow':'Pilier 3 — Attention Individuelle',
+    'kids.title':'Chaque Enfant, <em>Chaque Semaine</em>',
+    'kids.sub':"Chaque enfant a besoin de se sentir vu individuellement — pas seulement comme l'un des quatre. Suivez votre temps en tête-à-tête et notez ce que chaque enfant traverse en ce moment.",
+    'kids.tracker':'Cette Semaine — Suivi du Temps en Tête-à-Tête',
+    'kids.needs':"De quoi chaque enfant a besoin maintenant",
+
+    'couple.eyebrow':'Pilier 2 — Santé du Couple',
+    'couple.title':'Salomon <em>&</em> Pascaline',
+    'couple.sub':"Votre mariage est le fondement. S'il est solide, les enfants le ressentent. Un bilan hebdomadaire d'1 heure — sans enfants, sans téléphone — est l'action la plus puissante que vous puissiez faire pour votre famille.",
+    'couple.checkin':'Bilan Hebdomadaire du Couple',
+
+    'rules.eyebrow':'Pilier 1 — Règles Claires',
+    'rules.title':'<em>Règles</em> Familiales',
+    'rules.sub':"Des règles affichées visiblement et expliquées clairement créent la sécurité — pas la restriction. Les enfants s'épanouissent avec des attentes claires. Revoyez-les en famille une fois par mois.",
+    'rules.nonNeg':'Règles non-négociables',
+    'rules.add':'Ajouter une nouvelle règle familiale',
+
+    'script.eyebrow':"Pas d'Escalade · Pas d'Émotion · Juste l'Exécution",
+    'script.title':'Script <em>Quotidien</em>',
+    'script.sub':"Vous ne réagissez pas — vous <strong>exécutez</strong>. C'est la différence entre le chaos et le contrôle. Lisez ces scripts avant les moments difficiles. Pratiquez-les à voix haute une fois. Puis utilisez-les mot pour mot.",
+
+    'enforce.eyebrow':"Échelle d'Application à 4 Niveaux · Règle Critique : Les Conséquences sont Immédiates, pas Plus Tard",
+    'enforce.title':"Échelle d'<em>Application</em>",
+    'enforce.sub':"Quand une règle est enfreinte, vous ne réfléchissez pas — vous montez d'un niveau sur cette échelle. Prévisible. Juste. Sans émotion. Les enfants savent exactement ce qui se passe.",
+
+    'scoreboard.eyebrow':'Suivi Quotidien Visible · Récompenses & Conséquences Décidées par les Données',
+    'scoreboard.title':'<em>Tableau</em> Hebdomadaire',
+    'scoreboard.sub':"Chaque enfant reçoit une note quotidienne. À la fin de la semaine, comptez les coches vertes. <strong>6–7 = récompense méritée.</strong> <strong>0–4 = conséquence appliquée.</strong> Imprimez-le. Affichez-le sur le frigo. La visibilité crée la responsabilité.",
+
+    'indep.eyebrow':"Construire l'Autonomie Progressivement · Pas Brutalement",
+    'indep.title':"<em>Cadre</em> d'Autonomie",
+    'indep.sub':"L'objectif est <strong>la responsabilité sans supervision</strong> — mais seulement au bon rythme. Chaque enfant a une capacité différente. Pousser trop vite et ils échouent. Les tenir trop serrés et ils ne grandissent jamais.",
+
+    'screen.eyebrow':"Pilier 4 — Contrôle de l'Environnement",
+    'screen.title':"<em>Règles</em> du Temps d'Écran",
+    'screen.sub':"Recommandations OMS/AAP adaptées à votre famille. Vous contrôlez les entrées que reçoivent vos enfants — cela façonne leur attention, leur humeur et leurs valeurs plus que presque tout le reste.",
+
+    'vote.eyebrow':'Démocratie Familiale — Décision Collective',
+    'vote.title':'<em>Vote</em> Familial',
+    'vote.sub':"Quand les enfants ont voix au chapitre dans les décisions familiales, ils s'approprient le résultat. Utilisez ceci pour les activités du week-end, les vacances, le choix du film, les repas — tout ce qui vous convient.",
+
+    'milestones.eyebrow':'Mémoire Familiale — Notez ce qui Compte',
+    'milestones.title':'<em>Étapes</em> Familiales',
+    'milestones.sub':"Notez chaque moment de croissance, accomplissement, percée. Dans 5 ans, ceci deviendra l'histoire du parcours de votre famille. Ne laissez pas ces moments disparaître.",
+
+    'checkin.eyebrow':'Réunion Familiale Hebdomadaire — Dimanche 30 minutes',
+    'checkin.title':'<em>Bilan</em> Hebdomadaire',
+    'checkin.sub':"L'habitude la plus puissante que vous puissiez bâtir. Chaque personne parle, chaque personne est entendue. Les problèmes émergent tôt. Les victoires sont célébrées. La semaine à venir est planifiée ensemble.",
+  }
+};
+
+let currentLang = 'en';
+try {
+  const saved = localStorage.getItem('lomon-family-lang');
+  if (saved === 'fr' || saved === 'en') currentLang = saved;
+} catch(e) {}
+
+function applyTranslations() {
+  document.documentElement.lang = currentLang;
+  const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) el.innerHTML = dict[key];
+  });
+}
+
+function toggleLangMenu() {
+  document.getElementById('lang-switcher').classList.toggle('open');
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  try { localStorage.setItem('lomon-family-lang', lang); } catch(e) {}
+  document.getElementById('current-flag').textContent = lang === 'fr' ? '🇫🇷' : '🇬🇧';
+  document.getElementById('current-lang').textContent = lang.toUpperCase();
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.getAttribute('data-lang') === lang;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  applyTranslations();
+  document.getElementById('lang-switcher').classList.remove('open');
+  toast(lang === 'fr' ? '🇫🇷 Langue changée en français' : '🇬🇧 Language changed to English');
+}
+
+// Close menu on outside click
+document.addEventListener('click', (e) => {
+  const sw = document.getElementById('lang-switcher');
+  if (sw && !sw.contains(e.target)) sw.classList.remove('open');
+});
+
+// Apply on load
+window.addEventListener('DOMContentLoaded', () => {
+  // Set initial flag/label
+  document.getElementById('current-flag').textContent = currentLang === 'fr' ? '🇫🇷' : '🇬🇧';
+  document.getElementById('current-lang').textContent = currentLang.toUpperCase();
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const isActive = opt.getAttribute('data-lang') === currentLang;
+    opt.classList.toggle('active', isActive);
+    const check = opt.querySelector('.lang-option-check');
+    if (check) check.style.display = isActive ? '' : 'none';
+  });
+  applyTranslations();
+});
+
 // ── STATE ────────────────────────────────────────────────────
 let state = {
   rituals: {}, childTime: {}, childNotes: {}, rules: [],
   dates: [], istatements: [], milestones: [], vote: { q:'', options:[], voters:[] },
   checkin: {}, coupleNotes: [],
 };
-try { state = JSON.parse(localStorage.getItem('nore-family-os')) || state; } catch(e) {}
-function save() { try { localStorage.setItem('nore-family-os', JSON.stringify(state)); } catch(e) {} }
+try { state = JSON.parse(localStorage.getItem('lomon-family-os')) || state; } catch(e) {}
+function save() { try { localStorage.setItem('lomon-family-os', JSON.stringify(state)); } catch(e) {} }
 
 // ── NAV ──────────────────────────────────────────────────────
 function showPage(id, btn) {
