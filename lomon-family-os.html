@@ -393,7 +393,7 @@ body::before{
       <span class="member-role">GR4 · CREATIVE</span>
     </div>
     <div class="member-pill">
-      <div class="member-avatar" style="background:var(--ang-bg);color:var(--angely)">👧</div>
+      <div class="member-avatar" style="background:var(--ang-bg);color:var(--angely)">👦</div>
       <span class="member-name" style="color:var(--angely)">Angely</span>
       <span class="member-role">GR3 · ENERGETIC</span>
     </div>
@@ -1214,8 +1214,8 @@ const RITUALS = {
   monthly: [
     { id:'1on1_glory',  icon:'👧', name:"1-on-1 with Glory",  desc:"An hour with just Glory. Let her pick the activity. No agenda, no correction. She needs to know she is interesting to you beyond her grades.", meta:'Monthly · any time' },
     { id:'1on1_kendra', icon:'👧', name:"1-on-1 with Kendra", desc:"An hour with just Kendra. Ask her what she's curious about. Her questions are often the most surprising.", meta:'Monthly · any time' },
-    { id:'1on1_grace',  icon:'👧', name:"1-on-1 with Grace",  desc:"An hour with just Grace. She's creative — do something creative together. Draw, cook, build. No phones, no sisters.", meta:'Monthly · any time' },
-    { id:'1on1_angely', icon:'👧', name:"1-on-1 with Angely", desc:"An hour with just Angely. She's the youngest — she needs individual attention most. Silliness counts. Make her feel big.", meta:'Monthly · any time' },
+    { id:'1on1_grace',  icon:'👧', name:"1-on-1 with Grace",  desc:"An hour with just Grace. She's creative — do something creative together. Draw, cook, build. No phones, no siblings.", meta:'Monthly · any time' },
+    { id:'1on1_angely', icon:'👦', name:"1-on-1 with Angely", desc:"An hour with just Angely. He's the youngest — he needs individual attention most. Silliness counts. Make him feel big.", meta:'Monthly · any time' },
     { id:'family_adventure', icon:'🏞️', name:'Monthly Family Adventure', desc:"One experience together every month — doesn't need to be expensive. A hike, a museum, a new restaurant, a drive. Shared memories beat screen time.", meta:'Once per month' },
     { id:'labor_deep', icon:'📊', name:'Household Fairness Review', desc:"Look at who did what this month — cooking, cleaning, school runs, homework help. Make it visible and fair. Resentment is usually unspoken inequality.", meta:'Last Sunday of month' },
   ]
@@ -1249,7 +1249,7 @@ const KIDS = [
   { id:'glory',  name:'Glory',  color:'var(--glory)',  role:'Gr7 · Gifted · IXL target LA 550', need:'She needs to feel intellectually respected — not just managed. Ask about her ideas.' },
   { id:'kendra', name:'Kendra', color:'var(--kendra)', role:'Gr6 · LA gap is widest (410 pts below Math)', need:'She needs consistency and fairness. Notices everything. Acknowledge what she does well.' },
   { id:'grace',  name:'Grace',  color:'var(--grace)',  role:'Gr4 · Grammar 240 — floor-level', need:'She needs creative expression. Don\'t always push academics. Let her make things.' },
-  { id:'angely', name:'Angely', color:'var(--angely)', role:'Gr3 · Writing 170 — most urgent', need:'She needs individual attention most. Youngest = most overlooked. Make her feel big.' },
+  { id:'angely', name:'Angely', color:'var(--angely)', role:'Gr3 · Writing 170 — most urgent', need:'He needs individual attention most. Youngest = most overlooked. Make him feel big.' },
 ];
 const DAYS = ['M','T','W','T','F','S','S'];
 
@@ -1599,8 +1599,8 @@ function resetScoreboard() {
 const INDEPENDENCE = [
   { id:'glory',  name:'Glory',  color:'var(--glory)',  age:'Gr 7 — Oldest',
     homework:'Full homework independence — works alone, asks only after trying 10+ minutes',
-    chores:'Dishes rotation · Room maintenance · Helps supervise younger sisters',
-    growth:'Help oversee Angely\'s homework start. Trust her to lead routines when you are out.' },
+    chores:'Dishes rotation · Room maintenance · Helps supervise younger siblings',
+    growth:'Help oversee Angely\'s homework start. Trust Glory to lead routines when you are out.' },
   { id:'kendra', name:'Kendra', color:'var(--kendra)', age:'Gr 6',
     homework:'Homework with minimal supervision — independent start, brief check at end',
     chores:'Laundry sorting · Table setup · Shared bathroom cleaning',
@@ -1610,9 +1610,9 @@ const INDEPENDENCE = [
     chores:'Bedroom · Light cleaning · Pet care if applicable',
     growth:'Add one new responsibility per month. Her confidence grows when she succeeds at small wins.' },
   { id:'angely', name:'Angely', color:'var(--angely)', age:'Gr 3 — Youngest',
-    homework:'Guided homework start, then increasing independence — sit with her for the first 10 min, then let her continue alone',
+    homework:'Guided homework start, then increasing independence — sit with him for the first 10 min, then let him continue alone',
     chores:'Toys away · Simple tasks · Helping set table',
-    growth:'Most likely to be over-helped. Resist doing it for her — let her struggle through small things.' },
+    growth:'Most likely to be over-helped. Resist doing it for him — let him struggle through small things.' },
 ];
 function renderIndependence() {
   const el = document.getElementById('independence-grid');
