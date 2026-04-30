@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lomon Family OS</title>
+<title>Nore Family OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -320,7 +320,7 @@ body::before{
 
 <!-- NAV -->
 <nav class="site-nav">
-  <div class="nav-brand">Lomon <span>Family</span></div>
+  <div class="nav-brand">Nore <span>Family</span></div>
   <div class="nav-links">
     <button class="nav-link active" onclick="showPage('home',this)" data-i18n="nav.home">🏠 Home</button>
     <button class="nav-link" onclick="showPage('rituals',this)" data-i18n="nav.rituals">📅 Rituals</button>
@@ -360,7 +360,7 @@ body::before{
 
 <!-- ══════════════════════════ HOME ══════════════════════════ -->
 <div class="page active" id="page-home">
-  <div class="eyebrow" data-i18n="home.eyebrow">Lomon Family OS · Manassas, Virginia</div>
+  <div class="eyebrow" data-i18n="home.eyebrow">Nore Family OS · Manassas, Virginia</div>
   <h1 class="page-title" data-i18n="home.title">Building a <em>successful</em><br>family — together</h1>
   <p class="page-sub" data-i18n="home.sub">Your family dashboard. Six people, one shared operating system. Consistent routines, real connection, and a happy home don't come from big moments — they come from small habits done every day.</p>
 
@@ -965,7 +965,7 @@ const TRANSLATIONS = {
   en: {
     'nav.home':'🏠 Home','nav.rituals':'📅 Rituals','nav.rules':'📋 Rules','nav.script':'🎬 Daily Script','nav.enforce':'⚖️ Enforcement','nav.scoreboard':'📊 Scoreboard','nav.independence':'🎯 Independence','nav.kids':'👧 Kids','nav.couple':'💍 Couple','nav.screen':'📱 Screen','nav.vote':'🗳️ Vote','nav.milestones':'⭐ Milestones','nav.checkin':'🔄 Check-in',
 
-    'home.eyebrow':'Lomon Family OS · Manassas, Virginia',
+    'home.eyebrow':'Nore Family OS · Manassas, Virginia',
     'home.title':'Building a <em>successful</em><br>family — together',
     'home.sub':"Your family dashboard. Six people, one shared operating system. Consistent routines, real connection, and a happy home don't come from big moments — they come from small habits done every day.",
     'home.familyLabel':'Your family',
@@ -1259,7 +1259,7 @@ const TRANSLATIONS = {
   fr: {
     'nav.home':'🏠 Accueil','nav.rituals':'📅 Rituels','nav.rules':'📋 Règles','nav.script':'🎬 Script Quotidien','nav.enforce':'⚖️ Application','nav.scoreboard':'📊 Tableau','nav.independence':'🎯 Autonomie','nav.kids':'👧 Enfants','nav.couple':'💍 Couple','nav.screen':'📱 Écrans','nav.vote':'🗳️ Vote','nav.milestones':'⭐ Étapes','nav.checkin':'🔄 Bilan',
 
-    'home.eyebrow':'Lomon Family OS · Manassas, Virginie',
+    'home.eyebrow':'Nore Family OS · Manassas, Virginie',
     'home.title':'Construire une famille<br><em>épanouie</em> — ensemble',
     'home.sub':"Votre tableau de bord familial. Six personnes, un seul système d'exploitation partagé. Les routines régulières, la vraie connexion et un foyer heureux ne viennent pas des grands moments — ils viennent des petites habitudes pratiquées chaque jour.",
     'home.familyLabel':'Votre famille',
@@ -1554,7 +1554,7 @@ const TRANSLATIONS = {
 
 let currentLang = 'en';
 try {
-  const saved = localStorage.getItem('lomon-family-lang');
+  const saved = localStorage.getItem('nore-family-lang');
   if (saved === 'fr' || saved === 'en') currentLang = saved;
 } catch(e) {}
 
@@ -1577,7 +1577,7 @@ function toggleLangMenu() {
 
 function setLang(lang) {
   currentLang = lang;
-  try { localStorage.setItem('lomon-family-lang', lang); } catch(e) {}
+  try { localStorage.setItem('nore-family-lang', lang); } catch(e) {}
   document.getElementById('current-flag').textContent = lang === 'fr' ? '🇫🇷' : '🇬🇧';
   document.getElementById('current-lang').textContent = lang.toUpperCase();
   document.querySelectorAll('.lang-option').forEach(opt => {
@@ -1626,8 +1626,8 @@ let state = {
   dates: [], istatements: [], milestones: [], vote: { q:'', options:[], voters:[] },
   checkin: {}, coupleNotes: [],
 };
-try { state = JSON.parse(localStorage.getItem('lomon-family-os')) || state; } catch(e) {}
-function save() { try { localStorage.setItem('lomon-family-os', JSON.stringify(state)); } catch(e) {} }
+try { state = JSON.parse(localStorage.getItem('nore-family-os')) || state; } catch(e) {}
+function save() { try { localStorage.setItem('nore-family-os', JSON.stringify(state)); } catch(e) {} }
 
 // ── NAV ──────────────────────────────────────────────────────
 function showPage(id, btn) {
