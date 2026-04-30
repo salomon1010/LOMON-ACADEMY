@@ -370,32 +370,32 @@ body::before{
     <div class="member-pill" onclick="showPage('couple',document.querySelector(`[onclick*=couple]`))">
       <div class="member-avatar" style="background:var(--sal-bg);color:var(--sal)">👨</div>
       <span class="member-name" style="color:var(--sal)">Salomon</span>
-      <span class="member-role">DAD · LEADER</span>
+      <span class="member-role" data-i18n="member.salomon">DAD · LEADER</span>
     </div>
     <div class="member-pill" onclick="showPage('couple',document.querySelector(`[onclick*=couple]`))">
       <div class="member-avatar" style="background:var(--pas-bg);color:var(--pas)">👩</div>
       <span class="member-name" style="color:var(--pas)">Pascaline</span>
-      <span class="member-role">MOM · PARTNER</span>
+      <span class="member-role" data-i18n="member.pascaline">MOM · PARTNER</span>
     </div>
     <div class="member-pill">
       <div class="member-avatar" style="background:var(--glo-bg);color:var(--glory)">👧</div>
       <span class="member-name" style="color:var(--glory)">Glory</span>
-      <span class="member-role">GR7 · GIFTED</span>
+      <span class="member-role" data-i18n="member.glory">GR7 · GIFTED</span>
     </div>
     <div class="member-pill">
       <div class="member-avatar" style="background:var(--ken-bg);color:var(--kendra)">👧</div>
       <span class="member-name" style="color:var(--kendra)">Kendra</span>
-      <span class="member-role">GR6 · CURIOUS</span>
+      <span class="member-role" data-i18n="member.kendra">GR6 · CURIOUS</span>
     </div>
     <div class="member-pill">
       <div class="member-avatar" style="background:var(--gra-bg);color:var(--grace)">👧</div>
       <span class="member-name" style="color:var(--grace)">Grace</span>
-      <span class="member-role">GR4 · CREATIVE</span>
+      <span class="member-role" data-i18n="member.grace">GR4 · CREATIVE</span>
     </div>
     <div class="member-pill">
       <div class="member-avatar" style="background:var(--ang-bg);color:var(--angely)">👦</div>
       <span class="member-name" style="color:var(--angely)">Angely</span>
-      <span class="member-role">GR3 · ENERGETIC</span>
+      <span class="member-role" data-i18n="member.angely">GR3 · ENERGETIC</span>
     </div>
   </div>
 
@@ -423,7 +423,7 @@ body::before{
     <div class="card card-sm" style="border-color:rgba(37,99,235,.2)">
       <div style="font-size:1.2rem;margin-bottom:.4rem">📱</div>
       <div style="font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--angely);margin-bottom:.25rem" data-i18n="home.p4.title">Environment Control</div>
-      <div style="font-size:.78rem;color:var(--t2);line-height:1.5">Screen time rules backed by WHO/AAP guidelines. You control the inputs — devices, content, hours.</div>
+      <div style="font-size:.78rem;color:var(--t2);line-height:1.5" data-i18n="home.p4.body">Screen time rules backed by WHO/AAP guidelines. You control the inputs — devices, content, hours.</div>
       <div style="margin-top:.5rem"><button class="nav-link" style="font-size:.65rem;padding:.2rem .6rem" onclick="showPage('screen',document.querySelector('[onclick*=screen]'))" data-i18n="home.p4.btn">→ Screen Time tab</button></div>
     </div>
     <div class="card card-sm" style="border-color:rgba(168,85,247,.2)">
@@ -488,17 +488,17 @@ body::before{
       <div class="section-title" style="color:var(--gold)" data-i18n="script.A.title">A. Giving an instruction</div>
       <div class="card" style="margin-bottom:.6rem">
         <div class="label-xs" data-i18n="script.A.step1">Step 1 — Say it once. Clear. Direct.</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"Kendra, start your homework now."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px" data-i18n="script.A.q1">"Kendra, start your homework now."</div>
         <div style="font-size:.78rem;color:var(--t2)" data-i18n="script.A.note1">Then <strong>stop talking</strong>. No follow-up. Wait 10 seconds.</div>
       </div>
       <div class="card" style="margin-bottom:.6rem">
         <div class="label-xs" data-i18n="script.A.step2">Step 2 — If no action in ~10 seconds</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"This is your second notice. If you don't start now, you lose screen time tonight."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px" data-i18n="script.A.q2">"This is your second notice. If you don't start now, you lose screen time tonight."</div>
         <div style="font-size:.78rem;color:var(--t2)" data-i18n="script.A.note2"><strong>No discussion.</strong> State it once.</div>
       </div>
       <div class="card" style="border-color:rgba(232,84,84,.2)">
         <div class="label-xs" style="color:var(--red)" data-i18n="script.A.step3">Step 3 — If still no action</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--red);margin:.4rem 0;padding:.5rem .75rem;background:var(--red-bg);border-radius:6px">"You chose to lose screen time today."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--red);margin:.4rem 0;padding:.5rem .75rem;background:var(--red-bg);border-radius:6px" data-i18n="script.A.q3">"You chose to lose screen time today."</div>
         <div style="font-size:.78rem;color:var(--t2)" data-i18n="script.A.note3"><strong>Enforce immediately.</strong> No arguing. No reversing.</div>
       </div>
     </div>
@@ -506,12 +506,12 @@ body::before{
       <div class="section-title" style="color:var(--gold)" data-i18n="script.B.title">B. When child argues / negotiates</div>
       <div class="card" style="margin-bottom:.6rem">
         <div class="label-xs" data-i18n="script.B.label">Child says: "But I don't want to..."</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"This is not a discussion. Do it now or accept the consequence."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px" data-i18n="script.B.q1">"This is not a discussion. Do it now or accept the consequence."</div>
         <div style="font-size:.78rem;color:var(--t2)" data-i18n="script.B.note1">Repeat <strong>once only</strong>.</div>
       </div>
       <div class="card" style="border-color:rgba(232,84,84,.2)">
         <div class="label-xs" style="color:var(--red)" data-i18n="script.B.label2">If they continue arguing</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--red);margin:.4rem 0;padding:.5rem .75rem;background:var(--red-bg);border-radius:6px">"You're choosing the consequence."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--red);margin:.4rem 0;padding:.5rem .75rem;background:var(--red-bg);border-radius:6px" data-i18n="script.B.q2">"You're choosing the consequence."</div>
         <div style="font-size:.78rem;color:var(--t2)" data-i18n="script.B.note2"><strong>End interaction.</strong> Walk away.</div>
       </div>
     </div>
@@ -522,11 +522,11 @@ body::before{
       <div class="section-title" style="color:var(--gold)" data-i18n="script.C.title">C. When child refuses homework</div>
       <div class="card" style="margin-bottom:.6rem">
         <div class="label-xs" data-i18n="script.C.step1">Step 1 — Set the expectation</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"You try first for 10 minutes. Then I help."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px" data-i18n="script.C.q1">"You try first for 10 minutes. Then I help."</div>
       </div>
       <div class="card">
         <div class="label-xs" data-i18n="script.C.step2">Step 2 — If they refuse</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"No homework = no screen time. Your choice."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px" data-i18n="script.C.q2">"No homework = no screen time. Your choice."</div>
         <div style="font-size:.78rem;color:var(--t2)" data-i18n="script.C.note">⁠<strong>Do not help</strong> until they start. This protects independence.</div>
       </div>
     </div>
@@ -534,11 +534,11 @@ body::before{
       <div class="section-title" style="color:var(--gold)" data-i18n="script.D.title">D. Disrespect (tone / attitude)</div>
       <div class="card" style="margin-bottom:.6rem">
         <div class="label-xs" data-i18n="script.D.label1">Immediate interrupt</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"Stop. That's disrespectful. Try again correctly."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--t1);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px" data-i18n="script.D.q1">"Stop. That's disrespectful. Try again correctly."</div>
       </div>
       <div class="card" style="border-color:rgba(232,84,84,.2)">
         <div class="label-xs" style="color:var(--red)" data-i18n="script.D.label2">If repeated</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--red);margin:.4rem 0;padding:.5rem .75rem;background:var(--red-bg);border-radius:6px">"You've lost privileges for today."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--red);margin:.4rem 0;padding:.5rem .75rem;background:var(--red-bg);border-radius:6px" data-i18n="script.D.q2">"You've lost privileges for today."</div>
         <div style="font-size:.78rem;color:var(--t2)" data-i18n="script.D.note"><strong>No lecture.</strong> No emotional reaction.</div>
       </div>
     </div>
@@ -549,7 +549,7 @@ body::before{
       <div class="section-title" style="color:var(--green)" data-i18n="script.E.title">E. When they do something right</div>
       <div class="card" style="border-color:rgba(39,198,133,.2);background:var(--green-bg)">
         <div class="label-xs" style="color:var(--green)" data-i18n="script.E.label">Most parents miss this — then wonder why behavior doesn't stick</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--green);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"I saw you start your homework without being told. Good."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--green);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px" data-i18n="script.E.q">"I saw you start your homework without being told. Good."</div>
         <div style="font-size:.78rem;color:var(--t2)" data-i18n="script.E.note"><strong>Short. Direct. No exaggeration.</strong> Acknowledge the specific action, not a generic compliment.</div>
       </div>
     </div>
@@ -557,7 +557,7 @@ body::before{
       <div class="section-title" style="color:var(--purple)" data-i18n="script.F.title">F. When YOU lose control (you will)</div>
       <div class="card" style="border-color:rgba(168,85,247,.2)">
         <div class="label-xs" style="color:var(--purple)" data-i18n="script.F.label">Reset fast — model self-correction</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--purple);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px">"I handled that wrong. Let's restart."</div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--purple);margin:.4rem 0;padding:.5rem .75rem;background:var(--s2);border-radius:6px" data-i18n="script.F.q">"I handled that wrong. Let's restart."</div>
         <div style="font-size:.78rem;color:var(--t2)" data-i18n="script.F.note">Then <strong>reapply the rule calmly</strong>. No ego. Just correction. Your kids learn how to self-correct from watching you do it.</div>
       </div>
     </div>
@@ -636,17 +636,17 @@ body::before{
     <div class="label-xs" data-i18n="enforce.logLabel">Log a violation (track patterns)</div>
     <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0">
       <select id="viol-who" class="response-area" style="min-height:unset;padding:.4rem .6rem;flex:1;min-width:120px">
-        <option value="">Who?</option>
+        <option value="" data-i18n="enforce.opt.who">Who?</option>
         <option>Glory</option><option>Kendra</option><option>Grace</option><option>Angely</option>
       </select>
       <select id="viol-level" class="response-area" style="min-height:unset;padding:.4rem .6rem;flex:1;min-width:120px">
-        <option value="">Level?</option>
-        <option value="1">L1 — Reminder</option>
-        <option value="2">L2 — Screen loss</option>
-        <option value="3">L3 — 24–48 hr</option>
-        <option value="4">L4 — Weekly</option>
+        <option value="" data-i18n="enforce.opt.level">Level?</option>
+        <option value="1" data-i18n="enforce.opt.l1">L1 — Reminder</option>
+        <option value="2" data-i18n="enforce.opt.l2">L2 — Screen loss</option>
+        <option value="3" data-i18n="enforce.opt.l3">L3 — 24–48 hr</option>
+        <option value="4" data-i18n="enforce.opt.l4">L4 — Weekly</option>
       </select>
-      <input id="viol-rule" class="response-area" style="min-height:unset;padding:.4rem .6rem;flex:2;min-width:140px" placeholder="What rule was broken?">
+      <input id="viol-rule" class="response-area" style="min-height:unset;padding:.4rem .6rem;flex:2;min-width:140px" placeholder="What rule was broken?" data-i18n-placeholder="enforce.opt.placeholder">
       <button class="save-note-btn" onclick="logViolation()" data-i18n="enforce.logBtn">Log →</button>
     </div>
     <div id="violations-log" style="margin-top:.5rem"></div>
@@ -669,16 +669,16 @@ body::before{
     <table style="width:100%;border-collapse:collapse;font-size:.82rem">
       <thead>
         <tr style="border-bottom:1px solid var(--border2)">
-          <th style="text-align:left;padding:.5rem .4rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--t3);text-transform:uppercase">Child</th>
-          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">MON</th>
-          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">TUE</th>
-          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">WED</th>
-          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">THU</th>
-          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">FRI</th>
-          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">SAT</th>
-          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">SUN</th>
-          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">TOTAL</th>
-          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem">RESULT</th>
+          <th style="text-align:left;padding:.5rem .4rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--t3);text-transform:uppercase" data-i18n="scoreboard.thChild">Child</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem" data-i18n="scoreboard.thMon">MON</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem" data-i18n="scoreboard.thTue">TUE</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem" data-i18n="scoreboard.thWed">WED</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem" data-i18n="scoreboard.thThu">THU</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem" data-i18n="scoreboard.thFri">FRI</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem" data-i18n="scoreboard.thSat">SAT</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem" data-i18n="scoreboard.thSun">SUN</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem" data-i18n="scoreboard.thTotal">TOTAL</th>
+          <th style="padding:.5rem .4rem;color:var(--t3);font-family:var(--mono);font-size:.62rem" data-i18n="scoreboard.thResult">RESULT</th>
         </tr>
       </thead>
       <tbody id="scoreboard-rows"></tbody>
@@ -699,9 +699,9 @@ body::before{
     <div class="card">
       <div class="label-xs" data-i18n="scoreboard.outcomeLabel">Weekly outcome rules</div>
       <div style="display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem">
-        <div style="padding:.5rem .7rem;background:var(--green-bg);border-left:3px solid var(--green);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--t1)"><strong style="color:var(--green)">6–7 ✅ days</strong> → Reward earned: choice activity, extra screen time, or special privilege</div>
-        <div style="padding:.5rem .7rem;background:var(--amber-bg);border-left:3px solid var(--amber);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--t1)"><strong style="color:var(--amber)">5 ➖/✅ days</strong> → Neutral. No reward, no consequence. Try harder next week.</div>
-        <div style="padding:.5rem .7rem;background:var(--red-bg);border-left:3px solid var(--red);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--t1)"><strong style="color:var(--red)">0–4 ✅ days</strong> → Consequence: reduced privileges next week + family meeting discussion</div>
+        <div style="padding:.5rem .7rem;background:var(--green-bg);border-left:3px solid var(--green);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--t1)" data-i18n="scoreboard.outcome67"><strong style="color:var(--green)">6–7 ✅ days</strong> → Reward earned: choice activity, extra screen time, or special privilege</div>
+        <div style="padding:.5rem .7rem;background:var(--amber-bg);border-left:3px solid var(--amber);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--t1)" data-i18n="scoreboard.outcome5"><strong style="color:var(--amber)">5 ➖/✅ days</strong> → Neutral. No reward, no consequence. Try harder next week.</div>
+        <div style="padding:.5rem .7rem;background:var(--red-bg);border-left:3px solid var(--red);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--t1)" data-i18n="scoreboard.outcome04"><strong style="color:var(--red)">0–4 ✅ days</strong> → Consequence: reduced privileges next week + family meeting discussion</div>
       </div>
     </div>
   </div>
@@ -715,7 +715,7 @@ body::before{
 
   <div class="card" style="margin-bottom:1.25rem;border-color:rgba(245,197,66,.2);background:var(--sal-bg)">
     <div class="label-xs" style="color:var(--gold)" data-i18n="indep.ruleLabel">The Independence Rule</div>
-    <div style="font-size:.95rem;color:var(--t1);line-height:1.7;margin-top:.5rem">
+    <div style="font-size:.95rem;color:var(--t1);line-height:1.7;margin-top:.5rem" data-i18n="indep.ruleBody">
       <strong>Step 1:</strong> Child tries alone first.<br>
       <strong>Step 2:</strong> Child asks for help if stuck.<br>
       <strong>Step 3:</strong> Parent <em style="color:var(--gold)">supports</em> — does not <em style="color:var(--red)">do</em>.<br><br>
@@ -727,7 +727,7 @@ body::before{
 
   <div class="card" style="margin-top:1.25rem">
     <div class="label-xs" data-i18n="indep.trustLabel">Trust building progression</div>
-    <div style="font-size:.85rem;color:var(--t2);line-height:1.7;margin-top:.5rem">
+    <div style="font-size:.85rem;color:var(--t2);line-height:1.7;margin-top:.5rem" data-i18n="indep.trustBody">
       <strong style="color:var(--green)">If child succeeds at a responsibility</strong> → increase it the next week (more independence, more trust, more privilege).<br><br>
       <strong style="color:var(--amber)">If child fails</strong> → correct, don't immediately remove the responsibility. Removing too fast teaches "if I fail enough, I get out of it." That's the wrong lesson.<br><br>
       <strong style="color:var(--purple)">Pattern of failure</strong> → step them back ONE level on the framework. Rebuild from there.
@@ -756,7 +756,7 @@ body::before{
 
   <div class="couple-card">
     <div class="couple-title" data-i18n="couple.checkin">Weekly Couple Check-in</div>
-    <div class="couple-sub">Use this every Sunday evening. One person reads the question, both answer honestly. No fixing — just listening first.</div>
+    <div class="couple-sub" data-i18n="couple.usage">Use this every Sunday evening. One person reads the question, both answer honestly. No fixing — just listening first.</div>
     <button class="resentment-btn btn-gold" onclick="startCoupleCheckin()" data-i18n="couple.startBtn">▶ Start this week's check-in</button>
     <button class="resentment-btn btn-pink" onclick="logDateIdea()" data-i18n="couple.dateBtn">💝 Log a date idea</button>
   </div>
@@ -770,20 +770,20 @@ body::before{
       <div style="font-size:.82rem;color:var(--t2);line-height:1.6;margin:.5rem 0" data-i18n="couple.iBody">This replaces blame ("You always…") with ownership ("I feel…"). Use this when something is bothering you before it becomes resentment.</div>
       <div style="display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem">
         <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem">
-          <span style="color:var(--t3);min-width:70px">I feel</span>
-          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="hurt / ignored / overwhelmed / disconnected" id="istat-feel">
+          <span style="color:var(--t3);min-width:70px" data-i18n="couple.iFeel">I feel</span>
+          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="hurt / ignored / overwhelmed / disconnected" data-i18n-placeholder="couple.iFeelPh" id="istat-feel">
         </div>
         <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem">
-          <span style="color:var(--t3);min-width:70px">when</span>
-          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="describe the situation" id="istat-when">
+          <span style="color:var(--t3);min-width:70px" data-i18n="couple.iWhen">when</span>
+          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="describe the situation" data-i18n-placeholder="couple.iWhenPh" id="istat-when">
         </div>
         <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem">
-          <span style="color:var(--t3);min-width:70px">because</span>
-          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="the impact on you" id="istat-because">
+          <span style="color:var(--t3);min-width:70px" data-i18n="couple.iBecause">because</span>
+          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="the impact on you" data-i18n-placeholder="couple.iBecausePh" id="istat-because">
         </div>
         <div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem">
-          <span style="color:var(--t3);min-width:70px">I need</span>
-          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="what would help you" id="istat-need">
+          <span style="color:var(--t3);min-width:70px" data-i18n="couple.iNeed">I need</span>
+          <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="what would help you" data-i18n-placeholder="couple.iNeedPh" id="istat-need">
         </div>
         <button class="save-note-btn" onclick="buildIStatement()" data-i18n="couple.iBuildBtn">Build statement →</button>
       </div>
@@ -795,7 +795,7 @@ body::before{
       <div class="label-xs" data-i18n="couple.dateLogLabel">No-kids time ideas</div>
       <div id="date-ideas-list" style="margin-bottom:.6rem"></div>
       <div style="display:flex;gap:.5rem">
-        <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="Add a date idea..." id="date-idea-input">
+        <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" placeholder="Add a date idea..." data-i18n-placeholder="couple.dateIdeaPh" id="date-idea-input">
         <button class="save-note-btn" onclick="addDateIdea()" data-i18n="couple.addBtn">Add</button>
       </div>
     </div>
@@ -835,7 +835,7 @@ body::before{
 <div class="page" id="page-screen">
   <div class="eyebrow" data-i18n="screen.eyebrow">Pillar 4 — Environment Control</div>
   <h1 class="page-title" data-i18n="screen.title">Screen Time <em>Rules</em></h1>
-  <p class="page-sub">WHO/AAP guidelines adapted for your family. You control the inputs your children receive — this shapes their attention, mood, and values more than almost anything else.</p>
+  <p class="page-sub" data-i18n="screen.sub">WHO/AAP guidelines adapted for your family. You control the inputs your children receive — this shapes their attention, mood, and values more than almost anything else.</p>
   <div class="grid-2" id="screen-grid" style="margin-bottom:1.5rem"></div>
   <div class="card" style="border-color:rgba(245,197,66,.2)">
     <div class="label-xs" data-i18n="screen.nonNegLabel">Non-negotiable screen rules for all kids</div>
@@ -857,10 +857,10 @@ body::before{
 
   <div class="card" style="margin-bottom:1.25rem">
     <div class="label-xs" data-i18n="vote.qLabel">Current vote question</div>
-    <input class="response-area" style="min-height:unset;padding:.45rem .75rem;font-size:.95rem;margin-bottom:.65rem" id="vote-question" placeholder="What are we deciding? E.g. 'Where should we go this Saturday?'" oninput="updateVoteQuestion()">
+    <input class="response-area" style="min-height:unset;padding:.45rem .75rem;font-size:.95rem;margin-bottom:.65rem" id="vote-question" placeholder="What are we deciding? E.g. 'Where should we go this Saturday?'" data-i18n-placeholder="vote.qPh" oninput="updateVoteQuestion()">
     <div id="vote-options-list"></div>
     <div style="display:flex;gap:.5rem;margin-top:.65rem">
-      <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" id="vote-option-input" placeholder="Add an option..." onkeydown="if(event.key==='Enter') addVoteOption()">
+      <input class="response-area" style="min-height:unset;padding:.35rem .55rem;flex:1" id="vote-option-input" placeholder="Add an option..." data-i18n-placeholder="vote.optPh" onkeydown="if(event.key==='Enter') addVoteOption()">
       <button class="save-note-btn" onclick="addVoteOption()" data-i18n="vote.addOptBtn">Add option</button>
       <button class="save-note-btn" onclick="clearVote()" data-i18n="vote.newBtn">↺ New vote</button>
     </div>
@@ -885,17 +885,17 @@ body::before{
         <div style="margin-bottom:.5rem">
           <div class="label-xs" data-i18n="ms.whoLabel">Who is it for?</div>
           <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.3rem" id="ms-who-selector">
-            <button class="save-note-btn" onclick="selectMsWho(this,'Salomon')" data-who="Salomon">👨 Salomon</button>
-            <button class="save-note-btn" onclick="selectMsWho(this,'Pascaline')" data-who="Pascaline">👩 Pascaline</button>
+            <button class="save-note-btn" onclick="selectMsWho(this,'Salomon')" data-who="Salomon" data-i18n="ms.who.salomon">👨 Salomon</button>
+            <button class="save-note-btn" onclick="selectMsWho(this,'Pascaline')" data-who="Pascaline" data-i18n="ms.who.pascaline">👩 Pascaline</button>
             <button class="save-note-btn" onclick="selectMsWho(this,'Glory')" data-who="Glory">Glory</button>
             <button class="save-note-btn" onclick="selectMsWho(this,'Kendra')" data-who="Kendra">Kendra</button>
             <button class="save-note-btn" onclick="selectMsWho(this,'Grace')" data-who="Grace">Grace</button>
             <button class="save-note-btn" onclick="selectMsWho(this,'Angely')" data-who="Angely">Angely</button>
-            <button class="save-note-btn" onclick="selectMsWho(this,'Family')" data-who="Family">🏠 Family</button>
+            <button class="save-note-btn" onclick="selectMsWho(this,'Family')" data-who="Family" data-i18n="ms.who.family">🏠 Family</button>
           </div>
         </div>
         <div class="label-xs" style="margin-top:.5rem" data-i18n="ms.whatLabel">What happened?</div>
-        <textarea class="response-area" id="ms-text" placeholder="Describe the moment — be specific. What did they do, say, or overcome?" style="margin-top:.3rem"></textarea>
+        <textarea class="response-area" id="ms-text" placeholder="Describe the moment — be specific. What did they do, say, or overcome?" data-i18n-placeholder="ms.textPh" style="margin-top:.3rem"></textarea>
         <button class="save-note-btn" onclick="addMilestone()" style="margin-top:.4rem" data-i18n="ms.recordBtn">Record milestone ⭐</button>
       </div>
     </div>
@@ -917,43 +917,43 @@ body::before{
     <div class="checkin-step">
       <div class="step-badge" data-i18n="checkin.s1.badge">Step 1 · 5 min · Everyone</div>
       <div class="step-q" data-i18n="checkin.s1.q">🌟 <em>What was your best moment this week?</em> Start with the youngest, go around the circle. No interruptions.</div>
-      <textarea class="response-area" placeholder="Notes from this week's answers..." id="ci-best"></textarea>
-      <button class="save-note-btn" onclick="saveCINote('ci-best')">Save notes</button>
+      <textarea class="response-area" placeholder="Notes from this week's answers..." data-i18n-placeholder="checkin.bestPh" id="ci-best"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-best')" data-i18n="checkin.saveNotes">Save notes</button>
     </div>
 
     <div class="checkin-step">
       <div class="step-badge" data-i18n="checkin.s2.badge">Step 2 · 5 min · Everyone</div>
       <div class="step-q" data-i18n="checkin.s2.q">😤 <em>Was there anything hard or unfair this week?</em> Each person gets 60 seconds. No defending — just listening.</div>
-      <textarea class="response-area" placeholder="Issues raised this week..." id="ci-hard"></textarea>
-      <button class="save-note-btn" onclick="saveCINote('ci-hard')">Save notes</button>
+      <textarea class="response-area" placeholder="Issues raised this week..." data-i18n-placeholder="checkin.hardPh" id="ci-hard"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-hard')" data-i18n="checkin.saveNotes2">Save notes</button>
     </div>
 
     <div class="checkin-step">
       <div class="step-badge" data-i18n="checkin.s3.badge">Step 3 · 5 min · Kids</div>
       <div class="step-q" data-i18n="checkin.s3.q">🗳️ <em>Family vote topic this week:</em> <em>Use the Vote tab to let kids pick something for the week ahead.</em></div>
-      <textarea class="response-area" placeholder="What we're deciding... what was voted on..." id="ci-vote"></textarea>
-      <button class="save-note-btn" onclick="saveCINote('ci-vote')">Save notes</button>
+      <textarea class="response-area" placeholder="What we're deciding... what was voted on..." data-i18n-placeholder="checkin.votePh" id="ci-vote"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-vote')" data-i18n="checkin.saveNotes3">Save notes</button>
     </div>
 
     <div class="checkin-step">
       <div class="step-badge" data-i18n="checkin.s4.badge">Step 4 · 5 min · Parents only (after kids)</div>
       <div class="step-q" data-i18n="checkin.s4.q">💍 <em>Salomon & Pascaline: What do we need from each other next week?</em> One sentence each — specific and kind.</div>
-      <textarea class="response-area" placeholder="What we agreed on..." id="ci-couple"></textarea>
-      <button class="save-note-btn" onclick="saveCINote('ci-couple')">Save notes</button>
+      <textarea class="response-area" placeholder="What we agreed on..." data-i18n-placeholder="checkin.couplePh" id="ci-couple"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-couple')" data-i18n="checkin.saveNotes4">Save notes</button>
     </div>
 
     <div class="checkin-step">
       <div class="step-badge" data-i18n="checkin.s5.badge">Step 5 · 5 min · Everyone</div>
       <div class="step-q" data-i18n="checkin.s5.q">📅 <em>What are we looking forward to next week?</em> Each person names one thing. End on a high note.</div>
-      <textarea class="response-area" placeholder="What the family is looking forward to..." id="ci-ahead"></textarea>
-      <button class="save-note-btn" onclick="saveCINote('ci-ahead')">Save notes</button>
+      <textarea class="response-area" placeholder="What the family is looking forward to..." data-i18n-placeholder="checkin.aheadPh" id="ci-ahead"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-ahead')" data-i18n="checkin.saveNotes5">Save notes</button>
     </div>
 
     <div class="checkin-step" style="background:var(--sal-bg);border-color:rgba(245,197,66,.2)">
       <div class="step-badge" data-i18n="checkin.s6.badge">Salomon's personal reflection · Private</div>
       <div class="step-q" data-i18n="checkin.s6.q">🧘 <em>How am I modeling the behavior I want to see?</em> Am I calm, present, consistent? What do I want to do better next week?</div>
-      <textarea class="response-area" id="ci-self" placeholder="Your personal reflection — this is private..."></textarea>
-      <button class="save-note-btn" onclick="saveCINote('ci-self')">Save reflection</button>
+      <textarea class="response-area" id="ci-self" placeholder="Your personal reflection — this is private..." data-i18n-placeholder="checkin.selfPh"></textarea>
+      <button class="save-note-btn" onclick="saveCINote('ci-self')" data-i18n="checkin.saveReflection">Save reflection</button>
     </div>
 
   </div>
@@ -1122,10 +1122,15 @@ const TRANSLATIONS = {
     'scoreboard.cl4':'✅ Respectful behavior (no yelling/arguing)',
     'scoreboard.clNote':'If <strong>all 4</strong> are done → mark ✅ for the day. If 1–3 are done → mark ➖. If 0–1 → mark ❌.',
     'scoreboard.outcomeLabel':'Weekly outcome rules',
+    'scoreboard.outcome67':'<strong style="color:var(--green)">6–7 ✅ days</strong> → Reward earned: choice activity, extra screen time, or special privilege',
+    'scoreboard.outcome5':'<strong style="color:var(--amber)">5 ➖/✅ days</strong> → Neutral. No reward, no consequence. Try harder next week.',
+    'scoreboard.outcome04':'<strong style="color:var(--red)">0–4 ✅ days</strong> → Consequence: reduced privileges next week + family meeting discussion',
 
     // Independence extras
     'indep.ruleLabel':'The Independence Rule',
+    'indep.ruleBody':'<strong>Step 1:</strong> Child tries alone first.<br><strong>Step 2:</strong> Child asks for help if stuck.<br><strong>Step 3:</strong> Parent <em style="color:var(--gold)">supports</em> — does not <em style="color:var(--red)">do</em>.<br><br><strong style="color:var(--red)">If child skips Step 1 → no help is given.</strong> They go back and try first. This is non-negotiable.',
     'indep.trustLabel':'Trust building progression',
+    'indep.trustBody':'<strong style="color:var(--green)">If child succeeds at a responsibility</strong> → increase it the next week (more independence, more trust, more privilege).<br><br><strong style="color:var(--amber)">If child fails</strong> → correct, don\'t immediately remove the responsibility. Removing too fast teaches "if I fail enough, I get out of it." That\'s the wrong lesson.<br><br><strong style="color:var(--purple)">Pattern of failure</strong> → step them back ONE level on the framework. Rebuild from there.',
 
     // Screen extras
     'screen.nonNegLabel':'Non-negotiable screen rules for all kids',
@@ -1172,6 +1177,84 @@ const TRANSLATIONS = {
     'checkin.s5.q':'📅 <em>What are we looking forward to next week?</em> Each person names one thing. End on a high note.',
     'checkin.s6.badge':"Salomon's personal reflection · Private",
     'checkin.s6.q':'🧘 <em>How am I modeling the behavior I want to see?</em> Am I calm, present, consistent? What do I want to do better next week?',
+
+    // Member roles
+    'member.salomon':'DAD · LEADER',
+    'member.pascaline':'MOM · PARTNER',
+    'member.glory':'GR7 · GIFTED',
+    'member.kendra':'GR6 · CURIOUS',
+    'member.grace':'GR4 · CREATIVE',
+    'member.angely':'GR3 · ENERGETIC',
+
+    // I-Statement labels & placeholders
+    'couple.iFeel':'I feel',
+    'couple.iWhen':'when',
+    'couple.iBecause':'because',
+    'couple.iNeed':'I need',
+    'couple.iFeelPh':'hurt / ignored / overwhelmed / disconnected',
+    'couple.iWhenPh':'describe the situation',
+    'couple.iBecausePh':'the impact on you',
+    'couple.iNeedPh':'what would help you',
+    'couple.dateIdeaPh':'Add a date idea...',
+    'couple.usage':'Use this every Sunday evening. One person reads the question, both answer honestly. No fixing — just listening first.',
+
+    // Vote placeholders
+    'vote.qPh':"What are we deciding? E.g. 'Where should we go this Saturday?'",
+    'vote.optPh':'Add an option...',
+
+    // Milestone
+    'ms.textPh':'Describe the moment — be specific. What did they do, say, or overcome?',
+    'ms.who.salomon':'👨 Salomon',
+    'ms.who.pascaline':'👩 Pascaline',
+    'ms.who.family':'🏠 Family',
+
+    // Check-in placeholders & buttons
+    'checkin.bestPh':"Notes from this week's answers...",
+    'checkin.hardPh':'Issues raised this week...',
+    'checkin.votePh':"What we're deciding... what was voted on...",
+    'checkin.couplePh':'What we agreed on...',
+    'checkin.aheadPh':'What the family is looking forward to...',
+    'checkin.selfPh':'Your personal reflection — this is private...',
+    'checkin.saveNotes':'Save notes',
+    'checkin.saveNotes2':'Save notes',
+    'checkin.saveNotes3':'Save notes',
+    'checkin.saveNotes4':'Save notes',
+    'checkin.saveNotes5':'Save notes',
+    'checkin.saveReflection':'Save reflection',
+
+    // Enforcement violation logger
+    'enforce.opt.who':'Who?',
+    'enforce.opt.level':'Level?',
+    'enforce.opt.l1':'L1 — Reminder',
+    'enforce.opt.l2':'L2 — Screen loss',
+    'enforce.opt.l3':'L3 — 24–48 hr',
+    'enforce.opt.l4':'L4 — Weekly',
+    'enforce.opt.placeholder':'What rule was broken?',
+
+    // Scoreboard table headers
+    'scoreboard.thChild':'Child',
+    'scoreboard.thMon':'MON',
+    'scoreboard.thTue':'TUE',
+    'scoreboard.thWed':'WED',
+    'scoreboard.thThu':'THU',
+    'scoreboard.thFri':'FRI',
+    'scoreboard.thSat':'SAT',
+    'scoreboard.thSun':'SUN',
+    'scoreboard.thTotal':'TOTAL',
+    'scoreboard.thResult':'RESULT',
+
+    // Speech bubbles — exact words to say to kids
+    'script.A.q1':'"Kendra, start your homework now."',
+    'script.A.q2':'"This is your second notice. If you don\'t start now, you lose screen time tonight."',
+    'script.A.q3':'"You chose to lose screen time today."',
+    'script.B.q1':'"This is not a discussion. Do it now or accept the consequence."',
+    'script.B.q2':'"You\'re choosing the consequence."',
+    'script.C.q1':'"You try first for 10 minutes. Then I help."',
+    'script.C.q2':'"No homework = no screen time. Your choice."',
+    'script.D.q1':'"Stop. That\'s disrespectful. Try again correctly."',
+    'script.D.q2':'"You\'ve lost privileges for today."',
+    'script.E.q':'"I saw you start your homework without being told. Good."',
+    'script.F.q':'"I handled that wrong. Let\'s restart."',
   },
   fr: {
     'nav.home':'🏠 Accueil','nav.rituals':'📅 Rituels','nav.rules':'📋 Règles','nav.script':'🎬 Script Quotidien','nav.enforce':'⚖️ Application','nav.scoreboard':'📊 Tableau','nav.independence':'🎯 Autonomie','nav.kids':'👧 Enfants','nav.couple':'💍 Couple','nav.screen':'📱 Écrans','nav.vote':'🗳️ Vote','nav.milestones':'⭐ Étapes','nav.checkin':'🔄 Bilan',
@@ -1333,10 +1416,15 @@ const TRANSLATIONS = {
     'scoreboard.cl4':'✅ Comportement respectueux (pas de cris/disputes)',
     'scoreboard.clNote':'Si <strong>les 4</strong> sont faits → marquez ✅ pour la journée. Si 1–3 sont faits → marquez ➖. Si 0–1 → marquez ❌.',
     'scoreboard.outcomeLabel':'Règles du résultat hebdomadaire',
+    'scoreboard.outcome67':'<strong style="color:var(--green)">6–7 jours ✅</strong> → Récompense méritée : activité au choix, temps d\'écran supplémentaire, ou privilège spécial',
+    'scoreboard.outcome5':"<strong style=\"color:var(--amber)\">5 jours ➖/✅</strong> → Neutre. Pas de récompense, pas de conséquence. Essayez plus fort la semaine prochaine.",
+    'scoreboard.outcome04':'<strong style="color:var(--red)">0–4 jours ✅</strong> → Conséquence : privilèges réduits la semaine prochaine + discussion en réunion familiale',
 
     // Independence extras — FR
     'indep.ruleLabel':"La Règle d'Autonomie",
+    'indep.ruleBody':"<strong>Étape 1 :</strong> L'enfant essaie seul d'abord.<br><strong>Étape 2 :</strong> L'enfant demande de l'aide s'il est bloqué.<br><strong>Étape 3 :</strong> Le parent <em style=\"color:var(--gold)\">soutient</em> — ne <em style=\"color:var(--red)\">fait pas</em>.<br><br><strong style=\"color:var(--red)\">Si l'enfant saute l'Étape 1 → aucune aide n'est donnée.</strong> Il retourne essayer d'abord. C'est non-négociable.",
     'indep.trustLabel':'Progression de la confiance',
+    'indep.trustBody':"<strong style=\"color:var(--green)\">Si l'enfant réussit une responsabilité</strong> → augmentez-la la semaine suivante (plus d'autonomie, plus de confiance, plus de privilèges).<br><br><strong style=\"color:var(--amber)\">Si l'enfant échoue</strong> → corrigez, ne retirez pas immédiatement la responsabilité. Retirer trop vite enseigne « si j'échoue assez, je m'en débarrasse ». C'est la mauvaise leçon.<br><br><strong style=\"color:var(--purple)\">Schéma d'échec</strong> → reculez-les d'UN niveau sur le cadre. Reconstruisez à partir de là.",
 
     // Screen extras — FR
     'screen.nonNegLabel':"Règles d'écran non-négociables pour tous les enfants",
@@ -1383,6 +1471,84 @@ const TRANSLATIONS = {
     'checkin.s5.q':"📅 <em>Qu'attendons-nous avec impatience la semaine prochaine ?</em> Chaque personne nomme une chose. On finit sur une note positive.",
     'checkin.s6.badge':"Réflexion personnelle de Salomon · Privé",
     'checkin.s6.q':"🧘 <em>Comment je modélise le comportement que je veux voir ?</em> Suis-je calme, présent, constant ? Que veux-je mieux faire la semaine prochaine ?",
+
+    // Member roles — FR
+    'member.salomon':'PAPA · LEADER',
+    'member.pascaline':'MAMAN · PARTENAIRE',
+    'member.glory':'CM2 · DOUÉE',
+    'member.kendra':'CM1 · CURIEUSE',
+    'member.grace':'CE2 · CRÉATIVE',
+    'member.angely':'CE1 · ÉNERGIQUE',
+
+    // I-Statement labels & placeholders — FR
+    'couple.iFeel':'Je me sens',
+    'couple.iWhen':'quand',
+    'couple.iBecause':'parce que',
+    'couple.iNeed':"J'ai besoin de",
+    'couple.iFeelPh':"blessé(e) / ignoré(e) / dépassé(e) / déconnecté(e)",
+    'couple.iWhenPh':'décrivez la situation',
+    'couple.iBecausePh':'son impact sur toi',
+    'couple.iNeedPh':"ce qui pourrait t'aider",
+    'couple.dateIdeaPh':'Ajouter une idée de sortie...',
+    'couple.usage':"Utilisez ceci chaque dimanche soir. Une personne lit la question, les deux répondent honnêtement. Pas de solution — juste écouter d'abord.",
+
+    // Vote placeholders — FR
+    'vote.qPh':"Que décide-t-on ? Ex. : « Où devrait-on aller samedi ? »",
+    'vote.optPh':'Ajouter une option...',
+
+    // Milestone — FR
+    'ms.textPh':"Décrivez le moment — soyez précis. Qu'est-ce qu'il/elle a fait, dit, ou surmonté ?",
+    'ms.who.salomon':'👨 Salomon',
+    'ms.who.pascaline':'👩 Pascaline',
+    'ms.who.family':'🏠 Famille',
+
+    // Check-in placeholders & buttons — FR
+    'checkin.bestPh':'Notes des réponses de cette semaine...',
+    'checkin.hardPh':'Problèmes soulevés cette semaine...',
+    'checkin.votePh':"Ce qu'on décide... ce qui a été voté...",
+    'checkin.couplePh':"Ce sur quoi on s'est mis d'accord...",
+    'checkin.aheadPh':"Ce que la famille attend avec impatience...",
+    'checkin.selfPh':"Votre réflexion personnelle — ceci est privé...",
+    'checkin.saveNotes':'Enregistrer les notes',
+    'checkin.saveNotes2':'Enregistrer les notes',
+    'checkin.saveNotes3':'Enregistrer les notes',
+    'checkin.saveNotes4':'Enregistrer les notes',
+    'checkin.saveNotes5':'Enregistrer les notes',
+    'checkin.saveReflection':'Enregistrer la réflexion',
+
+    // Enforcement violation logger — FR
+    'enforce.opt.who':'Qui ?',
+    'enforce.opt.level':'Niveau ?',
+    'enforce.opt.l1':'N1 — Rappel',
+    'enforce.opt.l2':"N2 — Perte d'écran",
+    'enforce.opt.l3':'N3 — 24–48 h',
+    'enforce.opt.l4':'N4 — Hebdomadaire',
+    'enforce.opt.placeholder':'Quelle règle a été enfreinte ?',
+
+    // Scoreboard table headers — FR
+    'scoreboard.thChild':'Enfant',
+    'scoreboard.thMon':'LUN',
+    'scoreboard.thTue':'MAR',
+    'scoreboard.thWed':'MER',
+    'scoreboard.thThu':'JEU',
+    'scoreboard.thFri':'VEN',
+    'scoreboard.thSat':'SAM',
+    'scoreboard.thSun':'DIM',
+    'scoreboard.thTotal':'TOTAL',
+    'scoreboard.thResult':'RÉSULTAT',
+
+    // Speech bubbles — paroles exactes à dire aux enfants
+    'script.A.q1':'« Kendra, commence tes devoirs maintenant. »',
+    'script.A.q2':"« C'est ton deuxième avertissement. Si tu ne commences pas maintenant, tu perds ton temps d'écran ce soir. »",
+    'script.A.q3':"« Tu as choisi de perdre ton temps d'écran aujourd'hui. »",
+    'script.B.q1':"« Ce n'est pas une discussion. Fais-le maintenant ou accepte la conséquence. »",
+    'script.B.q2':'« Tu choisis la conséquence. »',
+    'script.C.q1':"« Essaie d'abord seul pendant 10 minutes. Ensuite je t'aide. »",
+    'script.C.q2':"« Pas de devoirs = pas d'écran. À toi de choisir. »",
+    'script.D.q1':'« Stop. Ce n\'est pas respectueux. Recommence correctement. »',
+    'script.D.q2':"« Tu as perdu tes privilèges pour aujourd'hui. »",
+    'script.E.q':"« Je t'ai vu commencer tes devoirs sans qu'on te le demande. Bien. »",
+    'script.F.q':"« J'ai mal géré ça. On recommence. »",
   }
 };
 
